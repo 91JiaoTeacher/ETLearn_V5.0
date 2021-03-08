@@ -1,0 +1,96 @@
+﻿using System;
+using System.Collections.Generic;
+using ETModel;
+
+namespace ETHotfix
+{
+    [ObjectSystem]
+    public class PlayerNetSyncComponentAwakeSystem : AwakeSystem<PlayerNetSyncComponent>
+    {
+        public override void Awake(PlayerNetSyncComponent self)
+        {
+            self.Awake();
+        }
+    }
+
+    [ObjectSystem]
+    public class PlayerNetSyncComponentStartSystem : StartSystem<PlayerNetSyncComponent>
+    {
+        public override void Start(PlayerNetSyncComponent self)
+        {
+            self.Start();
+        }
+    }
+
+    public class PlayerNetSyncComponent : Component
+    {
+        /// <summary>
+        /// 计时器组件
+        /// </summary>
+        private TimerComponent timerComponent = null;
+
+        /// <summary>
+        /// Map服中单位管理组件
+        /// </summary>
+        private UnitComponent unitComponent = null;
+
+        /// <summary>
+        /// 每秒发包次数，号码
+        /// </summary>
+        private long ttk = 1000 / 24;
+
+        public void Awake()
+        {
+            Log.Info("玩家角色同步组件初始化");
+        }
+
+        public void Start()
+        {
+            unitComponent = Game.Scene.GetComponent<UnitComponent>();
+            timerComponent = Game.Scene.GetComponent<TimerComponent>();
+            UpDateNetSync(ttk).Coroutine();
+        }
+
+        public async ETVoid UpDateNetSync(long ttk)
+        {
+            while (true)
+            {
+                await timerComponent.WaitAsync(ttk);
+                List<Unit> units = unitComponent.getCountUnits(1);
+                if (units != null)
+                {
+                    ActorMessageSenderComponent actorSenderComponent = Game.Scene.GetComponent<ActorMessageSenderComponent>();
+                    for (int i = 0; i < units.Count; i++)
+                    {
+                        ActorMessageSender actorMessageSender = actorSenderComponent.Get(units[i].GateInstanceId);
+                        List<int> accounts = new List<int>();
+                        List<float> positionX = new List<float>();
+                        List<float> positionY = new List<float>();
+                        List<float> positionZ = new List<float>();
+
+                        for (int j = 0; j < units.Count; j++)
+                        {
+                            if (units[i].Account != units[j].Account)
+                            {
+                                accounts.Add(units[j].Account);
+                                positionX.Add(units[j].InitPositionX);
+                                positionY.Add(units[j].InitPositionY);
+                                positionZ.Add(units[j].InitPositionZ);
+                            }
+                        }
+
+                        actorMessageSender.Send(new Actor_PlayerNetSyncToCline()
+                        {
+                            DirAccount = accounts,
+                            PositionX = positionX,
+                            PositionY = positionY,
+                            PositionZ = positionZ,
+                        });
+                    }
+                }
+
+            }
+        }
+
+    }
+}

@@ -1,0 +1,82 @@
+syntax = "proto3";
+package ETHotfix;
+
+message C2G_Login // IRequest
+{
+	int32 RpcId = 90;
+	int32	Account	 = 1;	// 帐号
+	string	Password = 2;	// 密码
+}
+
+message G2C_Login // IResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	string Address = 1;
+	int32 Key = 2;
+}
+
+message C2G_RequestEnterMap // IRequest
+{
+	int32 RpcId = 90;
+	int32 Account	 = 1;	// 帐号
+}
+
+message G2C_RequestEnterMap // IResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	float PositionX = 1;
+	float PositionY = 2;
+	float PositionZ = 3;
+}
+
+message C2M_PlayerPosition // IRequest
+{
+	int32 RpcId = 90;
+	float PositionX = 1;
+	float PositionY = 2;
+	float PositionZ = 3;
+}
+
+message M2C_PlayerPosition // IResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	float PositionX = 1;
+	float PositionY = 2;
+	float PositionZ = 3;
+}
+
+message C2G_PlayerRoleNetwork // IMessage
+{
+	int32 Account = 1;
+	float PositionX = 2;
+	float PositionY = 3;
+	float PositionZ = 4;
+}
+
+message C2G_GetOtherPlayer // IMessage
+{
+	int32 RpcId = 90;
+	int32 Account = 1;
+}
+
+message G2C_OtherPlayerEnterMap // IMessage
+{
+	int32 Account = 1;
+	float PositionX = 2;
+	float PositionY = 3;
+	float PositionZ = 4;
+}
+
+message G2C_OtherPlayerPosition // IMessage
+{
+	repeated int32 DirAccount = 1;
+    repeated float PositionX = 2;
+    repeated float PositionY = 3;
+    repeated float PositionZ = 4;
+}

@@ -1,0 +1,30 @@
+ManifestFileVersion: 0
+CRC: 1052858771
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 0dbdee4d7332950a70e9ea76a62395a2
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 7178ac2ab23c5b6c0eec62ee2ded2ea4
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 136
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Res/Unit/OtherPlayer/OtherPlayer.prefab
+Dependencies:
+- D:/_MyGitHub/ETLearn_V5.0/Unity/Bundles/Windows/a7f4ed3e7b99ca9eda5ec8de5229b77a.bundle
