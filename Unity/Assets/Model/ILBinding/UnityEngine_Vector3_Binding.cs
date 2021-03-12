@@ -36,12 +36,12 @@ namespace ILRuntime.Runtime.Generated
             method = type.GetMethod("get_zero", flag, null, args, null);
             app.RegisterCLRMethodRedirection(method, get_zero_3);
 
-            field = type.GetField("x", flag);
-            app.RegisterCLRFieldGetter(field, get_x_0);
-            app.RegisterCLRFieldSetter(field, set_x_0);
             field = type.GetField("y", flag);
-            app.RegisterCLRFieldGetter(field, get_y_1);
-            app.RegisterCLRFieldSetter(field, set_y_1);
+            app.RegisterCLRFieldGetter(field, get_y_0);
+            app.RegisterCLRFieldSetter(field, set_y_0);
+            field = type.GetField("x", flag);
+            app.RegisterCLRFieldGetter(field, get_x_1);
+            app.RegisterCLRFieldSetter(field, set_x_1);
             field = type.GetField("z", flag);
             app.RegisterCLRFieldGetter(field, get_z_2);
             app.RegisterCLRFieldSetter(field, set_z_2);
@@ -164,26 +164,26 @@ namespace ILRuntime.Runtime.Generated
         }
 
 
-        static object get_x_0(ref object o)
-        {
-            return ((UnityEngine.Vector3)o).x;
-        }
-        static void set_x_0(ref object o, object v)
-        {
-            var h = GCHandle.Alloc(o, GCHandleType.Pinned);
-            UnityEngine.Vector3* p = (UnityEngine.Vector3 *)(void *)h.AddrOfPinnedObject();
-            p->x = (System.Single)v;
-            h.Free();
-        }
-        static object get_y_1(ref object o)
+        static object get_y_0(ref object o)
         {
             return ((UnityEngine.Vector3)o).y;
         }
-        static void set_y_1(ref object o, object v)
+        static void set_y_0(ref object o, object v)
         {
             var h = GCHandle.Alloc(o, GCHandleType.Pinned);
             UnityEngine.Vector3* p = (UnityEngine.Vector3 *)(void *)h.AddrOfPinnedObject();
             p->y = (System.Single)v;
+            h.Free();
+        }
+        static object get_x_1(ref object o)
+        {
+            return ((UnityEngine.Vector3)o).x;
+        }
+        static void set_x_1(ref object o, object v)
+        {
+            var h = GCHandle.Alloc(o, GCHandleType.Pinned);
+            UnityEngine.Vector3* p = (UnityEngine.Vector3 *)(void *)h.AddrOfPinnedObject();
+            p->x = (System.Single)v;
             h.Free();
         }
         static object get_z_2(ref object o)

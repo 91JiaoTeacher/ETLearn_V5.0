@@ -8,6 +8,7 @@ using ILRuntime.Runtime.Enviorment;
 using ILRuntime.Runtime.Generated;
 using ILRuntime.Runtime.Intepreter;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace ETModel
 {
@@ -16,6 +17,7 @@ namespace ETModel
 		public static void InitILRuntime(ILRuntime.Runtime.Enviorment.AppDomain appdomain)
 		{
 			// 注册重定向函数
+            Debug_BindingCLR.Register(appdomain);
 
 			// 注册委托
 			appdomain.DelegateManager.RegisterMethodDelegate<List<object>>();
@@ -28,6 +30,7 @@ namespace ETModel
 			appdomain.DelegateManager.RegisterMethodDelegate<ILTypeInstance>();
 			appdomain.DelegateManager.RegisterFunctionDelegate<Google.Protobuf.Adapt_IMessage.Adaptor>();
 			appdomain.DelegateManager.RegisterMethodDelegate<Google.Protobuf.Adapt_IMessage.Adaptor>();
+            appdomain.DelegateManager.RegisterMethodDelegate<PointerEventData>();
 
 			CLRBindings.Initialize(appdomain);
 

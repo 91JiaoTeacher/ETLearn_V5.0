@@ -35,7 +35,6 @@ namespace ETModel
 			private ILRuntime.Runtime.Enviorment.AppDomain appDomain;
 			
 			private IMethod iDisposable;
-			private readonly object[] param0 = new object[0];
 
 			public IDisposableAdaptor()
 			{
@@ -59,9 +58,9 @@ namespace ETModel
 			{
 				if (this.iDisposable == null)
 				{
-					this.iDisposable = instance.Type.GetMethod("Dispose");
+					this.iDisposable = instance.Type.GetMethod("Dispose", 0);
 				}
-				this.appDomain.Invoke(this.iDisposable, instance, this.param0);
+				this.appDomain.Invoke(this.iDisposable, instance);
 			}
 
 			public override string ToString()

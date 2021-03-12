@@ -104,6 +104,12 @@ namespace ILRuntime.Runtime.Generated
             UnityEngine_Mathf_Binding.Register(app);
             UnityEngine_Quaternion_Binding.Register(app);
             UnityEngine_CharacterController_Binding.Register(app);
+            UnityEngine_Vector2_Binding.Register(app);
+            UnityEngine_RectTransform_Binding.Register(app);
+            ETModel_HandlerAgent_Binding.Register(app);
+            UnityEngine_EventSystems_PointerEventData_Binding.Register(app);
+            UnityEngine_Canvas_Binding.Register(app);
+            UnityEngine_RectTransformUtility_Binding.Register(app);
             UnityEngine_UI_Button_Binding.Register(app);
             ETModel_ActionHelper_Binding.Register(app);
             UnityEngine_UI_InputField_Binding.Register(app);
@@ -139,7 +145,6 @@ namespace ILRuntime.Runtime.Generated
             UnityEngine_LayerMask_Binding.Register(app);
             System_Collections_Generic_Dictionary_2_String_ILTypeInstance_Binding_ValueCollection_Binding.Register(app);
             System_Collections_Generic_Dictionary_2_String_ILTypeInstance_Binding_ValueCollection_Binding_Enumerator_Binding.Register(app);
-            UnityEngine_Canvas_Binding.Register(app);
 
             ILRuntime.CLR.TypeSystem.CLRType __clrType = null;
         }
