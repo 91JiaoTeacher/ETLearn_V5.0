@@ -19,6 +19,11 @@ namespace ETHotfix
         /// </summary>
         public GameObject[] bulletObj;
 
+        /// <summary>
+        /// 子弹速度
+        /// </summary>
+        private float bulletSpeed = 40.0f;
+
         public void Awake(GameObject[] bulletObj)
         {
             this.bulletObj = bulletObj;
@@ -34,7 +39,7 @@ namespace ETHotfix
             bulletObj[1].SetActive(true);
             bulletObj[1].transform.position = gunParent.transform.position;
             bulletObj[1].transform.LookAt(dirObj.transform.position);
-            bulletObj[1].GetComponent<Rigidbody>().velocity = bulletObj[1].transform.forward * 40.0f + baseVelocity;
+            bulletObj[1].GetComponent<Rigidbody>().velocity = bulletObj[1].transform.forward * bulletSpeed + baseVelocity;
         }
 
 
