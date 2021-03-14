@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 namespace ETHotfix
 {
     [ObjectSystem]
-    public class VariableJoystickComponentSystem : StartSystem<VariableJoystickComponent>
+    public class VariableJoystickComponentStartSystem : StartSystem<VariableJoystickComponent>
     {
         public override void Start(VariableJoystickComponent self)
         {
@@ -52,21 +52,10 @@ namespace ETHotfix
         public float MoveThreshold { get { return moveThreshold; } set { moveThreshold = Mathf.Abs(value); } }
 
         private float moveThreshold = 1;
-        private JoystickType joystickType = JoystickType.Floating;
+        public JoystickType joystickType = JoystickType.Fixed;
 
         private Vector2 fixedPosition = Vector2.zero;
 
-        public void SetMode(JoystickType joystickType)
-        {
-            this.joystickType = joystickType;
-            if (joystickType == JoystickType.Fixed)
-            {
-                background.anchoredPosition = fixedPosition;
-                background.gameObject.SetActive(true);
-            }
-            else
-                background.gameObject.SetActive(false);
-        }
 
         public void Start()
         {
@@ -98,7 +87,14 @@ namespace ETHotfix
             handle.anchoredPosition = Vector2.zero;
 
             fixedPosition = background.anchoredPosition;
-            SetMode(joystickType);
+
+            if (joystickType == JoystickType.Fixed)
+            {
+                background.anchoredPosition = fixedPosition;
+                background.gameObject.SetActive(true);
+            }
+            else
+                background.gameObject.SetActive(false);
         }
 
         public void OnPointerDown(PointerEventData eventData)

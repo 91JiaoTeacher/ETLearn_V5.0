@@ -7,10 +7,7 @@ namespace ETHotfix
 	{
 		public override void Run()
 		{
-            //UI ui = UILobbyFactory.Create();
-            //Game.Scene.GetComponent<UIComponent>().Add(ui);
-
-            UI ui = UIJoystickFactory.Create();
+            UI ui = UILobbyFactory.Create();
             Game.Scene.GetComponent<UIComponent>().Add(ui);
 
         }

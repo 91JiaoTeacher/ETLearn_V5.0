@@ -32,11 +32,14 @@ namespace ETHotfix
                     await sceneChangeComponent.ChangeSceneAsync(SceneType.Arena);
                 }
 
-                PlayerRole playerRole = await PlayerRoleFactory.Create(playerInfo.account, new Vector3(g2CRequestEnterMap.PositionX, g2CRequestEnterMap.PositionY, g2CRequestEnterMap.PositionZ));
+
+                PlayerCube playerCube = await PlayerCubeFactory.Create(new Vector3(g2CRequestEnterMap.PositionX, g2CRequestEnterMap.PositionY, g2CRequestEnterMap.PositionZ));
+
+                //PlayerRole playerRole = await PlayerRoleFactory.Create(playerInfo.account, new Vector3(g2CRequestEnterMap.PositionX, g2CRequestEnterMap.PositionY, g2CRequestEnterMap.PositionZ));
 
                 Game.EventSystem.Run(EventIdType.EnterMapFinish);
 
-                hotfixSession.Send(new C2G_GetOtherPlayer() {Account = playerInfo.account});
+                //hotfixSession.Send(new C2G_GetOtherPlayer() {Account = playerInfo.account});
 
             }
             catch (Exception e)

@@ -9,6 +9,7 @@ namespace ETHotfix
 	    public const string UILogin = "UILogin";
 	    public const string UILobby = "UILobby";
         public const string UIJoystick = "UIJoystick";
+        public const string UIAttackDirstick = "UIAttackDirstick";
 
-	}
+    }
 }

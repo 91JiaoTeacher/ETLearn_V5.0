@@ -1,4 +1,5 @@
 ﻿using System;
+using ETModel;
 using libx;
 using UnityEngine;
 
@@ -6,25 +7,38 @@ namespace ETHotfix
 {
     public static class UIJoystickFactory
     {
-        public static UI Create()
+        public static ETTask<UI> Create()
+        {
+            ETTaskCompletionSource<UI> tcs = new ETTaskCompletionSource<UI>();
+
+            CreateJoystickUI(tcs).Coroutine();
+
+
+            return tcs.Task;
+        }
+
+        public static async ETVoid CreateJoystickUI(ETTaskCompletionSource<UI> tcs)
         {
             try
             {
-                AssetRequest assetRequest = Assets.LoadAsset("Assets/Bundles/UI/" + UIType.UIJoystick + ".prefab", typeof(GameObject));
-                GameObject bundleGameObject = assetRequest.asset as GameObject;
+                AssetRequest assetRequest = Assets.LoadAssetAsync("Assets/Bundles/UI/" + UIType.UIJoystick + ".prefab", typeof(GameObject));
+
+                //创建一个角色的3D物体
+                GameObject bundleGameObject = await ETModel.Game.Scene.GetComponent<ResourcesAsyncComponent>().LoadAssetAsync<GameObject>(assetRequest);
                 GameObject gameObject = UnityEngine.Object.Instantiate(bundleGameObject);
 
                 UI ui = ComponentFactory.Create<UI, string, GameObject, AssetRequest>(UIType.UIJoystick, gameObject, assetRequest, false);
 
-                ui.AddComponent<VariableJoystickComponent>();
-                return ui;
+                VariableJoystickComponent variableJoystick = ui.AddComponent<VariableJoystickComponent>();
+                variableJoystick.joystickType = JoystickType.Fixed;
+                tcs.SetResult(ui);
             }
             catch (Exception e)
             {
                 Log.Error(e);
-                return null;
+                tcs.SetResult(null);
             }
-		}
+        }
 
 
     }

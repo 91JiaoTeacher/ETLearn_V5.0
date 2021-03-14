@@ -10,7 +10,6 @@ namespace ETModel
     {
         public bool development = true;
         public bool updateUnusedAssetsImmediate = true;
-
 		private void Start()
         {
 			//设置目标帧
