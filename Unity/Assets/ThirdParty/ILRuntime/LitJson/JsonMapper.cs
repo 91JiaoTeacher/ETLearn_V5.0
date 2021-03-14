@@ -431,13 +431,16 @@ namespace LitJson
                     if (item == null && reader.Token == JsonToken.ArrayEnd)
                         break;
                     var rt = elem_type is ILRuntime.Reflection.ILRuntimeWrapperType ? ((ILRuntime.Reflection.ILRuntimeWrapperType)elem_type).RealType : elem_type;
+                    rt = elem_type is ILRuntime.Reflection.ILRuntimeType ? ((ILRuntime.Reflection.ILRuntimeType)elem_type).ILType.TypeForCLR : elem_type;
                     item = rt.CheckCLRTypes(item);
                     list.Add (item);
                 }
 
                 if (t_data.IsArray) {
                     int n = list.Count;
-                    instance = Array.CreateInstance (elem_type, n);
+                    var rt = elem_type is ILRuntime.Reflection.ILRuntimeWrapperType ? ((ILRuntime.Reflection.ILRuntimeWrapperType)elem_type).RealType : elem_type;
+                    rt = elem_type is ILRuntime.Reflection.ILRuntimeType ? ((ILRuntime.Reflection.ILRuntimeType)elem_type).ILType.TypeForCLR : elem_type;
+                    instance = Array.CreateInstance (rt, n);
 
                     for (int i = 0; i < n; i++)
                         ((Array) instance).SetValue (list[i], i);
@@ -714,8 +717,6 @@ namespace LitJson
             };
             RegisterImporter (base_importers_table, typeof (string),
                               typeof (DateTime), importer);
-            
-            RegisterImporter<double, float>(input => Convert.ToSingle(input));
         }
 
         private static void RegisterImporter (
@@ -754,11 +755,6 @@ namespace LitJson
 
             if (obj is String) {
                 writer.Write ((string) obj);
-                return;
-            }
-            
-            if (obj is Single) {
-                writer.Write((float)obj);
                 return;
             }
 
@@ -938,13 +934,7 @@ namespace LitJson
             return (T) ReadValue (typeof (T), reader);
         }
 
-	    public static object ToObject(Type type, string json)
-	    {
-		    JsonReader reader = new JsonReader(json);
-			return ReadValue(type, reader);
-	    }
-
-		public static IJsonWrapper ToWrapper (WrapperFactory factory,
+        public static IJsonWrapper ToWrapper (WrapperFactory factory,
                                               JsonReader reader)
         {
             return ReadValue (factory, reader);

@@ -11,9 +11,6 @@ namespace ETHotfix
         private static AssetRequest assetRequest;
         private static ReferenceCollector rc;
 
-        /// <summary>
-        /// 子弹实体的池
-        /// </summary>
         private static Queue<CubeBullet> cubeBulletPool = new Queue<CubeBullet>();
 
         public static CubeBullet CreateCubeBullet()
@@ -21,33 +18,35 @@ namespace ETHotfix
             if (rc == null)
             {
                 assetRequest = Assets.LoadAsset("Assets/Bundles/Prefab/BulletFX.prefab", typeof(GameObject));
-                rc = (assetRequest.asset as GameObject).GetComponent<ReferenceCollector>();
+                GameObject bundleGameObject = assetRequest.asset as GameObject;
+                rc = bundleGameObject.GetComponent<ReferenceCollector>();
             }
 
             if (cubeBulletPool.Count > 0)
             {
-                return cubeBulletPool.Dequeue();
+                CubeBullet cubeBullet = cubeBulletPool.Dequeue();
+                return cubeBullet;
             }
             else
             {
-                Bullets bullets = new Bullets(GameObject.Instantiate(rc.Get<GameObject>("gunFire")),
-                    GameObject.Instantiate(rc.Get<GameObject>("bullet")),
-                    GameObject.Instantiate(rc.Get<GameObject>("hitEffect")));
+                GameObject[] bulletObj = new GameObject[3] { GameObject.Instantiate<GameObject>(rc.Get<GameObject>("gunFire")),
+                    GameObject.Instantiate<GameObject>(rc.Get<GameObject>("bullet")),
+                    GameObject.Instantiate<GameObject>(rc.Get<GameObject>("hitEffect"))};
 
-                CubeBullet cubeBullet = ComponentFactory.Create<CubeBullet, Bullets>(bullets, false);
-
+                CubeBullet cubeBullet = ComponentFactory.Create<CubeBullet, GameObject[]>(bulletObj, false);
 
                 return cubeBullet;
             }
-            
         }
 
-        public static void EnCubeBulletPool(CubeBullet cubeBullet)
+        /// <summary>
+        /// CubeBullet回收进池
+        /// </summary>
+        public static void CubeBulletEnPool(CubeBullet cubeBullet)
         {
-            cubeBullet.bullets.ReSetObj();
+            cubeBullet.ReSet();
             cubeBulletPool.Enqueue(cubeBullet);
         }
-
     }
 }
 

@@ -22,9 +22,9 @@ namespace ETHotfix
 			return t;
 		}
 
-		public static object FromJson(Type type, string str)
+		public static object FromJson(string str)
 		{
-			object t = JsonMapper.ToObject(type, str);
+			object t = JsonMapper.ToObject(str);
 			ISupportInitialize iSupportInitialize = t as ISupportInitialize;
 			if (iSupportInitialize == null)
 			{

@@ -39,6 +39,11 @@ namespace ETHotfix
         public Transform cubePlayer_Transform = null;
 
         /// <summary>
+        /// cube角色的CharacterController组件
+        /// </summary>
+        private CharacterController cubePlayer_Controller = null;
+
+        /// <summary>
         /// 武器点
         /// </summary>
         public Transform cubeGun_Transform = null;
@@ -46,7 +51,12 @@ namespace ETHotfix
         /// <summary>
         /// 射速
         /// </summary>
-        private float shootSpeedTime = 1000.0f / 10.0f;
+        private float shootSpeedTime = 1.0f / 10.0f;
+
+        /// <summary>
+        /// 计时
+        /// </summary>
+        private float activeTime = 0.0f;
 
         /// <summary>
         /// 准星的Object
@@ -57,14 +67,15 @@ namespace ETHotfix
         {
             //查找相关引用
             cubePlayer_Transform = this.GetParent<PlayerCube>().cube_GameObject.GetComponent<Transform>();
-            cubeGun_Transform = cubePlayer_Transform.Find("Gun");
+            cubePlayer_Controller = cubePlayer_Transform.GetComponent<CharacterController>();
+            cubeGun_Transform = cubePlayer_Transform.Find("CubeBody/Gun");
             attackObject = this.GetParent<PlayerCube>().GetComponent<PlayerCubeControllerComponent>().targetArrow.targetArrow_GameObject;
 
         }
 
         public void Start()
         {
-           
+            
         }
 
         public void UpDate()
@@ -73,9 +84,31 @@ namespace ETHotfix
             {
                 if (attackObject.activeSelf)
                 {
-                    Debug.LogError("需要攻击");
+                    activeTime += Time.deltaTime;
+                    if (activeTime >= shootSpeedTime)
+                    {
+                        cubeAttack();
+                        activeTime = 0.0f;
+                    }
+                }
+                else
+                {
+                    activeTime = 0.0f;
                 }
             }
         }
+
+        /// <summary>
+        /// 玩家控制的方块攻击了一次
+        /// </summary>
+        public void cubeAttack()
+        {
+            //Debug.LogError("需要攻击");
+            CubeBullet cubeBullet = CubeBulletFactory.CreateCubeBullet();
+
+            cubeBullet.Attack(cubeGun_Transform.gameObject, attackObject, cubePlayer_Controller.velocity);
+
+        }
+
     }
 }

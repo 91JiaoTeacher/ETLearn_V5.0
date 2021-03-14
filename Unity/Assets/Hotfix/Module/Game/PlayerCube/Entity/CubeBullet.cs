@@ -4,56 +4,51 @@ using UnityEngine;
 namespace ETHotfix
 {
     [ObjectSystem]
-    public class CubeBulletAwakeSystem : AwakeSystem<CubeBullet, Bullets>
+    public class CubeBulletAwakeSystem : AwakeSystem<CubeBullet, GameObject[]>
     {
-        public override void Awake(CubeBullet self, Bullets bullets)
+        public override void Awake(CubeBullet self, GameObject[] bulletObj)
         {
-            self.Awake(bullets);
+            self.Awake(bulletObj);
         }
     }
 
     public class CubeBullet : Entity
     {
-        public Bullets bullets;
+        /// <summary>
+        /// 子弹的三部分
+        /// </summary>
+        public GameObject[] bulletObj;
 
-        public void Awake(Bullets bullets)
+        public void Awake(GameObject[] bulletObj)
         {
-            this.bullets = bullets;
-
-
-        }
-
-
-
-
-    }
-
-    /// <summary>
-    /// 一个子弹特效所包含的三个部分
-    /// </summary>
-    public struct Bullets
-    {
-        public GameObject gunFire;
-        public GameObject bullet;
-        public GameObject hitEffect;
-
-        public Bullets(GameObject gunFire, GameObject bullet, GameObject hitEffect)
-        {
-            this.gunFire = gunFire;
-            this.bullet = bullet;
-            this.hitEffect = hitEffect;
-
-            ReSetObj();
+            this.bulletObj = bulletObj;
+            //初始化全部隐藏
+            ReSet();
         }
 
         /// <summary>
-        /// 重置物体
+        /// 子弹被用于攻击
         /// </summary>
-        public void ReSetObj()
+        public void Attack(GameObject gunParent, GameObject dirObj, Vector3 baseVelocity)
         {
-            gunFire.SetActive(false);
-            bullet.SetActive(false);
-            hitEffect.SetActive(false);
+            bulletObj[1].SetActive(true);
+            bulletObj[1].transform.position = gunParent.transform.position;
+            bulletObj[1].transform.LookAt(dirObj.transform.position);
+            bulletObj[1].GetComponent<Rigidbody>().velocity = bulletObj[1].transform.forward * 40.0f + baseVelocity;
         }
+
+
+        /// <summary>
+        /// 重置
+        /// </summary>
+        public void ReSet()
+        {
+            for (int i = 0; i < bulletObj.Length; i++)
+            {
+                bulletObj[i].SetActive(false);
+            }
+        }
+
     }
+
 }

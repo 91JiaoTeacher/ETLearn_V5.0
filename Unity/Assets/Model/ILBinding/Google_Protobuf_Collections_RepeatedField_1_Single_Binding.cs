@@ -39,6 +39,7 @@ namespace ILRuntime.Runtime.Generated
             field = type.GetField("array", flag);
             app.RegisterCLRFieldGetter(field, get_array_0);
             app.RegisterCLRFieldSetter(field, set_array_0);
+            app.RegisterCLRFieldBinding(field, CopyToStack_array_0, AssignFromStack_array_0);
 
             args = new Type[]{};
             method = type.GetConstructor(flag, null, args, null);
@@ -134,10 +135,26 @@ namespace ILRuntime.Runtime.Generated
         {
             return ((Google.Protobuf.Collections.RepeatedField<System.Single>)o).array;
         }
+
+        static StackObject* CopyToStack_array_0(ref object o, ILIntepreter __intp, StackObject* __ret, IList<object> __mStack)
+        {
+            var result_of_this_method = ((Google.Protobuf.Collections.RepeatedField<System.Single>)o).array;
+            return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
+        }
+
         static void set_array_0(ref object o, object v)
         {
             ((Google.Protobuf.Collections.RepeatedField<System.Single>)o).array = (System.Single[])v;
         }
+
+        static StackObject* AssignFromStack_array_0(ref object o, ILIntepreter __intp, StackObject* ptr_of_this_method, IList<object> __mStack)
+        {
+            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
+            System.Single[] @array = (System.Single[])typeof(System.Single[]).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack));
+            ((Google.Protobuf.Collections.RepeatedField<System.Single>)o).array = @array;
+            return ptr_of_this_method;
+        }
+
 
         static StackObject* Ctor_0(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {

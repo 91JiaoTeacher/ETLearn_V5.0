@@ -47,18 +47,19 @@ namespace ETModel
 
 			byte[] assBytes = code.Get<TextAsset>("Hotfix.dll").bytes;
 			byte[] pdbBytes = code.Get<TextAsset>("Hotfix.pdb").bytes;
-			
+
 #if ILRuntime
 			Log.Debug($"当前使用的是ILRuntime模式");
-			this.appDomain = new ILRuntime.Runtime.Enviorment.AppDomain();
+            this.appDomain = new ILRuntime.Runtime.Enviorment.AppDomain();
 
-			this.dllStream = new MemoryStream(assBytes);
-			this.pdbStream = new MemoryStream(pdbBytes);
-			this.appDomain.LoadAssembly(this.dllStream, this.pdbStream, new Mono.Cecil.Pdb.PdbReaderProvider());
+            this.dllStream = new MemoryStream(assBytes);
+            this.pdbStream = new MemoryStream(pdbBytes);
 
-			this.start = new ILStaticMethod(this.appDomain, "ETHotfix.Init", "Start", 0);
-			
-			this.hotfixTypes = this.appDomain.LoadedTypes.Values.Select(x => x.ReflectionType).ToList();
+			this.appDomain.LoadAssembly(this.dllStream, this.pdbStream, new ILRuntime.Mono.Cecil.Pdb.PdbReaderProvider());
+
+            this.start = new ILStaticMethod(this.appDomain, "ETHotfix.Init", "Start", 0);
+
+            this.hotfixTypes = this.appDomain.LoadedTypes.Values.Select(x => x.ReflectionType).ToList();
 #else
 			Log.Debug($"当前使用的是Mono模式");
 

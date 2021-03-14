@@ -5,7 +5,7 @@ using System.Text;
 using System.Reflection;
 using System.Globalization;
 
-using Mono.Cecil;
+using ILRuntime.Mono.Cecil;
 using ILRuntime.CLR.Utils;
 using ILRuntime.CLR.TypeSystem;
 using ILRuntime.Runtime;
@@ -169,7 +169,6 @@ namespace ILRuntime.Reflection
         {
             unsafe
             {
-                StackObject esp;
                 ILTypeInstance ins;
                 if (isStatic)
                 {
@@ -206,7 +205,6 @@ namespace ILRuntime.Reflection
         {
             unsafe
             {
-                StackObject esp;
                 if (value is CrossBindingAdaptorType)
                     value = ((CrossBindingAdaptorType)value).ILInstance;
                 ILTypeInstance ins;

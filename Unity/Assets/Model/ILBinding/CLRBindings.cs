@@ -96,17 +96,19 @@ namespace ILRuntime.Runtime.Generated
             ETModel_ETTask_1_GameObject_Binding.Register(app);
             ETModel_ETTask_1_GameObject_Binding_Awaiter_Binding.Register(app);
             ReferenceCollector_Binding.Register(app);
+            UnityEngine_Time_Binding.Register(app);
             UnityEngine_Component_Binding.Register(app);
-            UnityEngine_Cursor_Binding.Register(app);
             UnityEngine_Physics_Binding.Register(app);
             UnityEngine_Input_Binding.Register(app);
-            UnityEngine_Time_Binding.Register(app);
             UnityEngine_Mathf_Binding.Register(app);
-            UnityEngine_Quaternion_Binding.Register(app);
             UnityEngine_CharacterController_Binding.Register(app);
+            UnityEngine_Rigidbody_Binding.Register(app);
+            UnityEngine_Cursor_Binding.Register(app);
+            UnityEngine_Quaternion_Binding.Register(app);
             UnityEngine_Vector2_Binding.Register(app);
-            UnityEngine_RectTransform_Binding.Register(app);
+            UnityEngine_RaycastHit_Binding.Register(app);
             ETModel_HandlerAgent_Binding.Register(app);
+            UnityEngine_RectTransform_Binding.Register(app);
             UnityEngine_EventSystems_PointerEventData_Binding.Register(app);
             UnityEngine_Canvas_Binding.Register(app);
             UnityEngine_RectTransformUtility_Binding.Register(app);
@@ -145,8 +147,6 @@ namespace ILRuntime.Runtime.Generated
             UnityEngine_LayerMask_Binding.Register(app);
             System_Collections_Generic_Dictionary_2_String_ILTypeInstance_Binding_ValueCollection_Binding.Register(app);
             System_Collections_Generic_Dictionary_2_String_ILTypeInstance_Binding_ValueCollection_Binding_Enumerator_Binding.Register(app);
-
-            ILRuntime.CLR.TypeSystem.CLRType __clrType = null;
         }
 
         /// <summary>
