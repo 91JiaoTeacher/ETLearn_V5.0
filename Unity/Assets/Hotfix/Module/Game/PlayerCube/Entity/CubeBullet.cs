@@ -29,6 +29,7 @@ namespace ETHotfix
             this.bulletObj = bulletObj;
             //初始化全部隐藏
             ReSet();
+
         }
 
         /// <summary>
