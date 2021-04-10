@@ -27,8 +27,8 @@ namespace ETHotfix
 
                 OtherCube otherCube = ComponentFactory.Create<OtherCube, int, GameObject>(account, otherCubeObj, false);
 
-                ////添加网络同步组件
-                //OtherPlayerNetSyncComponent otherPlayerNetSyncComponent = otherPlayer.AddComponent<OtherPlayerNetSyncComponent, int, Vector3>(account, InitPosition);
+                //添加网络同步组件
+                OtherCubeNetSyncComponent otherCubeNetSyncComponent = otherCube.AddComponent<OtherCubeNetSyncComponent, int, Vector3>(account, InitPosition);
 
                 tcs.SetResult(otherCube);
             }

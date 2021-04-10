@@ -24,7 +24,7 @@ namespace ETHotfix
                 if (otherCubeNetSyncComponent != null)
                 {
                     otherCubeNetSyncComponent.NetWorkAsyncPosition(new Vector3(PositionX[i], PositionY[i], PositionZ[i]));
-                    //Log.Info("同步一次位置：" + DirAccount[i]);
+                    Log.Info("同步一次位置：" + DirAccount[i]);
                 }
             }
 
