@@ -35,6 +35,15 @@ namespace ETHotfix
 
                 CubeBullet cubeBullet = ComponentFactory.Create<CubeBullet, GameObject[]>(bulletObj, false);
 
+
+                for (int i = 0; i < bulletObj.Length; i++)
+                {
+                    bulletObj[i].transform.parent = cubeBullet.GameObject.transform;
+                }
+
+                //设置实体的管理组件
+                cubeBullet.Parent = Game.Scene.GetComponent<CubeBulletManagerComponent>();
+
                 return cubeBullet;
             }
         }
@@ -44,7 +53,6 @@ namespace ETHotfix
         /// </summary>
         public static void CubeBulletEnPool(CubeBullet cubeBullet)
         {
-            cubeBullet.ReSet();
             cubeBulletPool.Enqueue(cubeBullet);
         }
     }

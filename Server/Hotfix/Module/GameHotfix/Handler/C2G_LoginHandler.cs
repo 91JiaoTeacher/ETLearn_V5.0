@@ -5,7 +5,7 @@ using ETModel;
 namespace ETHotfix
 {
     [MessageHandler(AppType.Gate)]
-    public class C2R_LoginHandler : AMRpcHandler<C2G_Login, G2C_Login>
+    public class C2G_LoginHandler : AMRpcHandler<C2G_Login, G2C_Login>
     {
         protected override async ETTask Run(Session session, C2G_Login request, G2C_Login response, Action reply)
         {
@@ -75,6 +75,7 @@ namespace ETHotfix
                 //向玩家管理组件里添加玩家的信息
                 playerComponent.addPlayerToDict(request.Account, loginPlayer);
             }
+
             //对玩家的session进行记录
             loginPlayer.session = session;
             session.AddComponent<SessionPlayerComponent>().Player = loginPlayer;

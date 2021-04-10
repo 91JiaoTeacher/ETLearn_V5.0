@@ -29,6 +29,7 @@ namespace ETHotfix
 				Game.Scene.AddComponent<UIComponent>();
 				Game.Scene.AddComponent<OpcodeTypeComponent>();
 				Game.Scene.AddComponent<MessageDispatcherComponent>();
+                Game.Scene.AddComponent<CubeBulletManagerComponent>();
 
 				//// 加载热更配置
 				//ETModel.Game.Scene.GetComponent<ResourcesComponent>().LoadBundle("config.unity3d");

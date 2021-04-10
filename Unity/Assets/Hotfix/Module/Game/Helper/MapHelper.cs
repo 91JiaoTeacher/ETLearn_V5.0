@@ -41,6 +41,10 @@ namespace ETHotfix
 
                 //hotfixSession.Send(new C2G_GetOtherPlayer() {Account = playerInfo.account});
 
+                //添加网络同步脚本
+                playerCube.AddComponent<PlayerCubeNetComponent, int>(playerInfo.account);
+
+
             }
             catch (Exception e)
             {
