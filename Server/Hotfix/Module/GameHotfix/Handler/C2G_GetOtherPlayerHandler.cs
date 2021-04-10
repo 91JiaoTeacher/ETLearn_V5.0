@@ -19,15 +19,19 @@ namespace ETHotfix
 
                 for (int i = 0; i < players.Count; i++)
                 {
-                    ActorMessageSender actorMessageSender = actorSenderComponent.Get(players[i].MapInstanceId);
-                    Actor_PlayerInitPositionResponse actor_PlayerInitPositionResponse = (Actor_PlayerInitPositionResponse)await actorMessageSender.Call(new Actor_PlayerInitPositionRequest());
-                    session.Send(new G2C_OtherPlayerEnterMap()
+                    //需要保证玩家进入地图才发送
+                    if (players[i].MapInstanceId != 0)
                     {
-                        Account = players[i].Account, 
-                        PositionX = actor_PlayerInitPositionResponse.PositionX,
-                        PositionY = actor_PlayerInitPositionResponse.PositionY,
-                        PositionZ = actor_PlayerInitPositionResponse.PositionZ
-                    });
+                        ActorMessageSender actorMessageSender = actorSenderComponent.Get(players[i].MapInstanceId);
+                        Actor_PlayerInitPositionResponse actor_PlayerInitPositionResponse = (Actor_PlayerInitPositionResponse)await actorMessageSender.Call(new Actor_PlayerInitPositionRequest());
+                        session.Send(new G2C_OtherPlayerEnterMap()
+                        {
+                            Account = players[i].Account,
+                            PositionX = actor_PlayerInitPositionResponse.PositionX,
+                            PositionY = actor_PlayerInitPositionResponse.PositionY,
+                            PositionZ = actor_PlayerInitPositionResponse.PositionZ
+                        });
+                    }
                 }
             }
 

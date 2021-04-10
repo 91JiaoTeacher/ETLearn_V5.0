@@ -9,8 +9,8 @@ namespace ETHotfix
         protected override async ETTask Run(ETModel.Session session, G2C_OtherPlayerEnterMap message)
         {
             Log.Info("其它玩家进入Map: " + message.Account);
-            OtherPlayerNetSyncComponent NetSyncComponent = Game.Scene.GetComponent<OtherPlayerManagerComponent>()
-                .GetNetSyncComponentByOtherPlayerAccount(message.Account);
+            OtherCubeNetSyncComponent NetSyncComponent = Game.Scene.GetComponent<OtherCubeManagerComponent>()
+                .GetNetSyncComponentByOtherCubeAccount(message.Account);
 
             if (NetSyncComponent != null)
             {
@@ -19,7 +19,7 @@ namespace ETHotfix
             }
             else
             {
-                OtherPlayer otherPlayer = await OtherPlayerRoleFactory.Create(message.Account,
+                OtherCube otherCube = await OtherCubeFactory.Create(message.Account,
                     new Vector3(message.PositionX, message.PositionY, message.PositionZ));
             }
 

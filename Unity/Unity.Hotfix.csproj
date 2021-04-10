@@ -102,10 +102,10 @@
     <Compile Include="Assets\Hotfix\Module\Game\Helper\GloabConfigHelper.cs" />
     <Compile Include="Assets\Hotfix\Module\Game\Helper\LoginHelper.cs" />
     <Compile Include="Assets\Hotfix\Module\Game\Helper\MapHelper.cs" />
-    <Compile Include="Assets\Hotfix\Module\Game\OtherPlayerRole\Component\OtherPlayerManagerComponent.cs" />
-    <Compile Include="Assets\Hotfix\Module\Game\OtherPlayerRole\Component\OtherPlayerNetSyncComponent.cs" />
-    <Compile Include="Assets\Hotfix\Module\Game\OtherPlayerRole\Entity\OtherPlayer.cs" />
-    <Compile Include="Assets\Hotfix\Module\Game\OtherPlayerRole\System\OtherPlayerRoleFactory.cs" />
+    <Compile Include="Assets\Hotfix\Module\Game\OtherCube\Component\OtherCubeManagerComponent.cs" />
+    <Compile Include="Assets\Hotfix\Module\Game\OtherCube\Component\OtherCubeNetSyncComponent.cs" />
+    <Compile Include="Assets\Hotfix\Module\Game\OtherCube\Entity\OtherCube.cs" />
+    <Compile Include="Assets\Hotfix\Module\Game\OtherCube\System\OtherCubeFactory.cs" />
     <Compile Include="Assets\Hotfix\Module\Game\PlayerCube\Component\CubeBulletManagerComponent.cs" />
     <Compile Include="Assets\Hotfix\Module\Game\PlayerCube\Component\PlayerCubeAttackComponent.cs" />
     <Compile Include="Assets\Hotfix\Module\Game\PlayerCube\Component\PlayerCubeControllerComponent.cs" />
@@ -114,10 +114,6 @@
     <Compile Include="Assets\Hotfix\Module\Game\PlayerCube\Entity\PlayerCube.cs" />
     <Compile Include="Assets\Hotfix\Module\Game\PlayerCube\System\CubeBulletFactory.cs" />
     <Compile Include="Assets\Hotfix\Module\Game\PlayerCube\System\PlayerCubeFactory.cs" />
-    <Compile Include="Assets\Hotfix\Module\Game\PlayerRole\Component\PlayerControllerComponent.cs" />
-    <Compile Include="Assets\Hotfix\Module\Game\PlayerRole\Component\PlayerPositionNetComponent.cs" />
-    <Compile Include="Assets\Hotfix\Module\Game\PlayerRole\Entity\PlayerRole.cs" />
-    <Compile Include="Assets\Hotfix\Module\Game\PlayerRole\System\PlayerRoleFactory.cs" />
     <Compile Include="Assets\Hotfix\Module\Game\TargetArrow\Component\TargetArrowComponent.cs" />
     <Compile Include="Assets\Hotfix\Module\Game\TargetArrow\Entity\TargetArrow.cs" />
     <Compile Include="Assets\Hotfix\Module\Game\TargetArrow\System\TargetArrowFactory.cs" />

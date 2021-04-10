@@ -6,12 +6,12 @@ namespace ETHotfix
     [MessageHandler]
     public class G2C_OtherPlayerPositionHandler : AMHandler<G2C_OtherPlayerPosition>
     {
-        private OtherPlayerManagerComponent otherPlayerManagerComponent = null;
+        private OtherCubeManagerComponent otherCubeManagerComponent = null;
         protected override async ETTask Run(ETModel.Session session, G2C_OtherPlayerPosition message)
         {
-            if (otherPlayerManagerComponent == null)
+            if (otherCubeManagerComponent == null)
             {
-                otherPlayerManagerComponent = Game.Scene.GetComponent<OtherPlayerManagerComponent>();
+                otherCubeManagerComponent = Game.Scene.GetComponent<OtherCubeManagerComponent>();
             }
             int[] DirAccount = message.DirAccount.array;
             float[] PositionX = message.PositionX.array;
@@ -20,10 +20,10 @@ namespace ETHotfix
 
             for (int i = 0; i < DirAccount.Length; i++)
             {
-                OtherPlayerNetSyncComponent otherPlayerNetSyncComponent = otherPlayerManagerComponent.GetNetSyncComponentByOtherPlayerAccount(DirAccount[i]);
-                if (otherPlayerNetSyncComponent != null)
+                OtherCubeNetSyncComponent otherCubeNetSyncComponent = otherCubeManagerComponent.GetNetSyncComponentByOtherCubeAccount(DirAccount[i]);
+                if (otherCubeNetSyncComponent != null)
                 {
-                    otherPlayerNetSyncComponent.NetWorkAsyncPosition(new Vector3(PositionX[i], PositionY[i], PositionZ[i]));
+                    otherCubeNetSyncComponent.NetWorkAsyncPosition(new Vector3(PositionX[i], PositionY[i], PositionZ[i]));
                     //Log.Info("同步一次位置：" + DirAccount[i]);
                 }
             }

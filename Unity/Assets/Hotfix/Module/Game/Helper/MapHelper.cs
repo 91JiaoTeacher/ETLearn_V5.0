@@ -35,11 +35,10 @@ namespace ETHotfix
 
                 PlayerCube playerCube = await PlayerCubeFactory.Create(new Vector3(g2CRequestEnterMap.PositionX, g2CRequestEnterMap.PositionY, g2CRequestEnterMap.PositionZ));
 
-                //PlayerRole playerRole = await PlayerRoleFactory.Create(playerInfo.account, new Vector3(g2CRequestEnterMap.PositionX, g2CRequestEnterMap.PositionY, g2CRequestEnterMap.PositionZ));
-
                 Game.EventSystem.Run(EventIdType.EnterMapFinish);
 
-                //hotfixSession.Send(new C2G_GetOtherPlayer() {Account = playerInfo.account});
+                //获取其它在地图里的玩家
+                hotfixSession.Send(new C2G_GetOtherPlayer() {Account = playerInfo.account});
 
                 //添加网络同步脚本
                 playerCube.AddComponent<PlayerCubeNetComponent, int>(playerInfo.account);

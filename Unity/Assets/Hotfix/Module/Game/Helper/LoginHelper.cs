@@ -35,7 +35,9 @@ namespace ETHotfix
                     //添加玩家信息管理组件
                     Game.Scene.AddComponent<PlayerInfoComponent, int>(account);
 
-                    Game.Scene.AddComponent<OtherPlayerManagerComponent>();
+                    //添加其它cube玩家的管理组件
+                    Game.Scene.AddComponent<OtherCubeManagerComponent>();
+
                     Log.Info(r2CLogin.Address);
 
                     Game.EventSystem.Run(EventIdType.LoginFinish);
