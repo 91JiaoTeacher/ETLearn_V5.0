@@ -47,3 +47,6 @@ MonoBehaviour:
   - key: OtherCube
     gameObject: {fileID: 806124171783783189, guid: 8c87d4b4948606347802f4edcd910596,
       type: 3}
+  - key: OtherDirCube
+    gameObject: {fileID: 2282900121309353199, guid: d7b949629a9d3a747ab8051782e69792,
+      type: 3}

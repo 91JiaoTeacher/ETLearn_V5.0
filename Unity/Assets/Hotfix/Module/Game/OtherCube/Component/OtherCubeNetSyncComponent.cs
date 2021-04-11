@@ -40,9 +40,14 @@ namespace ETHotfix
         private Transform OtherCube_Transform;
 
         /// <summary>
+        /// 其它cube玩家的Transform组件
+        /// </summary>
+        private Transform OtherDirCube_Transform;
+
+        /// <summary>
         /// 其它cube玩家的Rigidbody组件
         /// </summary>
-        private Rigidbody OtherCube_Rigidbody;
+        private Rigidbody OtherDirCube_Rigidbody;
 
         public void Awake(int Account, Vector3 InitPostion)
         {
@@ -58,8 +63,11 @@ namespace ETHotfix
             OtherCube_Transform = this.GetParent<OtherCube>().otherCube_GameObject.GetComponent<Transform>();
             OtherCube_Transform.position = InitPosition;
 
+            OtherDirCube_Transform = this.GetParent<OtherCube>().otherDirCube_GameObject.GetComponent<Transform>();
+            OtherDirCube_Transform.position = InitPosition;
+
             //获取Rigidbody
-            OtherCube_Rigidbody = OtherCube_Transform.GetComponent<Rigidbody>();
+            OtherDirCube_Rigidbody = OtherDirCube_Transform.GetComponent<Rigidbody>();
 
             //添加网络组件到集中管理
             Game.Scene.GetComponent<OtherCubeManagerComponent>()
@@ -72,10 +80,10 @@ namespace ETHotfix
         /// </summary>
         public void NetWorkAsyncPosition(Vector3 Position, Quaternion Rotation, Vector3 Velocity)
         {
-            OtherCube_Rigidbody.position = Position;
-            OtherCube_Rigidbody.rotation = Rotation;
+            OtherDirCube_Rigidbody.position = Position;
+            OtherDirCube_Rigidbody.rotation = Rotation;
 
-            OtherCube_Rigidbody.velocity = Velocity;
+            OtherDirCube_Rigidbody.velocity = Velocity;
         }
     }
 }

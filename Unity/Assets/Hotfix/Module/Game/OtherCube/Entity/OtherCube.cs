@@ -5,11 +5,11 @@ namespace ETHotfix
 {
 
     [ObjectSystem]
-    public class OtherCubeAwakeSystem : AwakeSystem<OtherCube, int, GameObject>
+    public class OtherCubeAwakeSystem : AwakeSystem<OtherCube, int, GameObject, GameObject>
     {
-        public override void Awake(OtherCube self, int account, GameObject gameObject)
+        public override void Awake(OtherCube self, int account, GameObject gameObject, GameObject gameObjectDir)
         {
-            self.Awake(account, gameObject);
+            self.Awake(account, gameObject, gameObjectDir);
         }
     }
 
@@ -25,11 +25,16 @@ namespace ETHotfix
         /// </summary>
         public GameObject otherCube_GameObject;
 
-        public void Awake(int account, GameObject gameObject)
+        /// <summary>
+        /// cube角色的同步目标Gameobject
+        /// </summary>
+        public GameObject otherDirCube_GameObject;
+
+        public void Awake(int account, GameObject gameObject, GameObject otherDirCube)
         {
             this.account = account;
             this.otherCube_GameObject = gameObject;
-
+            this.otherDirCube_GameObject = otherDirCube;
         }
     }
 }

@@ -24,8 +24,9 @@ namespace ETHotfix
                 GameObject resObj = await ETModel.Game.Scene.GetComponent<ResourcesAsyncComponent>().LoadAssetAsync<GameObject>(Assets.LoadAssetAsync("Assets/Bundles/Prefab/OtherCube.prefab", typeof(GameObject)));
                 ReferenceCollector rc = resObj.GetComponent<ReferenceCollector>();
                 GameObject otherCubeObj = GameObject.Instantiate<GameObject>(rc.Get<GameObject>("OtherCube"));
+                GameObject otherDirCubeObj = GameObject.Instantiate<GameObject>(rc.Get<GameObject>("OtherDirCube"));
 
-                OtherCube otherCube = ComponentFactory.Create<OtherCube, int, GameObject>(account, otherCubeObj, false);
+                OtherCube otherCube = ComponentFactory.Create<OtherCube, int, GameObject, GameObject>(account, otherCubeObj, otherDirCubeObj, false);
 
                 //添加网络同步组件
                 OtherCubeNetSyncComponent otherCubeNetSyncComponent = otherCube.AddComponent<OtherCubeNetSyncComponent, int, Vector3>(account, InitPosition);
