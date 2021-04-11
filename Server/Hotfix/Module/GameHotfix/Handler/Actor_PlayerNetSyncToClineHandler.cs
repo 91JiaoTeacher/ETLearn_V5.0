@@ -32,6 +32,8 @@ namespace ETHotfix
 
             packge.Bullets.Add(message.Bullets);
 
+            //Log.Error("场景子弹数量: " + message.Bullets.Count);
+
             entity.session.Send(packge);
 
             await ETTask.CompletedTask;

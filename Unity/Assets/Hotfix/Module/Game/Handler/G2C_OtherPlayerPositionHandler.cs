@@ -52,27 +52,31 @@ namespace ETHotfix
 
                 PlayerInfoComponent playerInfoComponent = Game.Scene.GetComponent<PlayerInfoComponent>();
 
-                ////同步子弹数量
-                //BulletInfo[] bulletInfos = message.Bullets.array;
-                //for (int i = 0; i < bulletInfos.Length; i++)
-                //{
-                //    BulletInfo bulletInfo = bulletInfos[i];
 
-                //    //不是自己的子弹才需要创建同步
-                //    if (bulletInfo.Account != playerInfoComponent.account)
-                //    {
-                //        CubeBullet cubeBullet = CubeBulletFactory.CreateCubeBullet();
-                //        cubeBullet.SyncBullet(new Vector3(bulletInfo.PositionX, bulletInfo.PositionY, bulletInfo.PositionZ),
-                //            new Quaternion(bulletInfo.RotationX, bulletInfo.RotationY, bulletInfo.RotationZ, bulletInfo.RotationW),
-                //            new Vector3(bulletInfo.VelocityX, bulletInfo.VelocityY, bulletInfo.VelocityZ));
-                //    }
-                //}
+                //Debug.LogError("子弹数量：" + message.Bullets.array.Length);
+
+                //同步子弹数量
+                BulletInfo[] bulletInfos = message.Bullets.array;
+                for (int i = 0; i < bulletInfos.Length; i++)
+                {
+                    BulletInfo bulletInfo = bulletInfos[i];
+
+                    //不是自己的子弹才需要创建同步
+                    if (bulletInfo.Account != playerInfoComponent.account)
+                    {
+                        CubeBullet cubeBullet = CubeBulletFactory.CreateCubeBullet();
+                        cubeBullet.SyncBullet(new Vector3(bulletInfo.PositionX, bulletInfo.PositionY, bulletInfo.PositionZ),
+                            new Quaternion(bulletInfo.RotationX, bulletInfo.RotationY, bulletInfo.RotationZ, bulletInfo.RotationW),
+                            new Vector3(bulletInfo.VelocityX, bulletInfo.VelocityY, bulletInfo.VelocityZ));
+                    }
+                }
 
             }
             else
             {
                 Debug.LogError("丢包了: " + message.ServerTime + " || " + serverTime);
             }
+
 
             await ETTask.CompletedTask;
         }

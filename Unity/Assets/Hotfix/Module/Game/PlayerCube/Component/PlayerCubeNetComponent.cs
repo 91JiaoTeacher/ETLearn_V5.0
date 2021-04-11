@@ -126,7 +126,8 @@ namespace ETHotfix
 
             NetPackge.Fire = playerCubeAttackComponent.isAttacking();
 
-            for (int i = 0; i < needSyncBullet.Count; i++)
+            int count = needSyncBullet.Count;
+            for (int i = 0; i < count; i++)
             {
                 
                 CubeBullet cubeBullet = needSyncBullet.Dequeue();
@@ -153,7 +154,7 @@ namespace ETHotfix
                     NetPackge.Bullets.Add(bulletInfo);
                 }
             }
-            
+
             hotfixSession.Send(NetPackge);
         }
 

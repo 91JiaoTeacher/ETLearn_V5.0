@@ -62,7 +62,8 @@ namespace ETHotfix
             List<BulletInfo> bulletInfos = new List<BulletInfo>();
             foreach (Queue<Bullet> needSyncQueue in accountToBullet.Values)
             {
-                for (int i = 0; i < needSyncQueue.Count; i++)
+                int count = needSyncQueue.Count;
+                for (int i = 0; i < count; i++)
                 {
                     Bullet bullet = needSyncQueue.Dequeue();
                     BulletInfo bulletInfo = new BulletInfo();
@@ -84,6 +85,8 @@ namespace ETHotfix
 
                     bulletInfos.Add(bulletInfo);
                 }
+
+                //Log.Error("出队完成后数量：" + needSyncQueue.Count);
             }
 
             return bulletInfos;
