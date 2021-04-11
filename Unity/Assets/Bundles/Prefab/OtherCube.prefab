@@ -50,3 +50,6 @@ MonoBehaviour:
   - key: OtherDirCube
     gameObject: {fileID: 2282900121309353199, guid: d7b949629a9d3a747ab8051782e69792,
       type: 3}
+  - key: gunFire
+    gameObject: {fileID: 1000012903210382, guid: 9b2faf3baf02074448f732f82b94e385,
+      type: 3}

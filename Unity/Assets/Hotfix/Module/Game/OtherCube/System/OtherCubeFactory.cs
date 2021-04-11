@@ -25,8 +25,12 @@ namespace ETHotfix
                 ReferenceCollector rc = resObj.GetComponent<ReferenceCollector>();
                 GameObject otherCubeObj = GameObject.Instantiate<GameObject>(rc.Get<GameObject>("OtherCube"));
                 GameObject otherDirCubeObj = GameObject.Instantiate<GameObject>(rc.Get<GameObject>("OtherDirCube"));
+                GameObject ganFire = GameObject.Instantiate<GameObject>(rc.Get<GameObject>("gunFire"));
 
                 OtherCube otherCube = ComponentFactory.Create<OtherCube, int, GameObject, GameObject>(account, otherCubeObj, otherDirCubeObj, false);
+
+                //添加攻击脚本
+                OtherCubeAttackComponent otherCubeAttackComponent = otherCube.AddComponent<OtherCubeAttackComponent, GameObject>(ganFire);
 
                 //添加网络同步组件
                 OtherCubeNetSyncComponent otherCubeNetSyncComponent = otherCube.AddComponent<OtherCubeNetSyncComponent, int, Vector3>(account, InitPosition);

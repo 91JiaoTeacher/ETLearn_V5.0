@@ -59,6 +59,11 @@ namespace ETHotfix
         /// </summary>
         private Rigidbody OtherDirCube_Rigidbody;
 
+        /// <summary>
+        /// 攻击控制组件
+        /// </summary>
+        private OtherCubeAttackComponent otherCubeAttackComponent = null;
+
         public void Awake(int Account, Vector3 InitPostion)
         {
             Log.Info("其它玩家初始位置：" + InitPostion.ToString());
@@ -83,6 +88,8 @@ namespace ETHotfix
             Game.Scene.GetComponent<OtherCubeManagerComponent>()
                 .AddNetSyncComponentByOtherCubeAccount(Account, this);
 
+            //获取攻击控制组件
+            otherCubeAttackComponent = this.GetParent<OtherCube>().GetComponent<OtherCubeAttackComponent>();
         }
 
         /// <summary>
@@ -96,6 +103,14 @@ namespace ETHotfix
             OtherDirCube_Rigidbody.rotation = Rotation;
 
             OtherDirCube_Rigidbody.velocity = Velocity;
+        }
+
+        /// <summary>
+        /// 同步是否开火
+        /// </summary>
+        public void NetWorkAsyncFire(bool isFire)
+        {
+            otherCubeAttackComponent.Fire = isFire;
         }
 
         /// <summary>

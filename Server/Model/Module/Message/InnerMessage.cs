@@ -362,6 +362,8 @@ namespace ETModel
 
 		public float VelocityZ { get; set; }
 
+		public bool Fire { get; set; }
+
 	}
 
 	[Message(InnerOpcode.Actor_PlayerNetSyncToCline)]
@@ -390,6 +392,8 @@ namespace ETModel
 		public List<float> VelocityY = new List<float>();
 
 		public List<float> VelocityZ = new List<float>();
+
+		public List<bool> Fire = new List<bool>();
 
 	}
 

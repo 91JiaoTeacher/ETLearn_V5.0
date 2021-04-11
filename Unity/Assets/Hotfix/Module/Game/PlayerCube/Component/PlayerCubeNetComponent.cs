@@ -68,6 +68,11 @@ namespace ETHotfix
         /// </summary>
         private C2G_PlayerRoleNetwork NetPackge = null;
 
+        /// <summary>
+        /// 玩家的攻击组件
+        /// </summary>
+        private PlayerCubeAttackComponent playerCubeAttackComponent = null;
+
         public void Awake(int Account)
         {
             playerAccount = Account;
@@ -82,6 +87,8 @@ namespace ETHotfix
             hotfixSession = Game.Scene.GetComponent<SessionComponent>().Session;
             NetPackge = new C2G_PlayerRoleNetwork();
             NetPackge.Account = playerAccount;
+
+            playerCubeAttackComponent = this.GetParent<PlayerCube>().GetComponent<PlayerCubeAttackComponent>();
         }
 
         public void UpDate()
@@ -111,6 +118,8 @@ namespace ETHotfix
             NetPackge.VelocityX = cube_CharacterController.velocity.x;
             NetPackge.VelocityY = cube_CharacterController.velocity.y;
             NetPackge.VelocityZ = cube_CharacterController.velocity.z;
+
+            NetPackge.Fire = playerCubeAttackComponent.isAttacking();
 
             hotfixSession.Send(NetPackge);
         }

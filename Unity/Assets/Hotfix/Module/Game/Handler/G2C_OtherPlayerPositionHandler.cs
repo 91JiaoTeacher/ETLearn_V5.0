@@ -36,13 +36,17 @@ namespace ETHotfix
                 float[] VelocityY = message.VelocityY.array;
                 float[] VelocityZ = message.VelocityZ.array;
 
+                bool[] Fire = message.Fire.array;
+
                 for (int i = 0; i < DirAccount.Length; i++)
                 {
                     OtherCubeNetSyncComponent otherCubeNetSyncComponent = otherCubeManagerComponent.GetNetSyncComponentByOtherCubeAccount(DirAccount[i]);
                     if (otherCubeNetSyncComponent != null)
                     {
                         otherCubeNetSyncComponent.NetWorkAsyncPosition(new Vector3(PositionX[i], PositionY[i], PositionZ[i]), new Quaternion(RotationX[i], RotationY[i], RotationZ[i], RotationW[i]), new Vector3(VelocityX[i], VelocityY[i], VelocityZ[i]));
-                        Log.Info("同步一次位置：" + DirAccount[i]);
+                        //Log.Info("同步一次位置：" + DirAccount[i]);
+
+                        otherCubeNetSyncComponent.NetWorkAsyncFire(Fire[i]);
                     }
                 }
             }

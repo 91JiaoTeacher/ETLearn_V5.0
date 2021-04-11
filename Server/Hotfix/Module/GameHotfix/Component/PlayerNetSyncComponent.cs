@@ -57,6 +57,7 @@ namespace ETHotfix
             {
                 await timerComponent.WaitAsync(ttk);
                 List<Unit> units = unitComponent.getCountUnits(1);
+
                 if (units != null)
                 {
                     ActorMessageSenderComponent actorSenderComponent = Game.Scene.GetComponent<ActorMessageSenderComponent>();
@@ -77,6 +78,8 @@ namespace ETHotfix
                         List<float> velocityY = new List<float>();
                         List<float> velocityZ = new List<float>();
 
+                        List<bool> isFire = new List<bool>();
+
                         for (int j = 0; j < units.Count; j++)
                         {
                             if (units[i].Account != units[j].Account)
@@ -94,6 +97,8 @@ namespace ETHotfix
                                 velocityX.Add(units[j].VelocityX);
                                 velocityY.Add(units[j].VelocityY);
                                 velocityZ.Add(units[j].VelocityZ);
+
+                                isFire.Add(units[j].Fire);
                             }
                         }
 
@@ -112,6 +117,8 @@ namespace ETHotfix
                             VelocityX = velocityX,
                             VelocityY = velocityY,
                             VelocityZ = velocityZ,
+
+                            Fire = isFire,
                         });
                     }
                 }

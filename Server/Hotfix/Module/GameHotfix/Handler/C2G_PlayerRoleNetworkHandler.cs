@@ -27,6 +27,7 @@ namespace ETHotfix
                 VelocityX = message.VelocityX,
                 VelocityY = message.VelocityY,
                 VelocityZ = message.VelocityZ,
+                Fire = message.Fire,
             });
 
             await ETTask.CompletedTask;

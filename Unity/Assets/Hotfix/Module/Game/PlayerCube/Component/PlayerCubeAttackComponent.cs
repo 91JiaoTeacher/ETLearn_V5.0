@@ -110,5 +110,13 @@ namespace ETHotfix
 
         }
 
+        /// <summary>
+        /// 是否正在攻击
+        /// </summary>
+        public bool isAttacking()
+        {
+            return attackObject.activeSelf;
+        }
+
     }
 }

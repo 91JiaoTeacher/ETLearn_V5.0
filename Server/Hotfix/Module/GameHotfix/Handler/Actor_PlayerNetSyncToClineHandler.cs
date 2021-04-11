@@ -27,6 +27,9 @@ namespace ETHotfix
 
             //Log.Info("时间： " + TimeHelper.ClientNow());
             packge.ServerTime = TimeHelper.ClientNow();
+
+            packge.Fire.Add(message.Fire);
+
             entity.session.Send(packge);
 
             await ETTask.CompletedTask;

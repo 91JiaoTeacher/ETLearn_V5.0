@@ -21,14 +21,19 @@
         public float InitPositionY = 0.0f;
         public float InitPositionZ = 0.0f;
 
-        public float RotationX;
-        public float RotationY;
-        public float RotationZ;
-        public float RotationW;
+        public float RotationX = 0;
+        public float RotationY = 0;
+        public float RotationZ = 0;
+        public float RotationW = 1;
 
         public float VelocityX;
         public float VelocityY;
         public float VelocityZ;
+
+        /// <summary>
+        /// 是否在开火
+        /// </summary>
+        public bool Fire = false;
 
         public void Awake(int account)
         {

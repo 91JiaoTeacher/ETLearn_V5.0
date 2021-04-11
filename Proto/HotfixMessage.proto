@@ -46,6 +46,7 @@ message C2G_PlayerRoleNetwork // IMessage
 	float VelocityX = 9;
 	float VelocityY = 10;
 	float VelocityZ = 11;
+	bool Fire = 12;
 }
 
 message C2G_GetOtherPlayer // IMessage
@@ -76,4 +77,5 @@ message G2C_OtherPlayerPosition // IMessage
 	repeated float VelocityY = 10;
 	repeated float VelocityZ = 11;
 	int64 serverTime = 12;
+	repeated bool Fire = 13;
 }

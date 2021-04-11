@@ -232,6 +232,7 @@ message Actor_PlayerInitPositionUpDate //IActorMessage
 	float VelocityX = 8;
 	float VelocityY = 9;
 	float VelocityZ = 10;
+    bool Fire = 11;
 }
 
 message Actor_PlayerNetSyncToCline //IActorMessage
@@ -248,4 +249,5 @@ message Actor_PlayerNetSyncToCline //IActorMessage
 	repeated float VelocityX = 9;
 	repeated float VelocityY = 10;
 	repeated float VelocityZ = 11;
+    repeated bool Fire = 12;
 }

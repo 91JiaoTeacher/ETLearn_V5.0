@@ -530,6 +530,14 @@ namespace ETHotfix {
       }
     }
 
+    private bool fire_;
+    public bool Fire {
+      get { return fire_; }
+      set {
+        fire_ = value;
+      }
+    }
+
     public void WriteTo(pb::CodedOutputStream output) {
       if (Account != 0) {
         output.WriteRawTag(8);
@@ -575,6 +583,10 @@ namespace ETHotfix {
         output.WriteRawTag(93);
         output.WriteFloat(VelocityZ);
       }
+      if (Fire != false) {
+        output.WriteRawTag(96);
+        output.WriteBool(Fire);
+      }
     }
 
     public int CalculateSize() {
@@ -612,6 +624,9 @@ namespace ETHotfix {
       if (VelocityZ != 0F) {
         size += 1 + 4;
       }
+      if (Fire != false) {
+        size += 1 + 1;
+      }
       return size;
     }
 
@@ -627,6 +642,7 @@ namespace ETHotfix {
       velocityX_ = 0f;
       velocityY_ = 0f;
       velocityZ_ = 0f;
+      fire_ = false;
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
@@ -675,6 +691,10 @@ namespace ETHotfix {
           }
           case 93: {
             VelocityZ = input.ReadFloat();
+            break;
+          }
+          case 96: {
+            Fire = input.ReadBool();
             break;
           }
         }
@@ -953,6 +973,14 @@ namespace ETHotfix {
       }
     }
 
+    private static readonly pb::FieldCodec<bool> _repeated_fire_codec
+        = pb::FieldCodec.ForBool(106);
+    private pbc::RepeatedField<bool> fire_ = new pbc::RepeatedField<bool>();
+    public pbc::RepeatedField<bool> Fire {
+      get { return fire_; }
+      set { fire_ = value; }
+    }
+
     public void WriteTo(pb::CodedOutputStream output) {
       dirAccount_.WriteTo(output, _repeated_dirAccount_codec);
       positionX_.WriteTo(output, _repeated_positionX_codec);
@@ -969,6 +997,7 @@ namespace ETHotfix {
         output.WriteRawTag(96);
         output.WriteInt64(ServerTime);
       }
+      fire_.WriteTo(output, _repeated_fire_codec);
     }
 
     public int CalculateSize() {
@@ -987,6 +1016,7 @@ namespace ETHotfix {
       if (ServerTime != 0L) {
         size += 1 + pb::CodedOutputStream.ComputeInt64Size(ServerTime);
       }
+      size += fire_.CalculateSize(_repeated_fire_codec);
       return size;
     }
 
@@ -1003,6 +1033,7 @@ namespace ETHotfix {
       velocityY_.Clear();
       velocityZ_.Clear();
       serverTime_ = 0;
+      fire_.Clear();
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
@@ -1066,6 +1097,11 @@ namespace ETHotfix {
           }
           case 96: {
             ServerTime = input.ReadInt64();
+            break;
+          }
+          case 106:
+          case 104: {
+            fire_.AddEntriesFrom(input, _repeated_fire_codec);
             break;
           }
         }
