@@ -91,7 +91,7 @@ namespace ETHotfix
         public void NetWorkAsyncPosition(Vector3 Position, Quaternion Rotation, Vector3 Velocity)
         {
             //OtherDirCube_Rigidbody.position = Position;
-            OtherDirCube_Rigidbody.position = Position + Velocity * (24.0f / 1000.0f);
+            OtherDirCube_Rigidbody.position = Position + Velocity * GloabConfigHelper.tick;
 
             OtherDirCube_Rigidbody.rotation = Rotation;
 

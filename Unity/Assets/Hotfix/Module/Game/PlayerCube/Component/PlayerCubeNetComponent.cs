@@ -52,11 +52,7 @@ namespace ETHotfix
         /// </summary>
         private CharacterController cube_CharacterController = null;
 
-        /// <summary>
-        /// 每秒发包次数，但是不会超过帧数
-        /// </summary>
-        private float ttk = 1.0f / 24.0f;
-
+        
         /// <summary>
         /// 计时器
         /// </summary>
@@ -91,7 +87,7 @@ namespace ETHotfix
         public void UpDate()
         {
             timer += Time.deltaTime;
-            if (timer >= ttk)
+            if (timer >= GloabConfigHelper.tick)
             {
                 timer = 0;
                 sendNetPostion();

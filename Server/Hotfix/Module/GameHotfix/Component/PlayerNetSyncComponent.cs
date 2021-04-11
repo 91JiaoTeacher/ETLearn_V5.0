@@ -37,7 +37,7 @@ namespace ETHotfix
         /// <summary>
         /// 每秒发包次数，号码
         /// </summary>
-        private long ttk = 1000 / 24;
+        private long tick = 1000 / 32;
 
         public void Awake()
         {
@@ -48,7 +48,7 @@ namespace ETHotfix
         {
             unitComponent = Game.Scene.GetComponent<UnitComponent>();
             timerComponent = Game.Scene.GetComponent<TimerComponent>();
-            UpDateNetSync(ttk).Coroutine();
+            UpDateNetSync(tick).Coroutine();
         }
 
         public async ETVoid UpDateNetSync(long ttk)
