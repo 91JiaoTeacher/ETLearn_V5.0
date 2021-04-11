@@ -8,7 +8,9 @@ namespace ETHotfix
     {
         private OtherCubeManagerComponent otherCubeManagerComponent = null;
 
-        private long serverTime = 0;
+        //本地时间标记
+        private long serverTime;
+
         protected override async ETTask Run(ETModel.Session session, G2C_OtherPlayerPosition message)
         {
             if (otherCubeManagerComponent == null)
@@ -16,8 +18,10 @@ namespace ETHotfix
                 otherCubeManagerComponent = Game.Scene.GetComponent<OtherCubeManagerComponent>();
             }
 
-            if (message.ServerTime > serverTime)
+            if (message.ServerTime >= serverTime)
             {
+                serverTime = message.ServerTime;
+
                 int[] DirAccount = message.DirAccount.array;
                 float[] PositionX = message.PositionX.array;
                 float[] PositionY = message.PositionY.array;
@@ -44,10 +48,8 @@ namespace ETHotfix
             }
             else
             {
-                Debug.LogError("丢包了");
+                Debug.LogError("丢包了: " + message.ServerTime + " || " + serverTime);
             }
-
-            serverTime = message.ServerTime;
 
             await ETTask.CompletedTask;
         }
