@@ -69,6 +69,14 @@ namespace ETModel
         }
 
         /// <summary>
+        /// 的带当前map服中的玩家数
+        /// </summary>
+        public int UnitCounts()
+        {
+            return AccountToUnit.Count;
+        }
+
+        /// <summary>
         /// Unit已经被创建过了
         /// </summary>
         public bool UnitHaveBeCreated(int account)
