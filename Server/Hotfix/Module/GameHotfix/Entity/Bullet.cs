@@ -35,7 +35,6 @@ namespace ETHotfix
         {
             this.account = account;
 
-            Game.Scene.GetComponent<BulletManagerComponent>().AddBulletToQueue(this);
         }
 
 
