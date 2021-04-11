@@ -17,6 +17,28 @@ namespace ETHotfix
             ActorMessageSenderComponent actorSenderComponent = Game.Scene.GetComponent<ActorMessageSenderComponent>();
             ActorMessageSender actorMessageSender = actorSenderComponent.Get(player.MapInstanceId);
 
+            List<BulletInfo> bulletInfos = new List<BulletInfo>();
+            for (int i = 0; i < message.Bullets.Count; i++)
+            {
+                BulletInfo bulletInfo = new BulletInfo();
+                bulletInfo.Account = message.Bullets[i].Account;
+
+                bulletInfo.PositionX = message.Bullets[i].PositionX;
+                bulletInfo.PositionY = message.Bullets[i].PositionY;
+                bulletInfo.PositionZ = message.Bullets[i].PositionZ;
+
+                bulletInfo.RotationX = message.Bullets[i].RotationX;
+                bulletInfo.RotationY = message.Bullets[i].RotationY;
+                bulletInfo.RotationZ = message.Bullets[i].RotationZ;
+                bulletInfo.RotationW = message.Bullets[i].RotationW;
+
+                bulletInfo.VelocityX = message.Bullets[i].VelocityX;
+                bulletInfo.VelocityY = message.Bullets[i].VelocityY;
+                bulletInfo.VelocityZ = message.Bullets[i].VelocityZ;
+
+                bulletInfos.Add(bulletInfo);
+            }
+
             actorMessageSender.Send(new Actor_PlayerInitPositionUpDate()
             {
                 PositionX = message.PositionX, 
@@ -30,7 +52,7 @@ namespace ETHotfix
                 VelocityY = message.VelocityY,
                 VelocityZ = message.VelocityZ,
                 Fire = message.Fire,
-                Bullets = message.Bullets.ToList<BulletInfo>(),
+                Bullets = bulletInfos,
             });
 
             await ETTask.CompletedTask;

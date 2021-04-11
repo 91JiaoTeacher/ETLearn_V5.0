@@ -53,21 +53,22 @@ namespace ETHotfix
                 PlayerInfoComponent playerInfoComponent = Game.Scene.GetComponent<PlayerInfoComponent>();
 
 
-                //Debug.LogError("子弹数量：" + message.Bullets.array.Length);
+                //if (message.Bullets.array.Length != 0)
+                //{
+                //    Debug.LogError("子弹数量：" + message.Bullets.count);
+                //}
 
                 //同步子弹数量
-                BulletInfo[] bulletInfos = message.Bullets.array;
-                for (int i = 0; i < bulletInfos.Length; i++)
+                int count = message.Bullets.count;
+                for (int i = 0; i < count; i++)
                 {
-                    BulletInfo bulletInfo = bulletInfos[i];
-
                     //不是自己的子弹才需要创建同步
-                    if (bulletInfo.Account != playerInfoComponent.account)
+                    if (message.Bullets[i].Account != playerInfoComponent.account)
                     {
                         CubeBullet cubeBullet = CubeBulletFactory.CreateCubeBullet();
-                        cubeBullet.SyncBullet(new Vector3(bulletInfo.PositionX, bulletInfo.PositionY, bulletInfo.PositionZ),
-                            new Quaternion(bulletInfo.RotationX, bulletInfo.RotationY, bulletInfo.RotationZ, bulletInfo.RotationW),
-                            new Vector3(bulletInfo.VelocityX, bulletInfo.VelocityY, bulletInfo.VelocityZ));
+                        cubeBullet.SyncBullet(new Vector3(message.Bullets[i].PositionX, message.Bullets[i].PositionY, message.Bullets[i].PositionZ),
+                            new Quaternion(message.Bullets[i].RotationX, message.Bullets[i].RotationY, message.Bullets[i].RotationZ, message.Bullets[i].RotationW),
+                            new Vector3(message.Bullets[i].VelocityX, message.Bullets[i].VelocityY, message.Bullets[i].VelocityZ));
                     }
                 }
 
