@@ -7,7 +7,7 @@ namespace ETHotfix
     {
         protected override async ETTask Run(Session session, C2G_PlayerRoleNetwork message)
         {
-            //Log.Info("玩家[" + message.Account + "]传来坐标信息：" + message.PositionX + " | " + message.PositionY + " | " + message.PositionZ);
+            //Log.Info("玩家[" + message.Account + "]传来坐标信息：" + message.RotationX + " | " + message.RotationY + " | " + message.RotationZ + " | " + message.RotationW);
 
             //获取玩家
             Player player = Game.Scene.GetComponent<PlayerComponent>().getPlayerByAccount(message.Account);

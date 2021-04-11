@@ -43,6 +43,11 @@ namespace ETHotfix
         private Transform cube_Transform = null;
 
         /// <summary>
+        /// cubeBody的Transform组件
+        /// </summary>
+        private Transform body_Transform = null;
+
+        /// <summary>
         /// 玩家的控制组件
         /// </summary>
         private CharacterController cube_CharacterController = null;
@@ -75,6 +80,7 @@ namespace ETHotfix
         public void Start()
         {
             cube_Transform = this.GetParent<PlayerCube>().cube_GameObject.GetComponent<Transform>();
+            body_Transform = cube_Transform.Find("CubeBody");
             cube_CharacterController = cube_Transform.GetComponent<CharacterController>();
 
             hotfixSession = Game.Scene.GetComponent<SessionComponent>().Session;
@@ -101,10 +107,10 @@ namespace ETHotfix
             NetPackge.PositionY = cube_Transform.position.y;
             NetPackge.PositionZ = cube_Transform.position.z;
 
-            NetPackge.RotationX = cube_Transform.rotation.x;
-            NetPackge.RotationY = cube_Transform.rotation.y;
-            NetPackge.RotationZ = cube_Transform.rotation.z;
-            NetPackge.RotationW = cube_Transform.rotation.w;
+            NetPackge.RotationX = body_Transform.rotation.x;
+            NetPackge.RotationY = body_Transform.rotation.y;
+            NetPackge.RotationZ = body_Transform.rotation.z;
+            NetPackge.RotationW = body_Transform.rotation.w;
 
             NetPackge.VelocityX = cube_CharacterController.velocity.x;
             NetPackge.VelocityY = cube_CharacterController.velocity.y;

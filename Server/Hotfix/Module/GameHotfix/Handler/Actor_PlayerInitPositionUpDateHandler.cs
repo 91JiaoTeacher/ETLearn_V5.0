@@ -21,7 +21,7 @@ namespace ETHotfix
             entity.VelocityY = message.VelocityY;
             entity.VelocityZ = message.VelocityZ;
 
-            //Log.Info("单位[" + entity.Id + "]位置更新：" + message.PositionX + " | " + message.PositionY + " | " + message.PositionZ);
+            //Log.Info("单位[" + entity.Id + "]位置更新：" + message.RotationX + " | " + message.RotationY + " | " + message.RotationZ + " | " + message.RotationW);
 
             await ETTask.CompletedTask;
         }
