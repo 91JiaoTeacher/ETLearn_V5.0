@@ -35,6 +35,11 @@ namespace ETHotfix
         private UnitComponent unitComponent = null;
 
         /// <summary>
+        /// Map服中的子弹管理器
+        /// </summary>
+        private BulletManagerComponent bulletManagerComponent = null;
+
+        /// <summary>
         /// 每秒发包次数，号码
         /// </summary>
         private long tick = 1000 / 32;
@@ -48,6 +53,8 @@ namespace ETHotfix
         {
             unitComponent = Game.Scene.GetComponent<UnitComponent>();
             timerComponent = Game.Scene.GetComponent<TimerComponent>();
+            bulletManagerComponent = Game.Scene.GetComponent<BulletManagerComponent>();
+
             UpDateNetSync(tick).Coroutine();
         }
 
@@ -119,6 +126,8 @@ namespace ETHotfix
                             VelocityZ = velocityZ,
 
                             Fire = isFire,
+
+                            Bullets = bulletManagerComponent.GetAllNeedSyncBullet(),
                         });
                     }
                 }

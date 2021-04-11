@@ -30,6 +30,8 @@ namespace ETHotfix
 
             packge.Fire.Add(message.Fire);
 
+            packge.Bullets.Add(message.Bullets);
+
             entity.session.Send(packge);
 
             await ETTask.CompletedTask;

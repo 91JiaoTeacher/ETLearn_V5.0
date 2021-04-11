@@ -12,3 +12,4 @@ message R2C_Ping // IResponse
 	int32 Error = 91;
 	string Message = 92;
 }
+

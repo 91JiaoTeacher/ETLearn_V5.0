@@ -538,6 +538,14 @@ namespace ETHotfix {
       }
     }
 
+    private static readonly pb::FieldCodec<global::ETHotfix.BulletInfo> _repeated_bullets_codec
+        = pb::FieldCodec.ForMessage(106, global::ETHotfix.BulletInfo.Parser);
+    private pbc::RepeatedField<global::ETHotfix.BulletInfo> bullets_ = new pbc::RepeatedField<global::ETHotfix.BulletInfo>();
+    public pbc::RepeatedField<global::ETHotfix.BulletInfo> Bullets {
+      get { return bullets_; }
+      set { bullets_ = value; }
+    }
+
     public void WriteTo(pb::CodedOutputStream output) {
       if (Account != 0) {
         output.WriteRawTag(8);
@@ -587,6 +595,7 @@ namespace ETHotfix {
         output.WriteRawTag(96);
         output.WriteBool(Fire);
       }
+      bullets_.WriteTo(output, _repeated_bullets_codec);
     }
 
     public int CalculateSize() {
@@ -627,6 +636,7 @@ namespace ETHotfix {
       if (Fire != false) {
         size += 1 + 1;
       }
+      size += bullets_.CalculateSize(_repeated_bullets_codec);
       return size;
     }
 
@@ -643,6 +653,8 @@ namespace ETHotfix {
       velocityY_ = 0f;
       velocityZ_ = 0f;
       fire_ = false;
+      for (int i = 0; i < bullets_.Count; i++) { MessagePool.Instance.Recycle(bullets_[i]); }
+      bullets_.Clear();
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
@@ -695,6 +707,10 @@ namespace ETHotfix {
           }
           case 96: {
             Fire = input.ReadBool();
+            break;
+          }
+          case 106: {
+            bullets_.AddEntriesFrom(input, _repeated_bullets_codec);
             break;
           }
         }
@@ -981,6 +997,14 @@ namespace ETHotfix {
       set { fire_ = value; }
     }
 
+    private static readonly pb::FieldCodec<global::ETHotfix.BulletInfo> _repeated_bullets_codec
+        = pb::FieldCodec.ForMessage(114, global::ETHotfix.BulletInfo.Parser);
+    private pbc::RepeatedField<global::ETHotfix.BulletInfo> bullets_ = new pbc::RepeatedField<global::ETHotfix.BulletInfo>();
+    public pbc::RepeatedField<global::ETHotfix.BulletInfo> Bullets {
+      get { return bullets_; }
+      set { bullets_ = value; }
+    }
+
     public void WriteTo(pb::CodedOutputStream output) {
       dirAccount_.WriteTo(output, _repeated_dirAccount_codec);
       positionX_.WriteTo(output, _repeated_positionX_codec);
@@ -998,6 +1022,7 @@ namespace ETHotfix {
         output.WriteInt64(ServerTime);
       }
       fire_.WriteTo(output, _repeated_fire_codec);
+      bullets_.WriteTo(output, _repeated_bullets_codec);
     }
 
     public int CalculateSize() {
@@ -1017,6 +1042,7 @@ namespace ETHotfix {
         size += 1 + pb::CodedOutputStream.ComputeInt64Size(ServerTime);
       }
       size += fire_.CalculateSize(_repeated_fire_codec);
+      size += bullets_.CalculateSize(_repeated_bullets_codec);
       return size;
     }
 
@@ -1034,6 +1060,8 @@ namespace ETHotfix {
       velocityZ_.Clear();
       serverTime_ = 0;
       fire_.Clear();
+      for (int i = 0; i < bullets_.Count; i++) { MessagePool.Instance.Recycle(bullets_[i]); }
+      bullets_.Clear();
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
@@ -1102,6 +1130,255 @@ namespace ETHotfix {
           case 106:
           case 104: {
             fire_.AddEntriesFrom(input, _repeated_fire_codec);
+            break;
+          }
+          case 114: {
+            bullets_.AddEntriesFrom(input, _repeated_bullets_codec);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public partial class BulletInfo : pb::IMessage {
+    private static readonly pb::MessageParser<BulletInfo> _parser = new pb::MessageParser<BulletInfo>(() => (BulletInfo)MessagePool.Instance.Fetch(typeof(BulletInfo)));
+    public static pb::MessageParser<BulletInfo> Parser { get { return _parser; } }
+
+    private int account_;
+    public int Account {
+      get { return account_; }
+      set {
+        account_ = value;
+      }
+    }
+
+    private float positionX_;
+    public float PositionX {
+      get { return positionX_; }
+      set {
+        positionX_ = value;
+      }
+    }
+
+    private float positionY_;
+    public float PositionY {
+      get { return positionY_; }
+      set {
+        positionY_ = value;
+      }
+    }
+
+    private float positionZ_;
+    public float PositionZ {
+      get { return positionZ_; }
+      set {
+        positionZ_ = value;
+      }
+    }
+
+    private float rotationX_;
+    public float RotationX {
+      get { return rotationX_; }
+      set {
+        rotationX_ = value;
+      }
+    }
+
+    private float rotationY_;
+    public float RotationY {
+      get { return rotationY_; }
+      set {
+        rotationY_ = value;
+      }
+    }
+
+    private float rotationZ_;
+    public float RotationZ {
+      get { return rotationZ_; }
+      set {
+        rotationZ_ = value;
+      }
+    }
+
+    private float rotationW_;
+    public float RotationW {
+      get { return rotationW_; }
+      set {
+        rotationW_ = value;
+      }
+    }
+
+    private float velocityX_;
+    public float VelocityX {
+      get { return velocityX_; }
+      set {
+        velocityX_ = value;
+      }
+    }
+
+    private float velocityY_;
+    public float VelocityY {
+      get { return velocityY_; }
+      set {
+        velocityY_ = value;
+      }
+    }
+
+    private float velocityZ_;
+    public float VelocityZ {
+      get { return velocityZ_; }
+      set {
+        velocityZ_ = value;
+      }
+    }
+
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Account != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Account);
+      }
+      if (PositionX != 0F) {
+        output.WriteRawTag(21);
+        output.WriteFloat(PositionX);
+      }
+      if (PositionY != 0F) {
+        output.WriteRawTag(29);
+        output.WriteFloat(PositionY);
+      }
+      if (PositionZ != 0F) {
+        output.WriteRawTag(37);
+        output.WriteFloat(PositionZ);
+      }
+      if (RotationX != 0F) {
+        output.WriteRawTag(45);
+        output.WriteFloat(RotationX);
+      }
+      if (RotationY != 0F) {
+        output.WriteRawTag(53);
+        output.WriteFloat(RotationY);
+      }
+      if (RotationZ != 0F) {
+        output.WriteRawTag(61);
+        output.WriteFloat(RotationZ);
+      }
+      if (RotationW != 0F) {
+        output.WriteRawTag(69);
+        output.WriteFloat(RotationW);
+      }
+      if (VelocityX != 0F) {
+        output.WriteRawTag(77);
+        output.WriteFloat(VelocityX);
+      }
+      if (VelocityY != 0F) {
+        output.WriteRawTag(85);
+        output.WriteFloat(VelocityY);
+      }
+      if (VelocityZ != 0F) {
+        output.WriteRawTag(93);
+        output.WriteFloat(VelocityZ);
+      }
+    }
+
+    public int CalculateSize() {
+      int size = 0;
+      if (Account != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Account);
+      }
+      if (PositionX != 0F) {
+        size += 1 + 4;
+      }
+      if (PositionY != 0F) {
+        size += 1 + 4;
+      }
+      if (PositionZ != 0F) {
+        size += 1 + 4;
+      }
+      if (RotationX != 0F) {
+        size += 1 + 4;
+      }
+      if (RotationY != 0F) {
+        size += 1 + 4;
+      }
+      if (RotationZ != 0F) {
+        size += 1 + 4;
+      }
+      if (RotationW != 0F) {
+        size += 1 + 4;
+      }
+      if (VelocityX != 0F) {
+        size += 1 + 4;
+      }
+      if (VelocityY != 0F) {
+        size += 1 + 4;
+      }
+      if (VelocityZ != 0F) {
+        size += 1 + 4;
+      }
+      return size;
+    }
+
+    public void MergeFrom(pb::CodedInputStream input) {
+      account_ = 0;
+      positionX_ = 0f;
+      positionY_ = 0f;
+      positionZ_ = 0f;
+      rotationX_ = 0f;
+      rotationY_ = 0f;
+      rotationZ_ = 0f;
+      rotationW_ = 0f;
+      velocityX_ = 0f;
+      velocityY_ = 0f;
+      velocityZ_ = 0f;
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 8: {
+            Account = input.ReadInt32();
+            break;
+          }
+          case 21: {
+            PositionX = input.ReadFloat();
+            break;
+          }
+          case 29: {
+            PositionY = input.ReadFloat();
+            break;
+          }
+          case 37: {
+            PositionZ = input.ReadFloat();
+            break;
+          }
+          case 45: {
+            RotationX = input.ReadFloat();
+            break;
+          }
+          case 53: {
+            RotationY = input.ReadFloat();
+            break;
+          }
+          case 61: {
+            RotationZ = input.ReadFloat();
+            break;
+          }
+          case 69: {
+            RotationW = input.ReadFloat();
+            break;
+          }
+          case 77: {
+            VelocityX = input.ReadFloat();
+            break;
+          }
+          case 85: {
+            VelocityY = input.ReadFloat();
+            break;
+          }
+          case 93: {
+            VelocityZ = input.ReadFloat();
             break;
           }
         }

@@ -1,4 +1,6 @@
 ﻿using ETModel;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ETHotfix
 {
@@ -28,6 +30,7 @@ namespace ETHotfix
                 VelocityY = message.VelocityY,
                 VelocityZ = message.VelocityZ,
                 Fire = message.Fire,
+                Bullets = message.Bullets.ToList<BulletInfo>(),
             });
 
             await ETTask.CompletedTask;

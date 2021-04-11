@@ -63,6 +63,11 @@ namespace ETHotfix
         /// </summary>
         private GameObject attackObject = null;
 
+        /// <summary>
+        /// 玩家cube的同步组件
+        /// </summary>
+        private PlayerCubeNetComponent playerCubeNetComponent = null;
+
         public void Awake()
         {
             //查找相关引用
@@ -70,6 +75,7 @@ namespace ETHotfix
             cubePlayer_Controller = cubePlayer_Transform.GetComponent<CharacterController>();
             cubeGun_Transform = cubePlayer_Transform.Find("CubeBody/Gun");
             attackObject = this.GetParent<PlayerCube>().GetComponent<PlayerCubeControllerComponent>().targetArrow.targetArrow_GameObject;
+            playerCubeNetComponent = this.GetParent<PlayerCube>().GetComponent<PlayerCubeNetComponent>();
 
         }
 
@@ -108,6 +114,7 @@ namespace ETHotfix
 
             cubeBullet.Attack(cubeGun_Transform.gameObject, attackObject, cubePlayer_Controller.velocity);
 
+            playerCubeNetComponent.needSyncBullet.Enqueue(cubeBullet);
         }
 
         /// <summary>

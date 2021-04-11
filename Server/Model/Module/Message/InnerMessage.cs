@@ -1,4 +1,5 @@
 using ETModel;
+using ETHotfix;
 using System.Collections.Generic;
 namespace ETModel
 {
@@ -364,6 +365,8 @@ namespace ETModel
 
 		public bool Fire { get; set; }
 
+		public List<BulletInfo> Bullets = new List<BulletInfo>();
+
 	}
 
 	[Message(InnerOpcode.Actor_PlayerNetSyncToCline)]
@@ -394,6 +397,8 @@ namespace ETModel
 		public List<float> VelocityZ = new List<float>();
 
 		public List<bool> Fire = new List<bool>();
+
+		public List<BulletInfo> Bullets = new List<BulletInfo>();
 
 	}
 

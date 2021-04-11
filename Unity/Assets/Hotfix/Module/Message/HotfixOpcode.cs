@@ -25,6 +25,9 @@ namespace ETHotfix
 	[Message(HotfixOpcode.G2C_OtherPlayerPosition)]
 	public partial class G2C_OtherPlayerPosition : IMessage {}
 
+	[Message(HotfixOpcode.BulletInfo)]
+	public partial class BulletInfo : IMessage {}
+
 }
 namespace ETHotfix
 {
@@ -38,5 +41,6 @@ namespace ETHotfix
 		 public const ushort C2G_GetOtherPlayer = 10006;
 		 public const ushort G2C_OtherPlayerEnterMap = 10007;
 		 public const ushort G2C_OtherPlayerPosition = 10008;
+		 public const ushort BulletInfo = 10009;
 	}
 }

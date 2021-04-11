@@ -31,6 +31,8 @@ namespace ETHotfix
             //添加玩家网络同步组件
             Game.Scene.AddComponent<PlayerNetSyncComponent>();
 
+            Game.Scene.AddComponent<BulletManagerComponent>();
+
         }
 
         public static void Start(this AddHotfixComponent self)

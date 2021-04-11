@@ -156,6 +156,7 @@ namespace ETTools
 
             StringBuilder sb = new StringBuilder();
             sb.Append("using ETModel;\n");
+            sb.Append("using ETHotfix;\n");
             sb.Append("using System.Collections.Generic;\n");
             sb.Append($"namespace {ns}\n");
             sb.Append("{\n");

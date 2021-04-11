@@ -22,7 +22,8 @@ namespace ETHotfix
                 rc = bundleGameObject.GetComponent<ReferenceCollector>();
             }
 
-            if (cubeBulletPool.Count > 0)
+            //池里至少有5个才取
+            if (cubeBulletPool.Count > 5)
             {
                 CubeBullet cubeBullet = cubeBulletPool.Dequeue();
                 return cubeBullet;

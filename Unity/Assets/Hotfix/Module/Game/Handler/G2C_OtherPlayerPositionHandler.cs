@@ -49,6 +49,20 @@ namespace ETHotfix
                         otherCubeNetSyncComponent.NetWorkAsyncFire(Fire[i]);
                     }
                 }
+
+                //同步子弹数量
+                BulletInfo[] bulletInfos = message.Bullets.array;
+                for (int i = 0; i < bulletInfos.Length; i++)
+                {
+                    BulletInfo bulletInfo = bulletInfos[i];
+
+                    CubeBullet cubeBullet = CubeBulletFactory.CreateCubeBullet();
+                    cubeBullet.SyncBullet(new Vector3(bulletInfo.PositionX, bulletInfo.PositionY, bulletInfo.PositionZ),
+                        new Quaternion(bulletInfo.RotationX, bulletInfo.RotationY, bulletInfo.RotationZ, bulletInfo.RotationW),
+                        new Vector3(bulletInfo.VelocityX, bulletInfo.VelocityY, bulletInfo.VelocityZ));
+
+                }
+
             }
             else
             {

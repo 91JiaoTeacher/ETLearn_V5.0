@@ -26,6 +26,11 @@ namespace ETHotfix
     public class CubeBullet : Entity
     {
         /// <summary>
+        /// 这个玩家的子弹唯一ID
+        /// </summary>
+        public long onlyBulletID;
+
+        /// <summary>
         /// 子弹的三部分, 枪口特效，子弹特效，命中特效
         /// </summary>
         public GameObject[] bulletObj;
@@ -38,7 +43,7 @@ namespace ETHotfix
         /// <summary>
         /// 子弹正在飞
         /// </summary>
-        private bool bulletFlying = false;
+        public bool bulletFlying = false;
 
         /// <summary>
         /// 以前的位置
@@ -64,6 +69,7 @@ namespace ETHotfix
                 bulletObj[i].SetActive(false);
             }
 
+            onlyBulletID = this.InstanceId;
         }
 
         public void Update()
@@ -100,6 +106,25 @@ namespace ETHotfix
             bulletObj[1].transform.position = gunParent.transform.position;
             bulletObj[1].transform.LookAt(dirObj.transform.position);
             bulletObj[1].GetComponent<Rigidbody>().velocity = bulletObj[1].transform.forward * bulletSpeed + baseVelocity;
+
+            //子弹第一次发射需要对此进行赋值
+            previousPosition = bulletObj[1].transform.position;
+
+            bulletFlying = true;
+
+            bulletLifeKey = true;
+        }
+
+        /// <summary>
+        /// 同步子弹
+        /// </summary>
+        public void SyncBullet(Vector3 Position, Quaternion Rotation, Vector3 Velocity)
+        {
+            //设置子弹
+            bulletObj[1].SetActive(true);
+            bulletObj[1].transform.position = Position;
+            bulletObj[1].transform.rotation = Rotation;
+            bulletObj[1].GetComponent<Rigidbody>().velocity = Velocity;
 
             //子弹第一次发射需要对此进行赋值
             previousPosition = bulletObj[1].transform.position;

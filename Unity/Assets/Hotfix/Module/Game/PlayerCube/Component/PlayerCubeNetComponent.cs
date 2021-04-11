@@ -1,4 +1,5 @@
-﻿using ETModel;
+﻿using System.Collections.Generic;
+using ETModel;
 using UnityEngine;
 
 namespace ETHotfix
@@ -52,7 +53,6 @@ namespace ETHotfix
         /// </summary>
         private CharacterController cube_CharacterController = null;
 
-        
         /// <summary>
         /// 计时器
         /// </summary>
@@ -72,6 +72,11 @@ namespace ETHotfix
         /// 玩家的攻击组件
         /// </summary>
         private PlayerCubeAttackComponent playerCubeAttackComponent = null;
+
+        /// <summary>
+        /// 需要同步的子弹
+        /// </summary>
+        public Queue<CubeBullet> needSyncBullet = new Queue<CubeBullet>();
 
         public void Awake(int Account)
         {
@@ -121,6 +126,34 @@ namespace ETHotfix
 
             NetPackge.Fire = playerCubeAttackComponent.isAttacking();
 
+            for (int i = 0; i < needSyncBullet.Count; i++)
+            {
+                
+                CubeBullet cubeBullet = needSyncBullet.Dequeue();
+                if (cubeBullet.bulletFlying)
+                {
+                    BulletInfo bulletInfo = new BulletInfo();
+
+                    bulletInfo.Account = playerAccount;
+
+                    bulletInfo.PositionX = cubeBullet.bulletObj[1].transform.position.x;
+                    bulletInfo.PositionY = cubeBullet.bulletObj[1].transform.position.y;
+                    bulletInfo.PositionZ = cubeBullet.bulletObj[1].transform.position.z;
+
+                    bulletInfo.RotationX = cubeBullet.bulletObj[1].transform.rotation.x;
+                    bulletInfo.RotationY = cubeBullet.bulletObj[1].transform.rotation.y;
+                    bulletInfo.RotationZ = cubeBullet.bulletObj[1].transform.rotation.z;
+                    bulletInfo.RotationW = cubeBullet.bulletObj[1].transform.rotation.w;
+
+                    Vector3 velocity = cubeBullet.bulletObj[1].GetComponent<Rigidbody>().velocity;
+                    bulletInfo.VelocityX = velocity.x;
+                    bulletInfo.VelocityY = velocity.y;
+                    bulletInfo.VelocityZ = velocity.z;
+
+                    NetPackge.Bullets.Add(bulletInfo);
+                }
+            }
+            
             hotfixSession.Send(NetPackge);
         }
 
