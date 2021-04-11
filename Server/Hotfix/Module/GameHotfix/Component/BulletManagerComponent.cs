@@ -68,6 +68,7 @@ namespace ETHotfix
                     BulletInfo bulletInfo = new BulletInfo();
 
                     bulletInfo.Account = bullet.account;
+
                     bulletInfo.PositionX = bullet.PositionX;
                     bulletInfo.PositionY = bullet.PositionY;
                     bulletInfo.PositionZ = bullet.PositionZ;
