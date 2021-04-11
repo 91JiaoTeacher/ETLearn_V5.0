@@ -15,6 +15,16 @@ namespace ETHotfix
             packge.PositionX.Add(message.PositionX);
             packge.PositionY.Add(message.PositionY);
             packge.PositionZ.Add(message.PositionZ);
+
+            packge.RotationX.Add(message.RotationX);
+            packge.RotationY.Add(message.RotationY);
+            packge.RotationZ.Add(message.RotationZ);
+            packge.RotationW.Add(message.RotationW);
+
+            packge.VelocityX.Add(message.VelocityX);
+            packge.VelocityY.Add(message.VelocityY);
+            packge.VelocityZ.Add(message.VelocityZ);
+
             entity.session.Send(packge);
 
             await ETTask.CompletedTask;

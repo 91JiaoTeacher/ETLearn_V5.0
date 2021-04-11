@@ -21,6 +21,15 @@
         public float InitPositionY = 0.0f;
         public float InitPositionZ = 0.0f;
 
+        public float RotationX;
+        public float RotationY;
+        public float RotationZ;
+        public float RotationW;
+
+        public float VelocityX;
+        public float VelocityY;
+        public float VelocityZ;
+
         public void Awake(int account)
         {
             this.Account = account;

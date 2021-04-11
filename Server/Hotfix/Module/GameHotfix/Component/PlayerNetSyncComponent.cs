@@ -68,6 +68,15 @@ namespace ETHotfix
                         List<float> positionY = new List<float>();
                         List<float> positionZ = new List<float>();
 
+                        List<float> rotationX = new List<float>();
+                        List<float> rotationY = new List<float>();
+                        List<float> rotationZ = new List<float>();
+                        List<float> rotationW = new List<float>();
+
+                        List<float> velocityX = new List<float>();
+                        List<float> velocityY = new List<float>();
+                        List<float> velocityZ = new List<float>();
+
                         for (int j = 0; j < units.Count; j++)
                         {
                             if (units[i].Account != units[j].Account)
@@ -76,6 +85,15 @@ namespace ETHotfix
                                 positionX.Add(units[j].InitPositionX);
                                 positionY.Add(units[j].InitPositionY);
                                 positionZ.Add(units[j].InitPositionZ);
+
+                                rotationX.Add(units[j].RotationX);
+                                rotationY.Add(units[j].RotationY);
+                                rotationZ.Add(units[j].RotationZ);
+                                rotationW.Add(units[j].RotationW);
+
+                                velocityX.Add(units[j].VelocityX);
+                                velocityY.Add(units[j].VelocityY);
+                                velocityZ.Add(units[j].VelocityZ);
                             }
                         }
 
@@ -85,6 +103,15 @@ namespace ETHotfix
                             PositionX = positionX,
                             PositionY = positionY,
                             PositionZ = positionZ,
+
+                            RotationX = rotationX,
+                            RotationY = rotationY,
+                            RotationZ = rotationZ,
+                            RotationW = rotationW,
+
+                            VelocityX = velocityX,
+                            VelocityY = velocityY,
+                            VelocityZ = velocityZ,
                         });
                     }
                 }

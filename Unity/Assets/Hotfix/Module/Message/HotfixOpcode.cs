@@ -13,12 +13,6 @@ namespace ETHotfix
 	[Message(HotfixOpcode.G2C_RequestEnterMap)]
 	public partial class G2C_RequestEnterMap : IResponse {}
 
-	[Message(HotfixOpcode.C2M_PlayerPosition)]
-	public partial class C2M_PlayerPosition : IRequest {}
-
-	[Message(HotfixOpcode.M2C_PlayerPosition)]
-	public partial class M2C_PlayerPosition : IResponse {}
-
 	[Message(HotfixOpcode.C2G_PlayerRoleNetwork)]
 	public partial class C2G_PlayerRoleNetwork : IMessage {}
 
@@ -40,11 +34,9 @@ namespace ETHotfix
 		 public const ushort G2C_Login = 10002;
 		 public const ushort C2G_RequestEnterMap = 10003;
 		 public const ushort G2C_RequestEnterMap = 10004;
-		 public const ushort C2M_PlayerPosition = 10005;
-		 public const ushort M2C_PlayerPosition = 10006;
-		 public const ushort C2G_PlayerRoleNetwork = 10007;
-		 public const ushort C2G_GetOtherPlayer = 10008;
-		 public const ushort G2C_OtherPlayerEnterMap = 10009;
-		 public const ushort G2C_OtherPlayerPosition = 10010;
+		 public const ushort C2G_PlayerRoleNetwork = 10005;
+		 public const ushort C2G_GetOtherPlayer = 10006;
+		 public const ushort G2C_OtherPlayerEnterMap = 10007;
+		 public const ushort G2C_OtherPlayerPosition = 10008;
 	}
 }

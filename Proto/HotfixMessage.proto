@@ -33,30 +33,19 @@ message G2C_RequestEnterMap // IResponse
 	float PositionZ = 3;
 }
 
-message C2M_PlayerPosition // IRequest
-{
-	int32 RpcId = 90;
-	float PositionX = 1;
-	float PositionY = 2;
-	float PositionZ = 3;
-}
-
-message M2C_PlayerPosition // IResponse
-{
-	int32 RpcId = 90;
-	int32 Error = 91;
-	string Message = 92;
-	float PositionX = 1;
-	float PositionY = 2;
-	float PositionZ = 3;
-}
-
 message C2G_PlayerRoleNetwork // IMessage
 {
 	int32 Account = 1;
 	float PositionX = 2;
 	float PositionY = 3;
 	float PositionZ = 4;
+	float RotationX = 5;
+	float RotationY = 6;
+	float RotationZ = 7;
+	float RotationW = 8;
+	float VelocityX = 9;
+	float VelocityY = 10;
+	float VelocityZ = 11;
 }
 
 message C2G_GetOtherPlayer // IMessage
@@ -79,4 +68,11 @@ message G2C_OtherPlayerPosition // IMessage
     repeated float PositionX = 2;
     repeated float PositionY = 3;
     repeated float PositionZ = 4;
+	repeated float RotationX = 5;
+	repeated float RotationY = 6;
+	repeated float RotationZ = 7;
+	repeated float RotationW = 8;
+	repeated float VelocityX = 9;
+	repeated float VelocityY = 10;
+	repeated float VelocityZ = 11;
 }

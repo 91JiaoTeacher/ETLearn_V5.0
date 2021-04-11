@@ -55,23 +55,5 @@ namespace ETHotfix
             }
         }
 
-        public static void testAll()
-        {
-            test1();
-        }
-
-        public static async ETVoid test1()
-        {
-            Log.Error("发送第一个包");
-            M2C_PlayerPosition g2CPlayerPosition = (M2C_PlayerPosition)await SessionComponent.Instance.Session.Call(new C2M_PlayerPosition()
-            {
-                PositionX = 10,
-                PositionY = 20,
-                PositionZ = 30
-            });
-
-            Log.Error("玩家位置回包[" + g2CPlayerPosition.PositionX + "] | [" + g2CPlayerPosition.PositionY + "] | [" + g2CPlayerPosition.PositionZ + "]");
-        }
-
     }
 }

@@ -225,6 +225,13 @@ message Actor_PlayerInitPositionUpDate //IActorMessage
     float PositionX = 1;
 	float PositionY = 2;
 	float PositionZ = 3;
+    float RotationX = 4;
+	float RotationY = 5;
+	float RotationZ = 6;
+	float RotationW = 7;
+	float VelocityX = 8;
+	float VelocityY = 9;
+	float VelocityZ = 10;
 }
 
 message Actor_PlayerNetSyncToCline //IActorMessage
@@ -234,4 +241,11 @@ message Actor_PlayerNetSyncToCline //IActorMessage
     repeated float PositionX = 2;
     repeated float PositionY = 3;
     repeated float PositionZ = 4;
+	repeated float RotationX = 5;
+	repeated float RotationY = 6;
+	repeated float RotationZ = 7;
+	repeated float RotationW = 8;
+	repeated float VelocityX = 9;
+	repeated float VelocityY = 10;
+	repeated float VelocityZ = 11;
 }

@@ -14,8 +14,7 @@ namespace ETHotfix
 
             if (NetSyncComponent != null)
             {
-                NetSyncComponent.NetWorkAsyncPosition(
-                    new Vector3(message.PositionX, message.PositionY, message.PositionZ));
+                NetSyncComponent.NetWorkAsyncPosition(new Vector3(message.PositionX, message.PositionY, message.PositionZ), Quaternion.identity, Vector3.zero);
             }
             else
             {

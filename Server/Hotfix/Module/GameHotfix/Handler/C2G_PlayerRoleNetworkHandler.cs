@@ -15,7 +15,19 @@ namespace ETHotfix
             ActorMessageSenderComponent actorSenderComponent = Game.Scene.GetComponent<ActorMessageSenderComponent>();
             ActorMessageSender actorMessageSender = actorSenderComponent.Get(player.MapInstanceId);
 
-            actorMessageSender.Send(new Actor_PlayerInitPositionUpDate() {PositionX = message.PositionX, PositionY = message.PositionY , PositionZ = message.PositionZ });
+            actorMessageSender.Send(new Actor_PlayerInitPositionUpDate()
+            {
+                PositionX = message.PositionX, 
+                PositionY = message.PositionY, 
+                PositionZ = message.PositionZ,
+                RotationX = message.RotationX,
+                RotationY = message.RotationY,
+                RotationZ = message.RotationZ,
+                RotationW = message.RotationW,
+                VelocityX = message.VelocityX,
+                VelocityY = message.VelocityY,
+                VelocityZ = message.VelocityZ,
+            });
 
             await ETTask.CompletedTask;
         }

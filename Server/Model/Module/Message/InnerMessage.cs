@@ -348,6 +348,20 @@ namespace ETModel
 
 		public float PositionZ { get; set; }
 
+		public float RotationX { get; set; }
+
+		public float RotationY { get; set; }
+
+		public float RotationZ { get; set; }
+
+		public float RotationW { get; set; }
+
+		public float VelocityX { get; set; }
+
+		public float VelocityY { get; set; }
+
+		public float VelocityZ { get; set; }
+
 	}
 
 	[Message(InnerOpcode.Actor_PlayerNetSyncToCline)]
@@ -362,6 +376,20 @@ namespace ETModel
 		public List<float> PositionY = new List<float>();
 
 		public List<float> PositionZ = new List<float>();
+
+		public List<float> RotationX = new List<float>();
+
+		public List<float> RotationY = new List<float>();
+
+		public List<float> RotationZ = new List<float>();
+
+		public List<float> RotationW = new List<float>();
+
+		public List<float> VelocityX = new List<float>();
+
+		public List<float> VelocityY = new List<float>();
+
+		public List<float> VelocityZ = new List<float>();
 
 	}
 
