@@ -22,6 +22,16 @@ namespace ETHotfix
             self.Start();
         }
     }
+
+    [ObjectSystem]
+    public class OtherCubeNetSyncComponentUpdateSystem : UpdateSystem<OtherCubeNetSyncComponent>
+    {
+        public override void Update(OtherCubeNetSyncComponent self)
+        {
+            self.Update();
+        }
+    }
+
     public class OtherCubeNetSyncComponent : Component
     {
         /// <summary>
@@ -80,10 +90,21 @@ namespace ETHotfix
         /// </summary>
         public void NetWorkAsyncPosition(Vector3 Position, Quaternion Rotation, Vector3 Velocity)
         {
-            OtherDirCube_Rigidbody.position = Position;
+            //OtherDirCube_Rigidbody.position = Position;
+            OtherDirCube_Rigidbody.position = Position + Velocity * (24.0f / 1000.0f);
+
             OtherDirCube_Rigidbody.rotation = Rotation;
 
             OtherDirCube_Rigidbody.velocity = Velocity;
+        }
+
+        /// <summary>
+        /// 保持显示和方块的同步
+        /// </summary>
+        public void Update()
+        {
+            OtherCube_Transform.position = Vector3.Lerp(OtherDirCube_Transform.position, OtherCube_Transform.position, 60.0f * Time.deltaTime);
+            OtherCube_Transform.rotation = Quaternion.Lerp(OtherDirCube_Transform.rotation, OtherCube_Transform.rotation, 60.0f * Time.deltaTime);
         }
     }
 }

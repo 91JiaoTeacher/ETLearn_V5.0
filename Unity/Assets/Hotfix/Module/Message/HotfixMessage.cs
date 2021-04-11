@@ -945,6 +945,14 @@ namespace ETHotfix {
       set { velocityZ_ = value; }
     }
 
+    private long serverTime_;
+    public long ServerTime {
+      get { return serverTime_; }
+      set {
+        serverTime_ = value;
+      }
+    }
+
     public void WriteTo(pb::CodedOutputStream output) {
       dirAccount_.WriteTo(output, _repeated_dirAccount_codec);
       positionX_.WriteTo(output, _repeated_positionX_codec);
@@ -957,6 +965,10 @@ namespace ETHotfix {
       velocityX_.WriteTo(output, _repeated_velocityX_codec);
       velocityY_.WriteTo(output, _repeated_velocityY_codec);
       velocityZ_.WriteTo(output, _repeated_velocityZ_codec);
+      if (ServerTime != 0L) {
+        output.WriteRawTag(96);
+        output.WriteInt64(ServerTime);
+      }
     }
 
     public int CalculateSize() {
@@ -972,6 +984,9 @@ namespace ETHotfix {
       size += velocityX_.CalculateSize(_repeated_velocityX_codec);
       size += velocityY_.CalculateSize(_repeated_velocityY_codec);
       size += velocityZ_.CalculateSize(_repeated_velocityZ_codec);
+      if (ServerTime != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(ServerTime);
+      }
       return size;
     }
 
@@ -987,6 +1002,7 @@ namespace ETHotfix {
       velocityX_.Clear();
       velocityY_.Clear();
       velocityZ_.Clear();
+      serverTime_ = 0;
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
@@ -1046,6 +1062,10 @@ namespace ETHotfix {
           case 90:
           case 93: {
             velocityZ_.AddEntriesFrom(input, _repeated_velocityZ_codec);
+            break;
+          }
+          case 96: {
+            ServerTime = input.ReadInt64();
             break;
           }
         }

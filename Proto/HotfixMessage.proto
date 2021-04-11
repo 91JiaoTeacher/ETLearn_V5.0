@@ -75,4 +75,5 @@ message G2C_OtherPlayerPosition // IMessage
 	repeated float VelocityX = 9;
 	repeated float VelocityY = 10;
 	repeated float VelocityZ = 11;
+	int64 serverTime = 12;
 }
