@@ -75,13 +75,13 @@ namespace ETHotfix
             cubePlayer_Controller = cubePlayer_Transform.GetComponent<CharacterController>();
             cubeGun_Transform = cubePlayer_Transform.Find("CubeBody/Gun");
             attackObject = this.GetParent<PlayerCube>().GetComponent<PlayerCubeControllerComponent>().targetArrow.targetArrow_GameObject;
-            playerCubeNetComponent = this.GetParent<PlayerCube>().GetComponent<PlayerCubeNetComponent>();
+            
 
         }
 
         public void Start()
         {
-            
+            playerCubeNetComponent = this.GetParent<PlayerCube>().GetComponent<PlayerCubeNetComponent>();
         }
 
         public void UpDate()
