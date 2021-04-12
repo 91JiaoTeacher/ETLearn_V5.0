@@ -63,7 +63,7 @@ namespace ETHotfix
             while (true)
             {
                 await timerComponent.WaitAsync(ttk);
-                List<Unit> units = unitComponent.getCountUnits(1);
+                List<Unit> units = unitComponent.getCountUnits(0);
 
                 if (units != null)
                 {

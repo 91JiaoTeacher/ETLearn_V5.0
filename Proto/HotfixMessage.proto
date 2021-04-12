@@ -96,3 +96,9 @@ message BulletInfo // IMessage
 	float VelocityY = 10;
 	float VelocityZ = 11;
 }
+
+message G2C_PlayerDisCatenate // IMessage
+{
+	int32 RpcId = 90;
+	int32 Account = 1;
+}

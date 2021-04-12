@@ -38,6 +38,21 @@ namespace ETModel
         }
 
         /// <summary>
+        /// 移除一个玩家的Unit
+        /// </summary>
+        public void removeOneUnit(int account)
+        {
+            if (AccountToUnit.ContainsKey(account))
+            {
+                AccountToUnit.Remove(account);
+            }
+            else
+            {
+                Log.Error("这个Unit不存在Map服里: " + account);
+            }
+        }
+
+        /// <summary>
         /// 通过账号来获取Unit
         /// </summary>
         public Unit getUnitByAccount(int account)
@@ -58,7 +73,7 @@ namespace ETModel
         /// </summary>
         public List<Unit> getCountUnits(int minCount)
         {
-            if (AccountToUnit.Count > 1)
+            if (AccountToUnit.Count > minCount)
             {
                 return AccountToUnit.Values.ToList<Unit>();
             }

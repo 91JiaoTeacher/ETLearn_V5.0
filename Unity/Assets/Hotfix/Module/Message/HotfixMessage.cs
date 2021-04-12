@@ -1387,6 +1387,71 @@ namespace ETHotfix {
 
   }
 
+  public partial class G2C_PlayerDisCatenate : pb::IMessage {
+    private static readonly pb::MessageParser<G2C_PlayerDisCatenate> _parser = new pb::MessageParser<G2C_PlayerDisCatenate>(() => (G2C_PlayerDisCatenate)MessagePool.Instance.Fetch(typeof(G2C_PlayerDisCatenate)));
+    public static pb::MessageParser<G2C_PlayerDisCatenate> Parser { get { return _parser; } }
+
+    private int rpcId_;
+    public int RpcId {
+      get { return rpcId_; }
+      set {
+        rpcId_ = value;
+      }
+    }
+
+    private int account_;
+    public int Account {
+      get { return account_; }
+      set {
+        account_ = value;
+      }
+    }
+
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Account != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Account);
+      }
+      if (RpcId != 0) {
+        output.WriteRawTag(208, 5);
+        output.WriteInt32(RpcId);
+      }
+    }
+
+    public int CalculateSize() {
+      int size = 0;
+      if (RpcId != 0) {
+        size += 2 + pb::CodedOutputStream.ComputeInt32Size(RpcId);
+      }
+      if (Account != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Account);
+      }
+      return size;
+    }
+
+    public void MergeFrom(pb::CodedInputStream input) {
+      account_ = 0;
+      rpcId_ = 0;
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 8: {
+            Account = input.ReadInt32();
+            break;
+          }
+          case 720: {
+            RpcId = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
   #endregion
 
 }

@@ -99,6 +99,7 @@
     <Compile Include="Assets\Hotfix\Module\Game\Components\PlayerInfoComponent.cs" />
     <Compile Include="Assets\Hotfix\Module\Game\Handler\G2C_OtherPlayerEnterMapHandler.cs" />
     <Compile Include="Assets\Hotfix\Module\Game\Handler\G2C_OtherPlayerPositionHandler.cs" />
+    <Compile Include="Assets\Hotfix\Module\Game\Handler\G2C_PlayerDisCatenateHandler.cs" />
     <Compile Include="Assets\Hotfix\Module\Game\Helper\GloabConfigHelper.cs" />
     <Compile Include="Assets\Hotfix\Module\Game\Helper\LoginHelper.cs" />
     <Compile Include="Assets\Hotfix\Module\Game\Helper\MapHelper.cs" />

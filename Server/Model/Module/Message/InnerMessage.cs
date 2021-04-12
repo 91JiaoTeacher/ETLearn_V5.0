@@ -402,4 +402,13 @@ namespace ETModel
 
 	}
 
+	[Message(InnerOpcode.G2M_RemoveUnitByMap)]
+	public partial class G2M_RemoveUnitByMap: IMessage
+	{
+		public int RpcId { get; set; }
+
+		public int Account { get; set; }
+
+	}
+
 }

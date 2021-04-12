@@ -253,3 +253,9 @@ message Actor_PlayerNetSyncToCline //IActorMessage
     repeated bool Fire = 12;
     repeated BulletInfo Bullets = 13;
 }
+
+message G2M_RemoveUnitByMap // IMessage
+{
+	int32 RpcId = 90;
+	int32 Account = 1;
+}

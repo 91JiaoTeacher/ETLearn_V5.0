@@ -7,6 +7,8 @@ namespace ETHotfix
     [ActorMessageHandler(AppType.Gate)]
     public class Actor_PlayerNetSyncToClineHandler : AMActorHandler<Player, Actor_PlayerNetSyncToCline>
     {
+        private PlayerComponent playerComponent = null;
+
         protected override async ETTask Run(Player entity, Actor_PlayerNetSyncToCline message)
         {
 
@@ -34,7 +36,24 @@ namespace ETHotfix
 
             //Log.Error("场景子弹数量: " + message.Bullets.Count);
 
-            entity.session.Send(packge);
+            try
+            {
+                entity.session.Send(packge);
+            }
+            catch (Exception e)
+            {
+                //说明有人掉线了
+
+                if (playerComponent == null)
+                {
+                    playerComponent = Game.Scene.GetComponent<PlayerComponent>();
+                }
+
+                playerComponent.removeOnePlayerLink(entity.Account);
+
+                Log.Error("一名玩家离线了: " + entity.Account);
+            }
+            
 
             await ETTask.CompletedTask;
         }

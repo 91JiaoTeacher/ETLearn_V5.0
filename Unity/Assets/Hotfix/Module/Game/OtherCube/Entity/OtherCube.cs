@@ -36,5 +36,8 @@ namespace ETHotfix
             this.otherCube_GameObject = gameObject;
             this.otherDirCube_GameObject = otherDirCube;
         }
+
+
+        
     }
 }

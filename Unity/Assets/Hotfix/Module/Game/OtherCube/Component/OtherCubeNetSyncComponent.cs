@@ -40,6 +40,11 @@ namespace ETHotfix
         private int Account;
 
         /// <summary>
+        /// OtherCube的实体
+        /// </summary>
+        public OtherCube otherCube;
+
+        /// <summary>
         /// 其它cube玩家的初始位置
         /// </summary>
         private Vector3 InitPosition;
@@ -74,11 +79,13 @@ namespace ETHotfix
 
         public void Start()
         {
+            otherCube = this.GetParent<OtherCube>();
+
             //获取Transform
-            OtherCube_Transform = this.GetParent<OtherCube>().otherCube_GameObject.GetComponent<Transform>();
+            OtherCube_Transform = otherCube.otherCube_GameObject.GetComponent<Transform>();
             OtherCube_Transform.position = InitPosition;
 
-            OtherDirCube_Transform = this.GetParent<OtherCube>().otherDirCube_GameObject.GetComponent<Transform>();
+            OtherDirCube_Transform = otherCube.otherDirCube_GameObject.GetComponent<Transform>();
             OtherDirCube_Transform.position = InitPosition;
 
             //获取Rigidbody
@@ -89,7 +96,7 @@ namespace ETHotfix
                 .AddNetSyncComponentByOtherCubeAccount(Account, this);
 
             //获取攻击控制组件
-            otherCubeAttackComponent = this.GetParent<OtherCube>().GetComponent<OtherCubeAttackComponent>();
+            otherCubeAttackComponent = otherCube.GetComponent<OtherCubeAttackComponent>();
         }
 
         /// <summary>

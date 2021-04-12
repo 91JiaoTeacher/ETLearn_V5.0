@@ -41,5 +41,24 @@ namespace ETHotfix
             }
         }
 
+
+        /// <summary>
+        /// 移除一个其它Cube
+        /// </summary>
+        public void RemoveOneOtherCube(int Account)
+        {
+            if (otherCubeAccountToNetSyncComponent.TryGetValue(Account, out OtherCubeNetSyncComponent otherCubeNet))
+            {
+                otherCubeAccountToNetSyncComponent.Remove(Account);
+                OtherCube otherCube = otherCubeNet.otherCube;
+
+                otherCube.Dispose();
+            }
+            else
+            {
+                Debug.LogError("错误，没有找到需要移除的OtherCube");
+            }
+        }
+
     }
 }

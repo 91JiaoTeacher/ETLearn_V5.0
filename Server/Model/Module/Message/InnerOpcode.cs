@@ -33,5 +33,6 @@ namespace ETModel
 		 public const ushort Actor_PlayerInitPositionResponse = 1029;
 		 public const ushort Actor_PlayerInitPositionUpDate = 1030;
 		 public const ushort Actor_PlayerNetSyncToCline = 1031;
+		 public const ushort G2M_RemoveUnitByMap = 1032;
 	}
 }
