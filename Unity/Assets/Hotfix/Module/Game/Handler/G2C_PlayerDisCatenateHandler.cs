@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace ETHotfix
 {
+    [MessageHandler]
     public class G2C_PlayerDisCatenateHandler : AMHandler<G2C_PlayerDisCatenate>
     {
         protected override async ETTask Run(ETModel.Session session, G2C_PlayerDisCatenate message)
