@@ -18,7 +18,7 @@ namespace ETHotfix
                 otherCubeManagerComponent = Game.Scene.GetComponent<OtherCubeManagerComponent>();
             }
 
-            if (message.ServerTime >= serverTime)
+            if (message.ServerTime > serverTime)
             {
                 serverTime = message.ServerTime;
 
@@ -69,6 +69,8 @@ namespace ETHotfix
                         cubeBullet.SyncBullet(new Vector3(message.Bullets[i].PositionX, message.Bullets[i].PositionY, message.Bullets[i].PositionZ),
                             new Quaternion(message.Bullets[i].RotationX, message.Bullets[i].RotationY, message.Bullets[i].RotationZ, message.Bullets[i].RotationW),
                             new Vector3(message.Bullets[i].VelocityX, message.Bullets[i].VelocityY, message.Bullets[i].VelocityZ));
+
+                        Debug.LogError("创建一颗子弹");
                     }
                 }
 

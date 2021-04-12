@@ -154,8 +154,9 @@ namespace ETHotfix
                     NetPackge.Bullets.Add(bulletInfo);
                 }
             }
-
             hotfixSession.Send(NetPackge);
+
+            NetPackge.Bullets.Clear();
         }
 
     }
