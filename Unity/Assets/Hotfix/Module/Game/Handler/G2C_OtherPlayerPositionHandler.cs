@@ -70,7 +70,7 @@ namespace ETHotfix
                             new Quaternion(message.Bullets[i].RotationX, message.Bullets[i].RotationY, message.Bullets[i].RotationZ, message.Bullets[i].RotationW),
                             new Vector3(message.Bullets[i].VelocityX, message.Bullets[i].VelocityY, message.Bullets[i].VelocityZ));
 
-                        Debug.LogError("创建一颗子弹");
+                        //Debug.LogError("创建一颗子弹");
                     }
                 }
 

@@ -68,6 +68,8 @@ namespace ETHotfix
                 if (units != null)
                 {
                     ActorMessageSenderComponent actorSenderComponent = Game.Scene.GetComponent<ActorMessageSenderComponent>();
+
+                    List<BulletInfo> bulletInfos = bulletManagerComponent.GetAllNeedSyncBullet();
                     for (int i = 0; i < units.Count; i++)
                     {
                         ActorMessageSender actorMessageSender = actorSenderComponent.Get(units[i].GateInstanceId);
@@ -127,7 +129,7 @@ namespace ETHotfix
 
                             Fire = isFire,
 
-                            Bullets = bulletManagerComponent.GetAllNeedSyncBullet(),
+                            Bullets = bulletInfos,
                         });
                     }
                 }

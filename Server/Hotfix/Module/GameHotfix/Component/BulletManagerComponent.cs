@@ -89,7 +89,7 @@ namespace ETHotfix
                 //Log.Error("出队完成后数量：" + needSyncQueue.Count);
             }
 
-            Log.Error("出队完成后数量：" + bulletInfos.Count);
+            //Log.Error("出队完成后数量：" + bulletInfos.Count);
             return bulletInfos;
         }
 
