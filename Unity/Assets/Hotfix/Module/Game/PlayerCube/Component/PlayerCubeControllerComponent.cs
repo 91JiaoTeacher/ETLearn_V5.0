@@ -25,6 +25,11 @@ namespace ETHotfix
     public class PlayerCubeControllerComponent : Component
     {
         /// <summary>
+        /// 玩家cube实体
+        /// </summary>
+        private PlayerCube playerCube;
+
+        /// <summary>
         /// cube角色的Transform
         /// </summary>
         public Transform cubePlayer_Transform = null;
@@ -93,7 +98,8 @@ namespace ETHotfix
         public void Awake(UI ui)
         {
             //查找相关引用
-            cubePlayer_Transform = this.GetParent<PlayerCube>().cube_GameObject.GetComponent<Transform>();
+            playerCube = this.GetParent<PlayerCube>();
+            cubePlayer_Transform = playerCube.cube_GameObject.GetComponent<Transform>();
             cubePlayerBody_Transform = cubePlayer_Transform.Find("CubeBody");
             cubePlayer_CameraBaseTransform = cubePlayer_Transform.Find("PlayerCameraBase");
             groundCheck = cubePlayerBody_Transform.Find("GroundCheck");
@@ -128,14 +134,19 @@ namespace ETHotfix
 
             CalcJumpVelocity();
 
-            if (GloabConfigHelper.controllerType == ControllerType.PC)
+            //角色活着才能移动
+            if (!playerCube.PlayerDie)
             {
-                keyboardMove();
+                if (GloabConfigHelper.controllerType == ControllerType.PC)
+                {
+                    keyboardMove();
+                }
+                else
+                {
+                    joyStakeMove();
+                }
             }
-            else
-            {
-                joyStakeMove();
-            }
+            
         }
 
         /// <summary>
