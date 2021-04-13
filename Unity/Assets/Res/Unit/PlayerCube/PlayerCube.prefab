@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1152712672619734718}
   - component: {fileID: 1152712672619734713}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: PlayerCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,7 +62,7 @@ GameObject:
   - component: {fileID: 1152712672873143985}
   - component: {fileID: 1152712672873143987}
   - component: {fileID: 1152712672873143984}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Eve
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 1152712674160361401}
   - component: {fileID: 1152712674160361406}
   - component: {fileID: 1152712674160361407}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: CubeBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -367,7 +367,7 @@ GameObject:
   - component: {fileID: 7905842917128677139}
   - component: {fileID: 3203954871714857461}
   - component: {fileID: 5800827216924401186}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
