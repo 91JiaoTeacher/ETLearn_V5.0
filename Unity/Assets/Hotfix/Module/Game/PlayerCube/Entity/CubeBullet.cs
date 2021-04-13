@@ -31,6 +31,16 @@ namespace ETHotfix
         public long onlyBulletID;
 
         /// <summary>
+        /// 只有主角自己发射出来的子弹才同步
+        /// </summary>
+        public bool bulletCanAttack = false;
+
+        /// <summary>
+        /// 伤害同步脚本
+        /// </summary>
+        public HurtSyncComponent hurtSyncComponent;
+
+        /// <summary>
         /// 子弹的三部分, 枪口特效，子弹特效，命中特效
         /// </summary>
         public GameObject[] bulletObj;
@@ -113,6 +123,8 @@ namespace ETHotfix
             bulletFlying = true;
 
             bulletLifeKey = true;
+
+            bulletCanAttack = true;
         }
 
         /// <summary>
@@ -132,6 +144,8 @@ namespace ETHotfix
             bulletFlying = true;
 
             bulletLifeKey = true;
+
+            bulletCanAttack = false;
         }
 
         /// <summary>
@@ -148,7 +162,7 @@ namespace ETHotfix
             //获取射线长度
             float dist = Vector3.Distance(bulletObj[1].transform.position, prevPos);
             //进行射线检测, 如果射线打到物体了说明命中了
-            if (Physics.Raycast(ray, out hit, dist, (1 << 14) | (1 << 16)))
+            if (Physics.Raycast(ray, out hit, dist, (1 << 14) | (1 << 16) | (1 << 17)))
             {
                 bulletObj[1].transform.position = hit.point;
                 Quaternion rot = Quaternion.FromToRotation(Vector3.forward, hit.normal);
@@ -156,6 +170,28 @@ namespace ETHotfix
                 //根据计算出来的旋转和位置展示命中特效
                 BulletHit(rot, pos, hit);
 
+                if (hit.transform.gameObject.layer == 17 && bulletCanAttack)
+                {
+                    //Debug.LogError("打中了敌人: " + GetHitOtherCubeEntity(hit.transform.gameObject).account);
+                    hurtSyncComponent.HitToAccount(GetHitOtherCubeEntity(hit.transform.gameObject).account, 15);
+                }
+
+            }
+        }
+
+        /// <summary>
+        /// 得到命中的其它cube的脚本实体
+        /// </summary>
+        private OtherCube GetHitOtherCubeEntity(GameObject hitObj)
+        {
+            ComponentView componentView = hitObj.GetComponent<ComponentView>();
+            if (componentView != null)
+            {
+                return componentView.Component as OtherCube;
+            }
+            else
+            {
+                return GetHitOtherCubeEntity(hitObj.transform.parent.gameObject);
             }
         }
 
@@ -197,6 +233,8 @@ namespace ETHotfix
                 bulletObj[i].transform.rotation = Quaternion.identity;
                 bulletObj[i].SetActive(false);
             }
+
+            bulletCanAttack = false;
 
             CubeBulletFactory.CubeBulletEnPool(this);
         }

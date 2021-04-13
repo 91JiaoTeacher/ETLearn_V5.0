@@ -96,10 +96,12 @@
     <Compile Include="Assets\Hotfix\Module\Config\ConfigComponent.cs" />
     <Compile Include="Assets\Hotfix\Module\Config\ConfigHelper.cs" />
     <Compile Include="Assets\Hotfix\Module\Config\IConfig.cs" />
+    <Compile Include="Assets\Hotfix\Module\Game\Components\HurtSyncComponent.cs" />
     <Compile Include="Assets\Hotfix\Module\Game\Components\PlayerInfoComponent.cs" />
     <Compile Include="Assets\Hotfix\Module\Game\Handler\G2C_OtherPlayerEnterMapHandler.cs" />
     <Compile Include="Assets\Hotfix\Module\Game\Handler\G2C_OtherPlayerPositionHandler.cs" />
     <Compile Include="Assets\Hotfix\Module\Game\Handler\G2C_PlayerDisCatenateHandler.cs" />
+    <Compile Include="Assets\Hotfix\Module\Game\Handler\G2C_PlayerHealthUpuateHandler.cs" />
     <Compile Include="Assets\Hotfix\Module\Game\Helper\GloabConfigHelper.cs" />
     <Compile Include="Assets\Hotfix\Module\Game\Helper\LoginHelper.cs" />
     <Compile Include="Assets\Hotfix\Module\Game\Helper\MapHelper.cs" />
@@ -111,6 +113,7 @@
     <Compile Include="Assets\Hotfix\Module\Game\PlayerCube\Component\CubeBulletManagerComponent.cs" />
     <Compile Include="Assets\Hotfix\Module\Game\PlayerCube\Component\PlayerCubeAttackComponent.cs" />
     <Compile Include="Assets\Hotfix\Module\Game\PlayerCube\Component\PlayerCubeControllerComponent.cs" />
+    <Compile Include="Assets\Hotfix\Module\Game\PlayerCube\Component\PlayerCubeHealthComponent.cs" />
     <Compile Include="Assets\Hotfix\Module\Game\PlayerCube\Component\PlayerCubeNetComponent.cs" />
     <Compile Include="Assets\Hotfix\Module\Game\PlayerCube\Entity\CubeBullet.cs" />
     <Compile Include="Assets\Hotfix\Module\Game\PlayerCube\Entity\PlayerCube.cs" />
@@ -130,6 +133,8 @@
     <Compile Include="Assets\Hotfix\Module\Game\UI\UILogin\System\InitSceneStart_CreateLoginUI.cs" />
     <Compile Include="Assets\Hotfix\Module\Game\UI\UILogin\System\LoginFinish_RemoveLoginUI.cs" />
     <Compile Include="Assets\Hotfix\Module\Game\UI\UILogin\System\UILoginFactory.cs" />
+    <Compile Include="Assets\Hotfix\Module\Game\UI\UIPlayerInfo\Component\UIPlayerInfoComponent.cs" />
+    <Compile Include="Assets\Hotfix\Module\Game\UI\UIPlayerInfo\System\UIPlayerInfoFactory.cs" />
     <Compile Include="Assets\Hotfix\Module\Message\AMHandler.cs" />
     <Compile Include="Assets\Hotfix\Module\Message\HotfixMessage.cs" />
     <Compile Include="Assets\Hotfix\Module\Message\HotfixMessageDispatcher.cs" />

@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 806124170927364627}
   - component: {fileID: 806124170927364628}
   - component: {fileID: 806124170927364629}
-  m_Layer: 0
+  - component: {fileID: 7643813235658536625}
+  m_Layer: 17
   m_Name: CubeBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81,6 +82,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &7643813235658536625
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806124170927364631}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &806124171783783189
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,7 +104,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 806124171783783188}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: OtherCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,7 +137,8 @@ GameObject:
   - component: {fileID: 806124172070730523}
   - component: {fileID: 806124172070730521}
   - component: {fileID: 806124172070730522}
-  m_Layer: 0
+  - component: {fileID: 1325475159741714031}
+  m_Layer: 17
   m_Name: Eve
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,6 +206,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &1325475159741714031
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806124172070730524}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6818100478726024825
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,7 +230,8 @@ GameObject:
   - component: {fileID: 7595212501054014137}
   - component: {fileID: 2929050886978282591}
   - component: {fileID: 6075358263575198600}
-  m_Layer: 0
+  - component: {fileID: 6909412927379665280}
+  m_Layer: 17
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -270,3 +299,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &6909412927379665280
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6818100478726024825}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0000002, y: 1, z: 1.0000002}
+  m_Center: {x: 0, y: 0, z: 0}

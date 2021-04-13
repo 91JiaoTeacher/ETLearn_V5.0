@@ -43,7 +43,7 @@ namespace ETModel
         /// 断开一颗玩家的链接，包括它在Map服中的实体
         /// </summary>
         /// <param name="account"></param>
-        public void removeOnePlayerLink(int account)
+        public async ETVoid removeOnePlayerLink(int account)
         {
             if (AccountToPlayer.ContainsKey(account))
             {
@@ -53,19 +53,25 @@ namespace ETModel
                 IPEndPoint mapAddress = StartConfigComponent.Instance.MapConfigs[0].GetComponent<InnerConfig>().IPEndPoint;
                 Session mapSession = Game.Scene.GetComponent<NetInnerComponent>().Get(mapAddress);
 
-                //给Map服发送移除unit的信息
-                mapSession.Send(new G2M_RemoveUnitByMap()
-                {
-                    Account = account
-                });
+                //给Map服发送移除unit的信息, 并收到需要广播的player的账号
+                M2G_RemoveUnitByMap m2GRemoveUnitByMap = (M2G_RemoveUnitByMap) await mapSession.Call(new G2M_RemoveUnitByMap(){ Account = account });
 
-                //给剩下的所有玩家发送这个玩家掉线的信息
-                foreach (Player player in AccountToPlayer.Values)
+                if (m2GRemoveUnitByMap.Accounts.Count > 0)
                 {
-                    player.session.Send(new G2C_PlayerDisCatenate()
+                    for (int i = 0; i < m2GRemoveUnitByMap.Accounts.Count; i++)
                     {
-                        Account = account
-                    });
+                        if (AccountToPlayer.TryGetValue(m2GRemoveUnitByMap.Accounts[i], out Player player))
+                        {
+                            player.session.Send(new G2C_PlayerDisCatenate()
+                            {
+                                Account = account
+                            });
+                        }
+                        else
+                        {
+                            Log.Error("所有player找不到这个需要发送其它玩家的断线信息的玩家");
+                        }
+                    }
                 }
 
             }

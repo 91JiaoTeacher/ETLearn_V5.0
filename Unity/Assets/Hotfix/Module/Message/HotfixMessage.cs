@@ -1452,6 +1452,176 @@ namespace ETHotfix {
 
   }
 
+  public partial class C2G_PlayerHitOtherPlayer : pb::IMessage {
+    private static readonly pb::MessageParser<C2G_PlayerHitOtherPlayer> _parser = new pb::MessageParser<C2G_PlayerHitOtherPlayer>(() => (C2G_PlayerHitOtherPlayer)MessagePool.Instance.Fetch(typeof(C2G_PlayerHitOtherPlayer)));
+    public static pb::MessageParser<C2G_PlayerHitOtherPlayer> Parser { get { return _parser; } }
+
+    private int rpcId_;
+    public int RpcId {
+      get { return rpcId_; }
+      set {
+        rpcId_ = value;
+      }
+    }
+
+    private int hitPlayerAccount_;
+    public int HitPlayerAccount {
+      get { return hitPlayerAccount_; }
+      set {
+        hitPlayerAccount_ = value;
+      }
+    }
+
+    private int subHealth_;
+    public int SubHealth {
+      get { return subHealth_; }
+      set {
+        subHealth_ = value;
+      }
+    }
+
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (HitPlayerAccount != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(HitPlayerAccount);
+      }
+      if (SubHealth != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(SubHealth);
+      }
+      if (RpcId != 0) {
+        output.WriteRawTag(208, 5);
+        output.WriteInt32(RpcId);
+      }
+    }
+
+    public int CalculateSize() {
+      int size = 0;
+      if (RpcId != 0) {
+        size += 2 + pb::CodedOutputStream.ComputeInt32Size(RpcId);
+      }
+      if (HitPlayerAccount != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(HitPlayerAccount);
+      }
+      if (SubHealth != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(SubHealth);
+      }
+      return size;
+    }
+
+    public void MergeFrom(pb::CodedInputStream input) {
+      hitPlayerAccount_ = 0;
+      subHealth_ = 0;
+      rpcId_ = 0;
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 8: {
+            HitPlayerAccount = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            SubHealth = input.ReadInt32();
+            break;
+          }
+          case 720: {
+            RpcId = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public partial class G2C_PlayerHealthUpuate : pb::IMessage {
+    private static readonly pb::MessageParser<G2C_PlayerHealthUpuate> _parser = new pb::MessageParser<G2C_PlayerHealthUpuate>(() => (G2C_PlayerHealthUpuate)MessagePool.Instance.Fetch(typeof(G2C_PlayerHealthUpuate)));
+    public static pb::MessageParser<G2C_PlayerHealthUpuate> Parser { get { return _parser; } }
+
+    private int rpcId_;
+    public int RpcId {
+      get { return rpcId_; }
+      set {
+        rpcId_ = value;
+      }
+    }
+
+    private int newHealth_;
+    public int NewHealth {
+      get { return newHealth_; }
+      set {
+        newHealth_ = value;
+      }
+    }
+
+    private bool die_;
+    public bool Die {
+      get { return die_; }
+      set {
+        die_ = value;
+      }
+    }
+
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (NewHealth != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(NewHealth);
+      }
+      if (Die != false) {
+        output.WriteRawTag(16);
+        output.WriteBool(Die);
+      }
+      if (RpcId != 0) {
+        output.WriteRawTag(208, 5);
+        output.WriteInt32(RpcId);
+      }
+    }
+
+    public int CalculateSize() {
+      int size = 0;
+      if (RpcId != 0) {
+        size += 2 + pb::CodedOutputStream.ComputeInt32Size(RpcId);
+      }
+      if (NewHealth != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(NewHealth);
+      }
+      if (Die != false) {
+        size += 1 + 1;
+      }
+      return size;
+    }
+
+    public void MergeFrom(pb::CodedInputStream input) {
+      newHealth_ = 0;
+      die_ = false;
+      rpcId_ = 0;
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 8: {
+            NewHealth = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            Die = input.ReadBool();
+            break;
+          }
+          case 720: {
+            RpcId = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
   #endregion
 
 }

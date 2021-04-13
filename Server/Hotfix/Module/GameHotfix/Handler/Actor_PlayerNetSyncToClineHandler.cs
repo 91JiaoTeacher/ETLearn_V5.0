@@ -49,7 +49,8 @@ namespace ETHotfix
                     playerComponent = Game.Scene.GetComponent<PlayerComponent>();
                 }
 
-                playerComponent.removeOnePlayerLink(entity.Account);
+                //给其它玩家广播这个玩家掉线的信息
+                playerComponent.removeOnePlayerLink(entity.Account).Coroutine();
 
                 Log.Error("一名玩家离线了: " + entity.Account);
             }

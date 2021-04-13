@@ -102,3 +102,17 @@ message G2C_PlayerDisCatenate // IMessage
 	int32 RpcId = 90;
 	int32 Account = 1;
 }
+
+message C2G_PlayerHitOtherPlayer // IMessage
+{
+	int32 RpcId = 90;
+	int32 HitPlayerAccount = 1;
+	int32 SubHealth = 2;
+}
+
+message G2C_PlayerHealthUpuate // IMessage
+{
+	int32 RpcId = 90;
+	int32 NewHealth = 1;
+    bool Die = 2;
+}

@@ -31,6 +31,12 @@ namespace ETHotfix
 	[Message(HotfixOpcode.G2C_PlayerDisCatenate)]
 	public partial class G2C_PlayerDisCatenate : IMessage {}
 
+	[Message(HotfixOpcode.C2G_PlayerHitOtherPlayer)]
+	public partial class C2G_PlayerHitOtherPlayer : IMessage {}
+
+	[Message(HotfixOpcode.G2C_PlayerHealthUpuate)]
+	public partial class G2C_PlayerHealthUpuate : IMessage {}
+
 }
 namespace ETHotfix
 {
@@ -46,5 +52,7 @@ namespace ETHotfix
 		 public const ushort G2C_OtherPlayerPosition = 10008;
 		 public const ushort BulletInfo = 10009;
 		 public const ushort G2C_PlayerDisCatenate = 10010;
+		 public const ushort C2G_PlayerHitOtherPlayer = 10011;
+		 public const ushort G2C_PlayerHealthUpuate = 10012;
 	}
 }

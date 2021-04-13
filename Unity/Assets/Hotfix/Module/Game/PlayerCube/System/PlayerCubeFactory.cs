@@ -50,6 +50,12 @@ namespace ETHotfix
                 //添加攻击脚本
                 playerCube.AddComponent<PlayerCubeAttackComponent>();
 
+                //添加生命值信息UI
+                playerCube.AddComponent<PlayerCubeHealthComponent>();
+
+                //添加攻击伤害同步脚本
+                playerCube.AddComponent<HurtSyncComponent>();
+
                 tcs.SetResult(playerCube);
             }
             catch (Exception e)

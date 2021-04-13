@@ -7,6 +7,11 @@ namespace ETHotfix
 {
     public static class MapHelper
     {
+        /// <summary>
+        /// 当前场景玩家操作的场景角色cube
+        /// </summary>
+        public static PlayerCube nowPlayerCube;
+
         public static async ETVoid EnterMapAsync()
         {
             try
@@ -43,7 +48,7 @@ namespace ETHotfix
                 //添加网络同步脚本
                 playerCube.AddComponent<PlayerCubeNetComponent, int>(playerInfo.account);
 
-
+                nowPlayerCube = playerCube;
             }
             catch (Exception e)
             {

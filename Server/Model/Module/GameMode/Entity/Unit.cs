@@ -13,6 +13,11 @@
     {
         public int Account { get; private set; }
 
+        /// <summary>
+        /// 血量
+        /// </summary>
+        private int Health = 100;
+
         public MailBoxComponent mailBoxComponent;
 
         public long GateInstanceId;
@@ -43,6 +48,22 @@
 
             //mailBoxComponent = this.AddComponent<MailBoxComponent, string>(MailboxType.GateSession);
 
+        }
+
+        /// <summary>
+        /// 扣血
+        /// </summary>
+        /// <param name="health">需要扣的血</param>
+        /// <returns>扣完后剩余血量</returns>
+        public int SubHealth(int health)
+        {
+            Health -= health;
+            if (Health <= 0)
+            {
+                Health = 0;
+            }
+
+            return Health;
         }
 
         public override void Dispose()

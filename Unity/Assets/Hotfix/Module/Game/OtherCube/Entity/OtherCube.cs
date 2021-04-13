@@ -35,6 +35,9 @@ namespace ETHotfix
             this.account = account;
             this.otherCube_GameObject = gameObject;
             this.otherDirCube_GameObject = otherDirCube;
+
+            gameObject.transform.parent = this.GameObject.transform;
+            otherDirCube.transform.parent = this.GameObject.transform;
         }
 
 

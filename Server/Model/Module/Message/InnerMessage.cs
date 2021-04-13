@@ -403,11 +403,50 @@ namespace ETModel
 	}
 
 	[Message(InnerOpcode.G2M_RemoveUnitByMap)]
-	public partial class G2M_RemoveUnitByMap: IMessage
+	public partial class G2M_RemoveUnitByMap: IRequest
 	{
 		public int RpcId { get; set; }
 
 		public int Account { get; set; }
+
+	}
+
+	[Message(InnerOpcode.M2G_RemoveUnitByMap)]
+	public partial class M2G_RemoveUnitByMap: IResponse
+	{
+		public int RpcId { get; set; }
+
+		public int Error { get; set; }
+
+		public string Message { get; set; }
+
+		public List<int> Accounts = new List<int>();
+
+	}
+
+	[Message(InnerOpcode.Actor_PlayerToUnitSubHealthRequest)]
+	public partial class Actor_PlayerToUnitSubHealthRequest: IActorRequest
+	{
+		public int RpcId { get; set; }
+
+		public long ActorId { get; set; }
+
+		public int SubHealth { get; set; }
+
+	}
+
+	[Message(InnerOpcode.Actor_PlayerToUnitSubHealthResponse)]
+	public partial class Actor_PlayerToUnitSubHealthResponse: IActorResponse
+	{
+		public int RpcId { get; set; }
+
+		public int Error { get; set; }
+
+		public string Message { get; set; }
+
+		public int UnitHealth { get; set; }
+
+		public bool Die { get; set; }
 
 	}
 

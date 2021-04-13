@@ -13,6 +13,8 @@ namespace ETHotfix
 
         private static Queue<CubeBullet> cubeBulletPool = new Queue<CubeBullet>();
 
+        private static HurtSyncComponent hurtSyncComponent = null;
+
         public static CubeBullet CreateCubeBullet()
         {
             if (rc == null)
@@ -20,6 +22,11 @@ namespace ETHotfix
                 assetRequest = Assets.LoadAsset("Assets/Bundles/Prefab/BulletFX.prefab", typeof(GameObject));
                 GameObject bundleGameObject = assetRequest.asset as GameObject;
                 rc = bundleGameObject.GetComponent<ReferenceCollector>();
+            }
+
+            if (hurtSyncComponent == null)
+            {
+                hurtSyncComponent = MapHelper.nowPlayerCube.GetComponent<HurtSyncComponent>();
             }
 
             //池里至少有5个才取
@@ -36,6 +43,7 @@ namespace ETHotfix
 
                 CubeBullet cubeBullet = ComponentFactory.Create<CubeBullet, GameObject[]>(bulletObj, false);
 
+                cubeBullet.hurtSyncComponent = hurtSyncComponent;
 
                 for (int i = 0; i < bulletObj.Length; i++)
                 {
