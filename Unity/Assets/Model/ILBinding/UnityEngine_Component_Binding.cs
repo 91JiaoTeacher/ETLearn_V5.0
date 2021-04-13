@@ -36,12 +36,12 @@ namespace ILRuntime.Runtime.Generated
                     lst.Add(m);
                 }
             }
-            args = new Type[]{typeof(UnityEngine.CharacterController)};
+            args = new Type[]{typeof(UnityEngine.Rigidbody)};
             if (genericMethods.TryGetValue("GetComponent", out lst))
             {
                 foreach(var m in lst)
                 {
-                    if(m.MatchGenericParameters(args, typeof(UnityEngine.CharacterController)))
+                    if(m.MatchGenericParameters(args, typeof(UnityEngine.Rigidbody)))
                     {
                         method = m.MakeGenericMethod(args);
                         app.RegisterCLRMethodRedirection(method, GetComponent_0);
@@ -50,12 +50,12 @@ namespace ILRuntime.Runtime.Generated
                     }
                 }
             }
-            args = new Type[]{typeof(UnityEngine.Transform)};
+            args = new Type[]{typeof(UnityEngine.CharacterController)};
             if (genericMethods.TryGetValue("GetComponent", out lst))
             {
                 foreach(var m in lst)
                 {
-                    if(m.MatchGenericParameters(args, typeof(UnityEngine.Transform)))
+                    if(m.MatchGenericParameters(args, typeof(UnityEngine.CharacterController)))
                     {
                         method = m.MakeGenericMethod(args);
                         app.RegisterCLRMethodRedirection(method, GetComponent_1);
@@ -82,7 +82,7 @@ namespace ILRuntime.Runtime.Generated
             UnityEngine.Component instance_of_this_method = (UnityEngine.Component)typeof(UnityEngine.Component).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack));
             __intp.Free(ptr_of_this_method);
 
-            var result_of_this_method = instance_of_this_method.GetComponent<UnityEngine.CharacterController>();
+            var result_of_this_method = instance_of_this_method.GetComponent<UnityEngine.Rigidbody>();
 
             return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
         }
@@ -97,7 +97,7 @@ namespace ILRuntime.Runtime.Generated
             UnityEngine.Component instance_of_this_method = (UnityEngine.Component)typeof(UnityEngine.Component).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack));
             __intp.Free(ptr_of_this_method);
 
-            var result_of_this_method = instance_of_this_method.GetComponent<UnityEngine.Transform>();
+            var result_of_this_method = instance_of_this_method.GetComponent<UnityEngine.CharacterController>();
 
             return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
         }

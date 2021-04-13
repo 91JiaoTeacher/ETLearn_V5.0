@@ -14,27 +14,24 @@ using ILRuntime.CLR.Utils;
 
 namespace ILRuntime.Runtime.Generated
 {
-    unsafe class UnityEngine_Mathf_Binding
+    unsafe class UnityEngine_Ray_Binding
     {
         public static void Register(ILRuntime.Runtime.Enviorment.AppDomain app)
         {
             BindingFlags flag = BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static | BindingFlags.DeclaredOnly;
             MethodBase method;
             Type[] args;
-            Type type = typeof(UnityEngine.Mathf);
-            args = new Type[]{typeof(System.Single)};
-            method = type.GetMethod("Sqrt", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, Sqrt_0);
-            args = new Type[]{typeof(System.Single)};
-            method = type.GetMethod("Abs", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, Abs_1);
+            Type type = typeof(UnityEngine.Ray);
 
-            app.RegisterCLRCreateDefaultInstance(type, () => new UnityEngine.Mathf());
+            app.RegisterCLRCreateDefaultInstance(type, () => new UnityEngine.Ray());
 
+            args = new Type[]{typeof(UnityEngine.Vector3), typeof(UnityEngine.Vector3)};
+            method = type.GetConstructor(flag, null, args, null);
+            app.RegisterCLRMethodRedirection(method, Ctor_0);
 
         }
 
-        static void WriteBackInstance(ILRuntime.Runtime.Enviorment.AppDomain __domain, StackObject* ptr_of_this_method, IList<object> __mStack, ref UnityEngine.Mathf instance_of_this_method)
+        static void WriteBackInstance(ILRuntime.Runtime.Enviorment.AppDomain __domain, StackObject* ptr_of_this_method, IList<object> __mStack, ref UnityEngine.Ray instance_of_this_method)
         {
             ptr_of_this_method = ILIntepreter.GetObjectAndResolveReference(ptr_of_this_method);
             switch(ptr_of_this_method->ObjectType)
@@ -73,47 +70,39 @@ namespace ILRuntime.Runtime.Generated
                     break;
                  case ObjectTypes.ArrayReference:
                     {
-                        var instance_of_arrayReference = __mStack[ptr_of_this_method->Value] as UnityEngine.Mathf[];
+                        var instance_of_arrayReference = __mStack[ptr_of_this_method->Value] as UnityEngine.Ray[];
                         instance_of_arrayReference[ptr_of_this_method->ValueLow] = instance_of_this_method;
                     }
                     break;
             }
         }
 
-        static StackObject* Sqrt_0(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+
+        static StackObject* Ctor_0(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
-            StackObject* __ret = ILIntepreter.Minus(__esp, 1);
-
+            StackObject* __ret = ILIntepreter.Minus(__esp, 2);
             ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
-            System.Single @f = *(float*)&ptr_of_this_method->Value;
+            UnityEngine.Vector3 @direction = (UnityEngine.Vector3)typeof(UnityEngine.Vector3).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack));
+            __intp.Free(ptr_of_this_method);
+
+            ptr_of_this_method = ILIntepreter.Minus(__esp, 2);
+            UnityEngine.Vector3 @origin = (UnityEngine.Vector3)typeof(UnityEngine.Vector3).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack));
+            __intp.Free(ptr_of_this_method);
 
 
-            var result_of_this_method = UnityEngine.Mathf.Sqrt(@f);
+            var result_of_this_method = new UnityEngine.Ray(@origin, @direction);
 
-            __ret->ObjectType = ObjectTypes.Float;
-            *(float*)&__ret->Value = result_of_this_method;
-            return __ret + 1;
+            if(!isNewObj)
+            {
+                __ret--;
+                WriteBackInstance(__domain, __ret, __mStack, ref result_of_this_method);
+                return __ret;
+            }
+
+            return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
         }
-
-        static StackObject* Abs_1(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
-        {
-            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
-            StackObject* ptr_of_this_method;
-            StackObject* __ret = ILIntepreter.Minus(__esp, 1);
-
-            ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
-            System.Single @f = *(float*)&ptr_of_this_method->Value;
-
-
-            var result_of_this_method = UnityEngine.Mathf.Abs(@f);
-
-            __ret->ObjectType = ObjectTypes.Float;
-            *(float*)&__ret->Value = result_of_this_method;
-            return __ret + 1;
-        }
-
 
 
     }

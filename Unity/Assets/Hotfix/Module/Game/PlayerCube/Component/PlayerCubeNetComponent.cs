@@ -108,11 +108,7 @@ namespace ETHotfix
             if (timer >= GloabConfigHelper.tick)
             {
                 timer = 0;
-                //玩家活着才发包
-                if (!playerCube.PlayerDie)
-                {
-                    sendNetPostion();
-                }
+                sendNetPostion();
             }
         }
 
@@ -164,7 +160,12 @@ namespace ETHotfix
                     NetPackge.Bullets.Add(bulletInfo);
                 }
             }
-            hotfixSession.Send(NetPackge);
+
+            //玩家活着才发包
+            if (!playerCube.PlayerDie)
+            {
+                hotfixSession.Send(NetPackge);
+            }
 
             NetPackge.Bullets.Clear();
         }

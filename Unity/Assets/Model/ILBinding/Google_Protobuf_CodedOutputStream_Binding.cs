@@ -43,6 +43,15 @@ namespace ILRuntime.Runtime.Generated
             args = new Type[]{typeof(System.Single)};
             method = type.GetMethod("WriteFloat", flag, null, args, null);
             app.RegisterCLRMethodRedirection(method, WriteFloat_6);
+            args = new Type[]{typeof(System.Boolean)};
+            method = type.GetMethod("WriteBool", flag, null, args, null);
+            app.RegisterCLRMethodRedirection(method, WriteBool_7);
+            args = new Type[]{typeof(System.Int64)};
+            method = type.GetMethod("WriteInt64", flag, null, args, null);
+            app.RegisterCLRMethodRedirection(method, WriteInt64_8);
+            args = new Type[]{typeof(System.Int64)};
+            method = type.GetMethod("ComputeInt64Size", flag, null, args, null);
+            app.RegisterCLRMethodRedirection(method, ComputeInt64Size_9);
 
 
         }
@@ -175,6 +184,59 @@ namespace ILRuntime.Runtime.Generated
             instance_of_this_method.WriteFloat(@value);
 
             return __ret;
+        }
+
+        static StackObject* WriteBool_7(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        {
+            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
+            StackObject* ptr_of_this_method;
+            StackObject* __ret = ILIntepreter.Minus(__esp, 2);
+
+            ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
+            System.Boolean @value = ptr_of_this_method->Value == 1;
+
+            ptr_of_this_method = ILIntepreter.Minus(__esp, 2);
+            Google.Protobuf.CodedOutputStream instance_of_this_method = (Google.Protobuf.CodedOutputStream)typeof(Google.Protobuf.CodedOutputStream).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack));
+            __intp.Free(ptr_of_this_method);
+
+            instance_of_this_method.WriteBool(@value);
+
+            return __ret;
+        }
+
+        static StackObject* WriteInt64_8(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        {
+            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
+            StackObject* ptr_of_this_method;
+            StackObject* __ret = ILIntepreter.Minus(__esp, 2);
+
+            ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
+            System.Int64 @value = *(long*)&ptr_of_this_method->Value;
+
+            ptr_of_this_method = ILIntepreter.Minus(__esp, 2);
+            Google.Protobuf.CodedOutputStream instance_of_this_method = (Google.Protobuf.CodedOutputStream)typeof(Google.Protobuf.CodedOutputStream).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack));
+            __intp.Free(ptr_of_this_method);
+
+            instance_of_this_method.WriteInt64(@value);
+
+            return __ret;
+        }
+
+        static StackObject* ComputeInt64Size_9(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        {
+            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
+            StackObject* ptr_of_this_method;
+            StackObject* __ret = ILIntepreter.Minus(__esp, 1);
+
+            ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
+            System.Int64 @value = *(long*)&ptr_of_this_method->Value;
+
+
+            var result_of_this_method = Google.Protobuf.CodedOutputStream.ComputeInt64Size(@value);
+
+            __ret->ObjectType = ObjectTypes.Integer;
+            __ret->Value = result_of_this_method;
+            return __ret + 1;
         }
 
 

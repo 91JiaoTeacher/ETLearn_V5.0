@@ -38,7 +38,7 @@ namespace ETHotfix
         /// <summary>
         /// 准星控制摇滚组件
         /// </summary>
-        private VariableJoystickComponent AttackUI;
+        public VariableJoystickComponent AttackUI;
 
         /// <summary>
         /// 准星最大范围

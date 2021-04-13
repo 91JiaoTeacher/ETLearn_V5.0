@@ -85,10 +85,10 @@ namespace ETHotfix
             //设置死亡面板显示
             playerDieUIComponent.DiePanel.SetActive(true);
 
-            //设置自己隐藏
-            playerCube.cube_GameObject.SetActive(false);
-
             PlayerCubeControllerComponent playerCubeControllerComponent = playerCube.GetComponent<PlayerCubeControllerComponent>();
+
+            //设置自己隐藏
+            playerCubeControllerComponent.cubePlayerBody_Transform.gameObject.SetActive(false);
 
             //隐藏攻击箭头
             playerCubeControllerComponent.targetArrow.targetArrow_GameObject.SetActive(false);
@@ -99,7 +99,7 @@ namespace ETHotfix
             variableJoystickController.GetParent<UI>().GameObject.SetActive(false);
 
             //隐藏攻击UI
-            VariableJoystickComponent variableJoystickAttack = playerCubeControllerComponent.targetArrow.GetComponent<VariableJoystickComponent>();
+            VariableJoystickComponent variableJoystickAttack = playerCubeControllerComponent.targetArrow.GetComponent<TargetArrowComponent>().AttackUI;
             variableJoystickAttack.OnPointerUp();
             variableJoystickAttack.GetParent<UI>().GameObject.SetActive(false);
 
@@ -115,11 +115,11 @@ namespace ETHotfix
             //设置死亡面板显示
             playerDieUIComponent.DiePanel.SetActive(false);
 
+            PlayerCubeControllerComponent playerCubeControllerComponent = playerCube.GetComponent<PlayerCubeControllerComponent>();
+
             //设置自己隐藏
             playerCube.cube_GameObject.transform.position = ResurrectionPos;
-            playerCube.cube_GameObject.SetActive(true);
-
-            PlayerCubeControllerComponent playerCubeControllerComponent = playerCube.GetComponent<PlayerCubeControllerComponent>();
+            playerCubeControllerComponent.cubePlayerBody_Transform.gameObject.SetActive(true);
 
             //隐藏攻击箭头
             playerCubeControllerComponent.targetArrow.targetArrow_GameObject.SetActive(true);
@@ -129,7 +129,7 @@ namespace ETHotfix
             variableJoystickController.GetParent<UI>().GameObject.SetActive(true);
 
             //隐藏攻击UI
-            VariableJoystickComponent variableJoystickAttack = playerCubeControllerComponent.targetArrow.GetComponent<VariableJoystickComponent>();
+            VariableJoystickComponent variableJoystickAttack = playerCubeControllerComponent.targetArrow.GetComponent<TargetArrowComponent>().AttackUI;
             variableJoystickAttack.GetParent<UI>().GameObject.SetActive(true);
 
         }
