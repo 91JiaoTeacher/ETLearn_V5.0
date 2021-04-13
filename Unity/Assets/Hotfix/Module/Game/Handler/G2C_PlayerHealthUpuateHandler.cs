@@ -19,6 +19,11 @@ namespace ETHotfix
 
             healthComponent.SetPlayerCubeHealth(message.NewHealth);
 
+            if (message.Die)
+            {
+                healthComponent.SetPlayerDie();
+            }
+
             await ETTask.CompletedTask;
         }
     }

@@ -8,10 +8,21 @@ namespace ETHotfix
     {
         protected override async ETTask Run(Unit unit, Actor_PlayerToUnitSubHealthRequest request, Actor_PlayerToUnitSubHealthResponse response, Action reply)
         {
-            int newHealth = unit.SubHealth(request.SubHealth);
+            //是否攻击了已经死亡的玩家
+            response.AttackDiePlayer = false;
 
-            response.UnitHealth = newHealth;
-            response.Die = false;
+            if (unit.Die)
+            {
+                response.AttackDiePlayer = true;
+            }
+            else
+            {
+                int newHealth = unit.SubHealth(request.SubHealth);
+
+                response.UnitHealth = newHealth;
+                response.Die = unit.Die;
+            }
+            
 
             reply();
             await ETTask.CompletedTask;

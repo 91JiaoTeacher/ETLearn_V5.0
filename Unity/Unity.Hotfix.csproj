@@ -133,6 +133,8 @@
     <Compile Include="Assets\Hotfix\Module\Game\UI\UILogin\System\InitSceneStart_CreateLoginUI.cs" />
     <Compile Include="Assets\Hotfix\Module\Game\UI\UILogin\System\LoginFinish_RemoveLoginUI.cs" />
     <Compile Include="Assets\Hotfix\Module\Game\UI\UILogin\System\UILoginFactory.cs" />
+    <Compile Include="Assets\Hotfix\Module\Game\UI\UIPlayerDie\Component\UIPlayerDieComponent.cs" />
+    <Compile Include="Assets\Hotfix\Module\Game\UI\UIPlayerDie\System\UIPlayerDieFactory.cs" />
     <Compile Include="Assets\Hotfix\Module\Game\UI\UIPlayerInfo\Component\UIPlayerInfoComponent.cs" />
     <Compile Include="Assets\Hotfix\Module\Game\UI\UIPlayerInfo\System\UIPlayerInfoFactory.cs" />
     <Compile Include="Assets\Hotfix\Module\Message\AMHandler.cs" />

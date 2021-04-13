@@ -21,12 +21,17 @@ namespace ETModel
                 SubHealth = message.SubHealth
             });
 
-            //给对应角色发扣血的信息
-            player.session.Send(new G2C_PlayerHealthUpuate()
+            //只有攻击了没有死亡的角色才会发送信息
+            if (!actor_PlayerToUnitSubHealthResponse.AttackDiePlayer)
             {
-                NewHealth = actor_PlayerToUnitSubHealthResponse.UnitHealth,
-                Die = actor_PlayerToUnitSubHealthResponse.Die
-            });
+                //给对应角色发扣血的信息
+                player.session.Send(new G2C_PlayerHealthUpuate()
+                {
+                    NewHealth = actor_PlayerToUnitSubHealthResponse.UnitHealth,
+                    Die = actor_PlayerToUnitSubHealthResponse.Die
+                });
+            }
+            
 
             await ETTask.CompletedTask;
         }

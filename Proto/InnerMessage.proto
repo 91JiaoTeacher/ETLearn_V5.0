@@ -283,4 +283,5 @@ message Actor_PlayerToUnitSubHealthResponse //IActorResponse
 
     int32 UnitHealth = 1;
     bool Die = 2;
+    bool AttackDiePlayer = 3;
 }

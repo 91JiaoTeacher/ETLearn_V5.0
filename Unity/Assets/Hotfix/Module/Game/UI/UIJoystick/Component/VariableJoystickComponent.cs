@@ -122,7 +122,7 @@ namespace ETHotfix
             handle.anchoredPosition = input * radius * handleRange;
         }
 
-        public void OnPointerUp(PointerEventData eventData)
+        public void OnPointerUp(PointerEventData eventData = null)
         {
             if (joystickType != JoystickType.Fixed)
                 background.gameObject.SetActive(false);

@@ -448,6 +448,8 @@ namespace ETModel
 
 		public bool Die { get; set; }
 
+		public bool AttackDiePlayer { get; set; }
+
 	}
 
 }

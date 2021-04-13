@@ -24,6 +24,11 @@ namespace ETHotfix
     public class PlayerCubeHealthComponent : Component
     {
         /// <summary>
+        /// 玩家cube实体
+        /// </summary>
+        private PlayerCube playerCube;
+
+        /// <summary>
         /// 玩家生命值信息UI
         /// </summary>
         private UI playerInfoUI;
@@ -33,10 +38,23 @@ namespace ETHotfix
         /// </summary>
         private UIPlayerInfoComponent playerInfoUIComponent;
 
+        /// <summary>
+        /// 玩家死亡UI
+        /// </summary>
+        private UI playerDieUI;
+
+        /// <summary>
+        /// 玩家死亡UI组件
+        /// </summary>
+        private UIPlayerDieComponent playerDieUIComponent;
+
         public void Awake()
         {
             playerInfoUI = UIPlayerInfoFactory.Create();
             Game.Scene.GetComponent<UIComponent>().Add(playerInfoUI);
+
+            playerDieUI = UIPlayerDieFactory.Create();
+            Game.Scene.GetComponent<UIComponent>().Add(playerDieUI);
         }
 
         public void Start()
@@ -44,6 +62,9 @@ namespace ETHotfix
             //查找引用
             playerInfoUIComponent = playerInfoUI.GetComponent<UIPlayerInfoComponent>();
 
+            playerDieUIComponent = playerDieUI.GetComponent<UIPlayerDieComponent>();
+
+            playerCube = this.GetParent<PlayerCube>();
         }
 
         /// <summary>
@@ -52,6 +73,65 @@ namespace ETHotfix
         public void SetPlayerCubeHealth(int health)
         {
             playerInfoUIComponent.Health.fillAmount = (health / 100.0f);
+        }
+
+        /// <summary>
+        /// 设置玩家死亡
+        /// </summary>
+        public void SetPlayerDie()
+        {
+            playerCube.PlayerDie = true;
+
+            //设置死亡面板显示
+            playerDieUIComponent.DiePanel.SetActive(true);
+
+            //设置自己隐藏
+            playerCube.cube_GameObject.SetActive(false);
+
+            PlayerCubeControllerComponent playerCubeControllerComponent = playerCube.GetComponent<PlayerCubeControllerComponent>();
+
+            //隐藏攻击箭头
+            playerCubeControllerComponent.targetArrow.targetArrow_GameObject.SetActive(false);
+
+            //隐藏控制UI
+            VariableJoystickComponent variableJoystickController = playerCubeControllerComponent.cubePlayer_ControllerUI;
+            variableJoystickController.OnPointerUp();
+            variableJoystickController.GetParent<UI>().GameObject.SetActive(false);
+
+            //隐藏攻击UI
+            VariableJoystickComponent variableJoystickAttack = playerCubeControllerComponent.targetArrow.GetComponent<VariableJoystickComponent>();
+            variableJoystickAttack.OnPointerUp();
+            variableJoystickAttack.GetParent<UI>().GameObject.SetActive(false);
+
+        }
+
+        /// <summary>
+        /// 设置玩家复活
+        /// </summary>
+        public void SetPlayerResurrection(Vector3 ResurrectionPos)
+        {
+            playerCube.PlayerDie = false;
+
+            //设置死亡面板显示
+            playerDieUIComponent.DiePanel.SetActive(false);
+
+            //设置自己隐藏
+            playerCube.cube_GameObject.transform.position = ResurrectionPos;
+            playerCube.cube_GameObject.SetActive(true);
+
+            PlayerCubeControllerComponent playerCubeControllerComponent = playerCube.GetComponent<PlayerCubeControllerComponent>();
+
+            //隐藏攻击箭头
+            playerCubeControllerComponent.targetArrow.targetArrow_GameObject.SetActive(true);
+
+            //隐藏控制UI
+            VariableJoystickComponent variableJoystickController = playerCubeControllerComponent.cubePlayer_ControllerUI;
+            variableJoystickController.GetParent<UI>().GameObject.SetActive(true);
+
+            //隐藏攻击UI
+            VariableJoystickComponent variableJoystickAttack = playerCubeControllerComponent.targetArrow.GetComponent<VariableJoystickComponent>();
+            variableJoystickAttack.GetParent<UI>().GameObject.SetActive(true);
+
         }
 
     }

@@ -39,6 +39,11 @@ namespace ETHotfix
         private int playerAccount;
 
         /// <summary>
+        /// 玩家cube实体
+        /// </summary>
+        private PlayerCube playerCube;
+
+        /// <summary>
         /// 角色cube的Transform组件
         /// </summary>
         private Transform cube_Transform = null;
@@ -85,7 +90,8 @@ namespace ETHotfix
 
         public void Start()
         {
-            cube_Transform = this.GetParent<PlayerCube>().cube_GameObject.GetComponent<Transform>();
+            playerCube = this.GetParent<PlayerCube>();
+            cube_Transform = playerCube.cube_GameObject.GetComponent<Transform>();
             body_Transform = cube_Transform.Find("CubeBody");
             cube_CharacterController = cube_Transform.GetComponent<CharacterController>();
 
@@ -102,7 +108,11 @@ namespace ETHotfix
             if (timer >= GloabConfigHelper.tick)
             {
                 timer = 0;
-                sendNetPostion();
+                //玩家活着才发包
+                if (!playerCube.PlayerDie)
+                {
+                    sendNetPostion();
+                }
             }
         }
 

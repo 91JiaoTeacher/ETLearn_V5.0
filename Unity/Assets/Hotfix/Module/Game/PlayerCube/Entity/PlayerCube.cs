@@ -21,6 +21,11 @@ namespace ETHotfix
         /// </summary>
         public GameObject cube_GameObject;
 
+        /// <summary>
+        /// 角色是否死亡
+        /// </summary>
+        public bool PlayerDie = false;
+
         public void Awake(GameObject gameObject)
         {
             this.cube_GameObject = gameObject;

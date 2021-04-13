@@ -18,6 +18,11 @@
         /// </summary>
         private int Health = 100;
 
+        /// <summary>
+        /// 玩家是否死亡
+        /// </summary>
+        public bool Die = false; 
+
         public MailBoxComponent mailBoxComponent;
 
         public long GateInstanceId;
@@ -61,6 +66,7 @@
             if (Health <= 0)
             {
                 Health = 0;
+                Die = true;
             }
 
             return Health;

@@ -11,5 +11,6 @@ namespace ETHotfix
         public const string UIJoystick = "UIJoystick";
         public const string UIAttackDirstick = "UIAttackDirstick";
         public const string UIPlayerInfo = "UIPlayerInfo";
+        public const string UIPlayerDie = "UIPlayerDie";
     }
 }
