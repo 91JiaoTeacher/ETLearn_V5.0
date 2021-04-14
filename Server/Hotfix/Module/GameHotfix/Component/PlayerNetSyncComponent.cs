@@ -91,23 +91,28 @@ namespace ETHotfix
 
                         for (int j = 0; j < units.Count; j++)
                         {
-                            if (units[i].Account != units[j].Account)
+                            //这个单位没有死亡
+                            if (!units[j].Die)
                             {
-                                accounts.Add(units[j].Account);
-                                positionX.Add(units[j].InitPositionX);
-                                positionY.Add(units[j].InitPositionY);
-                                positionZ.Add(units[j].InitPositionZ);
+                                //并且不是自己
+                                if (units[i].Account != units[j].Account)
+                                {
+                                    accounts.Add(units[j].Account);
+                                    positionX.Add(units[j].InitPositionX);
+                                    positionY.Add(units[j].InitPositionY);
+                                    positionZ.Add(units[j].InitPositionZ);
 
-                                rotationX.Add(units[j].RotationX);
-                                rotationY.Add(units[j].RotationY);
-                                rotationZ.Add(units[j].RotationZ);
-                                rotationW.Add(units[j].RotationW);
+                                    rotationX.Add(units[j].RotationX);
+                                    rotationY.Add(units[j].RotationY);
+                                    rotationZ.Add(units[j].RotationZ);
+                                    rotationW.Add(units[j].RotationW);
 
-                                velocityX.Add(units[j].VelocityX);
-                                velocityY.Add(units[j].VelocityY);
-                                velocityZ.Add(units[j].VelocityZ);
+                                    velocityX.Add(units[j].VelocityX);
+                                    velocityY.Add(units[j].VelocityY);
+                                    velocityZ.Add(units[j].VelocityZ);
 
-                                isFire.Add(units[j].Fire);
+                                    isFire.Add(units[j].Fire);
+                                }
                             }
                         }
 

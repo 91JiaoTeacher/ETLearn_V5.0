@@ -1622,6 +1622,196 @@ namespace ETHotfix {
 
   }
 
+  public partial class G2C_OtherPlayerDie : pb::IMessage {
+    private static readonly pb::MessageParser<G2C_OtherPlayerDie> _parser = new pb::MessageParser<G2C_OtherPlayerDie>(() => (G2C_OtherPlayerDie)MessagePool.Instance.Fetch(typeof(G2C_OtherPlayerDie)));
+    public static pb::MessageParser<G2C_OtherPlayerDie> Parser { get { return _parser; } }
+
+    private int rpcId_;
+    public int RpcId {
+      get { return rpcId_; }
+      set {
+        rpcId_ = value;
+      }
+    }
+
+    private int diePlayerAccount_;
+    public int DiePlayerAccount {
+      get { return diePlayerAccount_; }
+      set {
+        diePlayerAccount_ = value;
+      }
+    }
+
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (DiePlayerAccount != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(DiePlayerAccount);
+      }
+      if (RpcId != 0) {
+        output.WriteRawTag(208, 5);
+        output.WriteInt32(RpcId);
+      }
+    }
+
+    public int CalculateSize() {
+      int size = 0;
+      if (RpcId != 0) {
+        size += 2 + pb::CodedOutputStream.ComputeInt32Size(RpcId);
+      }
+      if (DiePlayerAccount != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(DiePlayerAccount);
+      }
+      return size;
+    }
+
+    public void MergeFrom(pb::CodedInputStream input) {
+      diePlayerAccount_ = 0;
+      rpcId_ = 0;
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 8: {
+            DiePlayerAccount = input.ReadInt32();
+            break;
+          }
+          case 720: {
+            RpcId = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public partial class G2C_PlayerResurrection : pb::IMessage {
+    private static readonly pb::MessageParser<G2C_PlayerResurrection> _parser = new pb::MessageParser<G2C_PlayerResurrection>(() => (G2C_PlayerResurrection)MessagePool.Instance.Fetch(typeof(G2C_PlayerResurrection)));
+    public static pb::MessageParser<G2C_PlayerResurrection> Parser { get { return _parser; } }
+
+    private int rpcId_;
+    public int RpcId {
+      get { return rpcId_; }
+      set {
+        rpcId_ = value;
+      }
+    }
+
+    private int resurrectionPlayerAccount_;
+    public int ResurrectionPlayerAccount {
+      get { return resurrectionPlayerAccount_; }
+      set {
+        resurrectionPlayerAccount_ = value;
+      }
+    }
+
+    private float positionX_;
+    public float PositionX {
+      get { return positionX_; }
+      set {
+        positionX_ = value;
+      }
+    }
+
+    private float positionY_;
+    public float PositionY {
+      get { return positionY_; }
+      set {
+        positionY_ = value;
+      }
+    }
+
+    private float positionZ_;
+    public float PositionZ {
+      get { return positionZ_; }
+      set {
+        positionZ_ = value;
+      }
+    }
+
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (ResurrectionPlayerAccount != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(ResurrectionPlayerAccount);
+      }
+      if (PositionX != 0F) {
+        output.WriteRawTag(21);
+        output.WriteFloat(PositionX);
+      }
+      if (PositionY != 0F) {
+        output.WriteRawTag(29);
+        output.WriteFloat(PositionY);
+      }
+      if (PositionZ != 0F) {
+        output.WriteRawTag(37);
+        output.WriteFloat(PositionZ);
+      }
+      if (RpcId != 0) {
+        output.WriteRawTag(208, 5);
+        output.WriteInt32(RpcId);
+      }
+    }
+
+    public int CalculateSize() {
+      int size = 0;
+      if (RpcId != 0) {
+        size += 2 + pb::CodedOutputStream.ComputeInt32Size(RpcId);
+      }
+      if (ResurrectionPlayerAccount != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ResurrectionPlayerAccount);
+      }
+      if (PositionX != 0F) {
+        size += 1 + 4;
+      }
+      if (PositionY != 0F) {
+        size += 1 + 4;
+      }
+      if (PositionZ != 0F) {
+        size += 1 + 4;
+      }
+      return size;
+    }
+
+    public void MergeFrom(pb::CodedInputStream input) {
+      resurrectionPlayerAccount_ = 0;
+      positionX_ = 0f;
+      positionY_ = 0f;
+      positionZ_ = 0f;
+      rpcId_ = 0;
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 8: {
+            ResurrectionPlayerAccount = input.ReadInt32();
+            break;
+          }
+          case 21: {
+            PositionX = input.ReadFloat();
+            break;
+          }
+          case 29: {
+            PositionY = input.ReadFloat();
+            break;
+          }
+          case 37: {
+            PositionZ = input.ReadFloat();
+            break;
+          }
+          case 720: {
+            RpcId = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
   #endregion
 
 }

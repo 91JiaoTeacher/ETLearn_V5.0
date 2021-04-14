@@ -21,7 +21,7 @@
         /// <summary>
         /// 玩家是否死亡
         /// </summary>
-        public bool Die = false; 
+        public bool Die = false;
 
         public MailBoxComponent mailBoxComponent;
 
@@ -70,6 +70,15 @@
             }
 
             return Health;
+        }
+
+        /// <summary>
+        /// 恢复血量
+        /// </summary>
+        public void ReviveHealth()
+        {
+            Health = 100;
+            Die = false;
         }
 
         public override void Dispose()

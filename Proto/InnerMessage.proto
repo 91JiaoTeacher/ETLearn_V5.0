@@ -285,3 +285,18 @@ message Actor_PlayerToUnitSubHealthResponse //IActorResponse
     bool Die = 2;
     bool AttackDiePlayer = 3;
 }
+
+message Actor_OtherPlayerDie // IActorMessage
+{
+	int64 ActorId = 93;
+	int32 DiePlayerAccount = 1;
+}
+
+message Actor_PlayerResurrection // IActorMessage
+{
+	int64 ActorId = 93;
+	int32 ResurrectionPlayerAccount = 1;
+	float PositionX = 2;
+    float PositionY = 3;
+    float PositionZ = 4;
+}

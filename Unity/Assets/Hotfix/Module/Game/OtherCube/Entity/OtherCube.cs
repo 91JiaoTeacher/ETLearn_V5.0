@@ -21,6 +21,11 @@ namespace ETHotfix
         public int account;
 
         /// <summary>
+        /// 这个cube是否死亡
+        /// </summary>
+        public bool Die = false;
+
+        /// <summary>
         /// cube角色的Gameobject
         /// </summary>
         public GameObject otherCube_GameObject;

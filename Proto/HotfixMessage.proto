@@ -116,3 +116,18 @@ message G2C_PlayerHealthUpuate // IMessage
 	int32 NewHealth = 1;
     bool Die = 2;
 }
+
+message G2C_OtherPlayerDie // IMessage
+{
+	int32 RpcId = 90;
+	int32 DiePlayerAccount = 1;
+}
+
+message G2C_PlayerResurrection // IMessage
+{
+	int32 RpcId = 90;
+	int32 ResurrectionPlayerAccount = 1;
+	float PositionX = 2;
+    float PositionY = 3;
+    float PositionZ = 4;
+}

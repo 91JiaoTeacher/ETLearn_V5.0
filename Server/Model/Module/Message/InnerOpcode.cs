@@ -37,5 +37,7 @@ namespace ETModel
 		 public const ushort M2G_RemoveUnitByMap = 1033;
 		 public const ushort Actor_PlayerToUnitSubHealthRequest = 1034;
 		 public const ushort Actor_PlayerToUnitSubHealthResponse = 1035;
+		 public const ushort Actor_OtherPlayerDie = 1036;
+		 public const ushort Actor_PlayerResurrection = 1037;
 	}
 }

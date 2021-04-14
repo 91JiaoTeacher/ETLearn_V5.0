@@ -63,7 +63,7 @@ namespace ETModel
             }
             else
             {
-                Log.Error("错误，没有获取到unit：" + account);
+                Log.Info("错误，没有获取到unit：" + account);
                 return null;
             }
         }
@@ -92,7 +92,7 @@ namespace ETModel
         }
 
         /// <summary>
-        /// Unit已经被创建过了
+        /// Map服中包含这个account的Unit
         /// </summary>
         public bool UnitHaveBeCreated(int account)
         {

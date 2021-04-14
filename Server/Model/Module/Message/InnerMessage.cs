@@ -452,4 +452,28 @@ namespace ETModel
 
 	}
 
+	[Message(InnerOpcode.Actor_OtherPlayerDie)]
+	public partial class Actor_OtherPlayerDie: IActorMessage
+	{
+		public long ActorId { get; set; }
+
+		public int DiePlayerAccount { get; set; }
+
+	}
+
+	[Message(InnerOpcode.Actor_PlayerResurrection)]
+	public partial class Actor_PlayerResurrection: IActorMessage
+	{
+		public long ActorId { get; set; }
+
+		public int ResurrectionPlayerAccount { get; set; }
+
+		public float PositionX { get; set; }
+
+		public float PositionY { get; set; }
+
+		public float PositionZ { get; set; }
+
+	}
+
 }

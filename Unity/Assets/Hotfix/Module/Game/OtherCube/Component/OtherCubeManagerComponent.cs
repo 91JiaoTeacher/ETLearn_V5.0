@@ -41,6 +41,38 @@ namespace ETHotfix
             }
         }
 
+        /// <summary>
+        /// 一个cube死亡
+        /// </summary>
+        public void OtherCubeDie(int DieAccount)
+        {
+            if (otherCubeAccountToNetSyncComponent.TryGetValue(DieAccount, out OtherCubeNetSyncComponent otherCubeNetSync))
+            {
+                otherCubeNetSync.otherCube.Die = true;
+                otherCubeNetSync.otherCube.otherCube_GameObject.SetActive(false);
+            }
+            else
+            {
+                Debug.LogError("错误，需要同步死亡的cube里找不到这个：" + DieAccount);
+            }
+        }
+
+        /// <summary>
+        /// 一个cube复活
+        /// </summary>
+        public void OtherCubeResurrection(int ResurrectionAccount, Vector3 ResurrectionPosition)
+        {
+            if (otherCubeAccountToNetSyncComponent.TryGetValue(ResurrectionAccount, out OtherCubeNetSyncComponent otherCubeNetSync))
+            {
+                otherCubeNetSync.otherCube.Die = false;
+                otherCubeNetSync.otherCube.otherCube_GameObject.SetActive(true);
+                otherCubeNetSync.NetWorkAsyncPosition(ResurrectionPosition, Quaternion.identity, Vector3.zero);
+            }
+            else
+            {
+                Debug.LogError("错误，需要同步复活的cube里找不到这个：" + ResurrectionAccount);
+            }
+        }
 
         /// <summary>
         /// 移除一个其它Cube

@@ -37,6 +37,12 @@ namespace ETHotfix
 	[Message(HotfixOpcode.G2C_PlayerHealthUpuate)]
 	public partial class G2C_PlayerHealthUpuate : IMessage {}
 
+	[Message(HotfixOpcode.G2C_OtherPlayerDie)]
+	public partial class G2C_OtherPlayerDie : IMessage {}
+
+	[Message(HotfixOpcode.G2C_PlayerResurrection)]
+	public partial class G2C_PlayerResurrection : IMessage {}
+
 }
 namespace ETHotfix
 {
@@ -54,5 +60,7 @@ namespace ETHotfix
 		 public const ushort G2C_PlayerDisCatenate = 10010;
 		 public const ushort C2G_PlayerHitOtherPlayer = 10011;
 		 public const ushort G2C_PlayerHealthUpuate = 10012;
+		 public const ushort G2C_OtherPlayerDie = 10013;
+		 public const ushort G2C_PlayerResurrection = 10014;
 	}
 }
