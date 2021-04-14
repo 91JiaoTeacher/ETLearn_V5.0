@@ -115,6 +115,9 @@ namespace ETHotfix
             //设置死亡面板显示
             playerDieUIComponent.DiePanel.SetActive(false);
 
+            //设置血条
+            SetPlayerCubeHealth(100);
+
             PlayerCubeControllerComponent playerCubeControllerComponent = playerCube.GetComponent<PlayerCubeControllerComponent>();
 
             //设置自己隐藏
