@@ -290,7 +290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff906ecbbd0163f4094f8fa4e305d39f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  development: 1
+  development: 0
   updateUnusedAssetsImmediate: 1
 --- !u!4 &575235020
 Transform:

@@ -24,7 +24,7 @@ namespace ETModel
 			//验证算法
 			Assets.verifyBy = VerifyBy.CRC;
 			//更新的文件下载路径
-            Assets.updatePath = Application.dataPath + "/../updatePath/";
+            //Assets.updatePath = Application.dataPath + "/../updatePath/";
             if (!Directory.Exists(Assets.updatePath))
             {
                 Debug.Log("创建更新文件夹");

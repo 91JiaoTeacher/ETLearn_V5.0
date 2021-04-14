@@ -10,7 +10,7 @@ namespace ETHotfix
 
         protected override async ETTask Run(ETModel.Session session, G2C_PlayerHealthUpuate message)
         {
-            Debug.LogError("角色新血量：" + message.NewHealth + " 角色是否死亡：" + message.Die);
+            //Debug.LogError("角色新血量：" + message.NewHealth + " 角色是否死亡：" + message.Die);
 
             if (healthComponent == null)
             {

@@ -1,19 +1,17 @@
 ManifestFileVersion: 0
-CRC: 27081072
+CRC: 3498234899
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 1c2c22ecfa4912e7b251c640436d3abc
+    Hash: d893e70d54579fda10f1cab156213728
   TypeTreeHash:
     serializedVersion: 2
-    Hash: baedefce1c3a59ef8a9442af500734c4
+    Hash: c9e5f9332925a0d343018787fc4be837
 HashAppended: 0
 ClassTypes:
 - Class: 1
   Script: {instanceID: 0}
 - Class: 4
-  Script: {instanceID: 0}
-- Class: 49
   Script: {instanceID: 0}
 - Class: 114
   Script: {fileID: 11500000, guid: 502d8cafd6a5a0447ab1db9a24cdcb10, type: 3}
@@ -21,6 +19,7 @@ ClassTypes:
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
-- Assets/Resources/KV.prefab
+- Assets/Bundles/Prefab/OtherCube.prefab
 Dependencies:
-- D:/_MyGitHub/ETLearn_V5.0/Unity/Bundles/Windows/a23a5b74fd410648dc892e32a4fbf4e5.bundle
+- D:/GITHUB/ETLearn_V5.0/Unity/Bundles/Windows/56e6a3b06d7556cef6c5af3ad036f8c9.bundle
+- D:/GITHUB/ETLearn_V5.0/Unity/Bundles/Windows/a7e89be1be8700386611499932cec327.bundle

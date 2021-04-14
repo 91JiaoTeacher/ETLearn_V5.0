@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2325260551
+CRC: 3047044683
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: e89d5a25f04066df0dfefa136ab35338
+    Hash: 009fc6943da902a00fe1cb018dff59c0
   TypeTreeHash:
     serializedVersion: 2
     Hash: 06f0bd15f7ddb634664b8d7ff7bd8c07
@@ -40,4 +40,5 @@ ClassTypes:
 SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Res/Scene/Arena/Prefabs/Panel/GameOverPanel.prefab
-Dependencies: []
+Dependencies:
+- D:/GITHUB/ETLearn_V5.0/Unity/Bundles/Windows/fdcf5605249e9efdbfe6c925592f3a47.bundle

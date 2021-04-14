@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3563268331
+CRC: 82427344
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: bac43c82a392e901e8626457bc6df887
+    Hash: f37acf152fc59f7876d5f6fc38e4b438
   TypeTreeHash:
     serializedVersion: 2
     Hash: c9e5f9332925a0d343018787fc4be837
@@ -19,6 +19,6 @@ ClassTypes:
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
-- Assets/Bundles/Prefab/Player.prefab
+- Assets/Bundles/Prefab/TargetArrow.prefab
 Dependencies:
-- D:/_MyGitHub/ETLearn_V5.0/Unity/Bundles/Windows/9d15eb313925ca77aae4735d34bded3c.bundle
+- D:/GITHUB/ETLearn_V5.0/Unity/Bundles/Windows/63949605cc5ba18ad00071d6550ffa6c.bundle
