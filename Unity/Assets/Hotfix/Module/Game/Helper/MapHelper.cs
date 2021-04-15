@@ -37,10 +37,7 @@ namespace ETHotfix
                     await sceneChangeComponent.ChangeSceneAsync(SceneType.Arena);
                 }
 
-
                 PlayerCube playerCube = await PlayerCubeFactory.Create(new Vector3(g2CRequestEnterMap.PositionX, g2CRequestEnterMap.PositionY, g2CRequestEnterMap.PositionZ));
-
-                Game.EventSystem.Run(EventIdType.EnterMapFinish);
 
                 //获取其它在地图里的玩家
                 hotfixSession.Send(new C2G_GetOtherPlayer() {Account = playerInfo.account});
@@ -49,6 +46,8 @@ namespace ETHotfix
                 playerCube.AddComponent<PlayerCubeNetComponent, int>(playerInfo.account);
 
                 nowPlayerCube = playerCube;
+
+                Game.EventSystem.Run(EventIdType.EnterMapFinish);
             }
             catch (Exception e)
             {

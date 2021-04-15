@@ -30,7 +30,7 @@ namespace ETHotfix
                 UI ui = ComponentFactory.Create<UI, string, GameObject, AssetRequest>(UIType.UIAttackDirstick, gameObject, assetRequest, false);
 
                 VariableJoystickComponent variableJoystick = ui.AddComponent<VariableJoystickComponent>();
-                variableJoystick.joystickType = JoystickType.Dynamic;
+                variableJoystick.joystickType = JoystickType.Floating;
 
                 tcs.SetResult(ui);
             }
