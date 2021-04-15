@@ -313,6 +313,7 @@
     <Compile Include="Assets\Model\Module\Filter\FilterEntity.cs" />
     <Compile Include="Assets\Model\Module\Filter\IFilter.cs" />
     <Compile Include="Assets\Model\Module\Game\Components\SessionComponent.cs" />
+    <Compile Include="Assets\Model\Module\Game\Handler\G2C_PlayerPlayingHandler.cs" />
     <Compile Include="Assets\Model\Module\Game\UI\UIJoystick\System\HandlerAgent.cs" />
     <Compile Include="Assets\Model\Module\Message\AMHandler.cs" />
     <Compile Include="Assets\Model\Module\Message\ErrorCode.cs" />

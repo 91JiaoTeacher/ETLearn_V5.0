@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using ETHotfix;
 
@@ -13,6 +14,15 @@ namespace ETModel
         }
     }
 
+    [ObjectSystem]
+    public class PlayerComponentStartSystem : StartSystem<PlayerComponent>
+    {
+        public override void Start(PlayerComponent self)
+        {
+            self.Start();
+        }
+    }
+
     public class PlayerComponent: Component
     {
 
@@ -21,6 +31,11 @@ namespace ETModel
         public void Awake()
         {
             Log.Info("玩家管理组件初始化");
+        }
+
+        public void Start()
+        {
+            playerOnlineTest(3000).Coroutine();
         }
 
         /// <summary>
@@ -76,6 +91,32 @@ namespace ETModel
             {
                 Log.Error("这个玩家本来就不存在: " + account);
             }
+        }
+
+        /// <summary>
+        /// 检测玩家是否在线
+        /// </summary>
+        public async ETVoid playerOnlineTest(long time)
+        {
+            TimerComponent timerComponent = Game.Scene.GetComponent<TimerComponent>();
+            while (true)
+            {
+                await timerComponent.WaitAsync(time);
+                foreach (Player player in AccountToPlayer.Values)
+                {
+                    try
+                    {
+                        player.session.Send(new G2C_PlayerPlaying());
+                    }
+                    catch (Exception e)
+                    {
+                        //给其它玩家广播这个玩家掉线的信息
+                        removeOnePlayerLink(player.Account).Coroutine();
+                        Log.Error("一名玩家无应答离线了: " + player.Account);
+                    }
+                }
+            }
+
         }
 
         /// <summary>

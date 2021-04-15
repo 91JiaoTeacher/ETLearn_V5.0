@@ -139,6 +139,51 @@ namespace ETModel {
 
   }
 
+  public partial class G2C_PlayerPlaying : pb::IMessage {
+    private static readonly pb::MessageParser<G2C_PlayerPlaying> _parser = new pb::MessageParser<G2C_PlayerPlaying>(() => (G2C_PlayerPlaying)MessagePool.Instance.Fetch(typeof(G2C_PlayerPlaying)));
+    public static pb::MessageParser<G2C_PlayerPlaying> Parser { get { return _parser; } }
+
+    private int rpcId_;
+    public int RpcId {
+      get { return rpcId_; }
+      set {
+        rpcId_ = value;
+      }
+    }
+
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (RpcId != 0) {
+        output.WriteRawTag(208, 5);
+        output.WriteInt32(RpcId);
+      }
+    }
+
+    public int CalculateSize() {
+      int size = 0;
+      if (RpcId != 0) {
+        size += 2 + pb::CodedOutputStream.ComputeInt32Size(RpcId);
+      }
+      return size;
+    }
+
+    public void MergeFrom(pb::CodedInputStream input) {
+      rpcId_ = 0;
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 720: {
+            RpcId = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
   #endregion
 
 }

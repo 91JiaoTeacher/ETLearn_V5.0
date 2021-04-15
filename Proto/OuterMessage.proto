@@ -12,3 +12,8 @@ message R2C_Ping // IResponse
 	int32 Error = 91;
 	string Message = 92;
 }
+
+message G2C_PlayerPlaying // IMessage
+{
+	int32 RpcId = 90;
+}

@@ -4,6 +4,11 @@ namespace ETModel
 {
     public static class GloabConfigHelper
     {
+        /// <summary>
+        /// 全局延迟
+        /// </summary>
+        public static int ping = 0;
+
         public static ControllerType controllerType = ControllerType.PC;
 
         /// <summary>
