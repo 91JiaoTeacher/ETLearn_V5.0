@@ -129,7 +129,6 @@
     <Compile Include="Assets\Hotfix\Module\Game\UI\UIJoystick\System\UIJoystickFactory.cs" />
     <Compile Include="Assets\Hotfix\Module\Game\UI\UILobby\Component\UILobbyComponent.cs" />
     <Compile Include="Assets\Hotfix\Module\Game\UI\UILobby\System\EnterMapFinish_RemoveLobbyUI.cs" />
-    <Compile Include="Assets\Hotfix\Module\Game\UI\UILobby\System\LoginFinish_CreateLobbyUI.cs" />
     <Compile Include="Assets\Hotfix\Module\Game\UI\UILobby\System\UILobbyFactory.cs" />
     <Compile Include="Assets\Hotfix\Module\Game\UI\UILogin\Component\UILoginComponent.cs" />
     <Compile Include="Assets\Hotfix\Module\Game\UI\UILogin\System\InitSceneStart_CreateLoginUI.cs" />

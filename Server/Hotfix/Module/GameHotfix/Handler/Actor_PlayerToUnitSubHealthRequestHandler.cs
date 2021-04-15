@@ -47,6 +47,8 @@ namespace ETHotfix
                     //需要开启复活倒计时
                     UpDateNetSync(3000, unit.Account).Coroutine();
 
+                    Log.Info("玩家：" + request.KillerAccount + " 打死了玩家 " + unit.Account);
+
                 }
             }
             

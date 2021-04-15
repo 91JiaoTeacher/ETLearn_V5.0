@@ -466,6 +466,216 @@ namespace ETHotfix {
 
   }
 
+  public partial class C2G_GetPlayerInfo : pb::IMessage {
+    private static readonly pb::MessageParser<C2G_GetPlayerInfo> _parser = new pb::MessageParser<C2G_GetPlayerInfo>(() => (C2G_GetPlayerInfo)MessagePool.Instance.Fetch(typeof(C2G_GetPlayerInfo)));
+    public static pb::MessageParser<C2G_GetPlayerInfo> Parser { get { return _parser; } }
+
+    private int rpcId_;
+    public int RpcId {
+      get { return rpcId_; }
+      set {
+        rpcId_ = value;
+      }
+    }
+
+    private int account_;
+    public int Account {
+      get { return account_; }
+      set {
+        account_ = value;
+      }
+    }
+
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Account != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Account);
+      }
+      if (RpcId != 0) {
+        output.WriteRawTag(208, 5);
+        output.WriteInt32(RpcId);
+      }
+    }
+
+    public int CalculateSize() {
+      int size = 0;
+      if (RpcId != 0) {
+        size += 2 + pb::CodedOutputStream.ComputeInt32Size(RpcId);
+      }
+      if (Account != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Account);
+      }
+      return size;
+    }
+
+    public void MergeFrom(pb::CodedInputStream input) {
+      account_ = 0;
+      rpcId_ = 0;
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 8: {
+            Account = input.ReadInt32();
+            break;
+          }
+          case 720: {
+            RpcId = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public partial class G2C_GetPlayerInfo : pb::IMessage {
+    private static readonly pb::MessageParser<G2C_GetPlayerInfo> _parser = new pb::MessageParser<G2C_GetPlayerInfo>(() => (G2C_GetPlayerInfo)MessagePool.Instance.Fetch(typeof(G2C_GetPlayerInfo)));
+    public static pb::MessageParser<G2C_GetPlayerInfo> Parser { get { return _parser; } }
+
+    private int rpcId_;
+    public int RpcId {
+      get { return rpcId_; }
+      set {
+        rpcId_ = value;
+      }
+    }
+
+    private int error_;
+    public int Error {
+      get { return error_; }
+      set {
+        error_ = value;
+      }
+    }
+
+    private string message_ = "";
+    public string Message {
+      get { return message_; }
+      set {
+        message_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    private int killCount_;
+    public int KillCount {
+      get { return killCount_; }
+      set {
+        killCount_ = value;
+      }
+    }
+
+    private int deathCount_;
+    public int DeathCount {
+      get { return deathCount_; }
+      set {
+        deathCount_ = value;
+      }
+    }
+
+    private int moneyCount_;
+    public int MoneyCount {
+      get { return moneyCount_; }
+      set {
+        moneyCount_ = value;
+      }
+    }
+
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (KillCount != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(KillCount);
+      }
+      if (DeathCount != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(DeathCount);
+      }
+      if (MoneyCount != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(MoneyCount);
+      }
+      if (RpcId != 0) {
+        output.WriteRawTag(208, 5);
+        output.WriteInt32(RpcId);
+      }
+      if (Error != 0) {
+        output.WriteRawTag(216, 5);
+        output.WriteInt32(Error);
+      }
+      if (Message.Length != 0) {
+        output.WriteRawTag(226, 5);
+        output.WriteString(Message);
+      }
+    }
+
+    public int CalculateSize() {
+      int size = 0;
+      if (RpcId != 0) {
+        size += 2 + pb::CodedOutputStream.ComputeInt32Size(RpcId);
+      }
+      if (Error != 0) {
+        size += 2 + pb::CodedOutputStream.ComputeInt32Size(Error);
+      }
+      if (Message.Length != 0) {
+        size += 2 + pb::CodedOutputStream.ComputeStringSize(Message);
+      }
+      if (KillCount != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(KillCount);
+      }
+      if (DeathCount != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(DeathCount);
+      }
+      if (MoneyCount != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(MoneyCount);
+      }
+      return size;
+    }
+
+    public void MergeFrom(pb::CodedInputStream input) {
+      killCount_ = 0;
+      deathCount_ = 0;
+      moneyCount_ = 0;
+      rpcId_ = 0;
+      error_ = 0;
+      message_ = "";
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 8: {
+            KillCount = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            DeathCount = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            MoneyCount = input.ReadInt32();
+            break;
+          }
+          case 720: {
+            RpcId = input.ReadInt32();
+            break;
+          }
+          case 728: {
+            Error = input.ReadInt32();
+            break;
+          }
+          case 738: {
+            Message = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
   public partial class C2G_RequestEnterMap : pb::IMessage {
     private static readonly pb::MessageParser<C2G_RequestEnterMap> _parser = new pb::MessageParser<C2G_RequestEnterMap>(() => (C2G_RequestEnterMap)MessagePool.Instance.Fetch(typeof(C2G_RequestEnterMap)));
     public static pb::MessageParser<C2G_RequestEnterMap> Parser { get { return _parser; } }
@@ -479,9 +689,6 @@ namespace ETHotfix {
     }
 
     private int account_;
-    /// <summary>
-    /// 帐号
-    /// </summary>
     public int Account {
       get { return account_; }
       set {
@@ -1705,6 +1912,14 @@ namespace ETHotfix {
       }
     }
 
+    private int selfAccount_;
+    public int SelfAccount {
+      get { return selfAccount_; }
+      set {
+        selfAccount_ = value;
+      }
+    }
+
     private int hitPlayerAccount_;
     public int HitPlayerAccount {
       get { return hitPlayerAccount_; }
@@ -1722,12 +1937,16 @@ namespace ETHotfix {
     }
 
     public void WriteTo(pb::CodedOutputStream output) {
-      if (HitPlayerAccount != 0) {
+      if (SelfAccount != 0) {
         output.WriteRawTag(8);
+        output.WriteInt32(SelfAccount);
+      }
+      if (HitPlayerAccount != 0) {
+        output.WriteRawTag(16);
         output.WriteInt32(HitPlayerAccount);
       }
       if (SubHealth != 0) {
-        output.WriteRawTag(16);
+        output.WriteRawTag(24);
         output.WriteInt32(SubHealth);
       }
       if (RpcId != 0) {
@@ -1741,6 +1960,9 @@ namespace ETHotfix {
       if (RpcId != 0) {
         size += 2 + pb::CodedOutputStream.ComputeInt32Size(RpcId);
       }
+      if (SelfAccount != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(SelfAccount);
+      }
       if (HitPlayerAccount != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(HitPlayerAccount);
       }
@@ -1751,6 +1973,7 @@ namespace ETHotfix {
     }
 
     public void MergeFrom(pb::CodedInputStream input) {
+      selfAccount_ = 0;
       hitPlayerAccount_ = 0;
       subHealth_ = 0;
       rpcId_ = 0;
@@ -1761,10 +1984,14 @@ namespace ETHotfix {
             input.SkipLastField();
             break;
           case 8: {
-            HitPlayerAccount = input.ReadInt32();
+            SelfAccount = input.ReadInt32();
             break;
           }
           case 16: {
+            HitPlayerAccount = input.ReadInt32();
+            break;
+          }
+          case 24: {
             SubHealth = input.ReadInt32();
             break;
           }

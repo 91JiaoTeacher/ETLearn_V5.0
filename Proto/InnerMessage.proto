@@ -273,6 +273,7 @@ message Actor_PlayerToUnitSubHealthRequest //IActorRequest
     int32 RpcId = 90;
     int64 ActorId = 93;
     int32 SubHealth = 1;
+    int32 KillerAccount = 2;
 }
 
 message Actor_PlayerToUnitSubHealthResponse //IActorResponse

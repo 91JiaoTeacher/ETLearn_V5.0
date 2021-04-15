@@ -18,7 +18,8 @@ namespace ETModel
 
             Actor_PlayerToUnitSubHealthResponse actor_PlayerToUnitSubHealthResponse = (Actor_PlayerToUnitSubHealthResponse)await actorMessageSender.Call(new Actor_PlayerToUnitSubHealthRequest()
             {
-                SubHealth = message.SubHealth
+                SubHealth = message.SubHealth,
+                KillerAccount = message.SelfAccount
             });
 
             //只有攻击了没有死亡的角色才会发送信息

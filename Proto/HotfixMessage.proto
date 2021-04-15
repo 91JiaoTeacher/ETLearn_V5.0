@@ -37,10 +37,26 @@ message G2C_PlayerBackLogin // IMessage
 	string NetMessage = 1;
 }
 
+message C2G_GetPlayerInfo // IRequest
+{
+	int32 RpcId = 90;
+	int32 Account = 1;
+}
+
+message G2C_GetPlayerInfo // IResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	int32 KillCount = 1;
+	int32 DeathCount = 2;
+	int32 MoneyCount = 3;
+}
+
 message C2G_RequestEnterMap // IRequest
 {
 	int32 RpcId = 90;
-	int32 Account	 = 1;	// 帐号
+	int32 Account = 1;
 }
 
 message G2C_RequestEnterMap // IResponse
@@ -126,8 +142,9 @@ message G2C_PlayerDisCatenate // IMessage
 message C2G_PlayerHitOtherPlayer // IMessage
 {
 	int32 RpcId = 90;
-	int32 HitPlayerAccount = 1;
-	int32 SubHealth = 2;
+	int32 SelfAccount = 1;
+	int32 HitPlayerAccount = 2;
+	int32 SubHealth = 3;
 }
 
 message G2C_PlayerHealthUpuate // IMessage

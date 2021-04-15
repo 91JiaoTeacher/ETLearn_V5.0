@@ -66,6 +66,7 @@ namespace ETHotfix
             // 创建一个ETHotfix层的Session, ETHotfix的Session会通过ETModel层的Session发送消息
             Session hotfixSession = ComponentFactory.Create<Session, ETModel.Session>(session);
             Game.Scene.AddComponent<SessionComponent>().Session = hotfixSession;
+
             loginSession = Game.Scene.GetComponent<SessionComponent>().Session;
 
             failPanel.SetActive(false);
@@ -151,10 +152,15 @@ namespace ETHotfix
         }
 
         /// <summary>
+        /// 等待按钮回包
+        /// </summary>
+        private bool waitPackeg = false;
+
+        /// <summary>
         /// 登录按钮
         /// </summary>
 		private async ETVoid OnLogin()
-		{
+        {
             //获取账号
             if (!int.TryParse(this.account.GetComponent<InputField>().text, out int account))
             {
@@ -164,6 +170,10 @@ namespace ETHotfix
             }
             string password = this.password.GetComponent<InputField>().text;
 
+
+            if (waitPackeg)
+                return;
+            waitPackeg = true;
             try
             {
                 //发送请求登录的包
@@ -178,6 +188,7 @@ namespace ETHotfix
                 else
                 {
                     loginFail.SetActive(true);
+                    waitPackeg = false;
                 }
             }
             catch (Exception e)

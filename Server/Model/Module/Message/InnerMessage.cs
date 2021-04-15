@@ -433,6 +433,8 @@ namespace ETModel
 
 		public int SubHealth { get; set; }
 
+		public int KillerAccount { get; set; }
+
 	}
 
 	[Message(InnerOpcode.Actor_PlayerToUnitSubHealthResponse)]
