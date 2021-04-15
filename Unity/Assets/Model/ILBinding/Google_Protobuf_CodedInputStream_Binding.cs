@@ -35,11 +35,11 @@ namespace ILRuntime.Runtime.Generated
             method = type.GetMethod("ReadTag", flag, null, args, null);
             app.RegisterCLRMethodRedirection(method, ReadTag_3);
             args = new Type[]{};
-            method = type.GetMethod("ReadFloat", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, ReadFloat_4);
-            args = new Type[]{};
             method = type.GetMethod("ReadBool", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, ReadBool_5);
+            app.RegisterCLRMethodRedirection(method, ReadBool_4);
+            args = new Type[]{};
+            method = type.GetMethod("ReadFloat", flag, null, args, null);
+            app.RegisterCLRMethodRedirection(method, ReadFloat_5);
             args = new Type[]{};
             method = type.GetMethod("ReadInt64", flag, null, args, null);
             app.RegisterCLRMethodRedirection(method, ReadInt64_6);
@@ -112,24 +112,7 @@ namespace ILRuntime.Runtime.Generated
             return __ret + 1;
         }
 
-        static StackObject* ReadFloat_4(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
-        {
-            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
-            StackObject* ptr_of_this_method;
-            StackObject* __ret = ILIntepreter.Minus(__esp, 1);
-
-            ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
-            Google.Protobuf.CodedInputStream instance_of_this_method = (Google.Protobuf.CodedInputStream)typeof(Google.Protobuf.CodedInputStream).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack));
-            __intp.Free(ptr_of_this_method);
-
-            var result_of_this_method = instance_of_this_method.ReadFloat();
-
-            __ret->ObjectType = ObjectTypes.Float;
-            *(float*)&__ret->Value = result_of_this_method;
-            return __ret + 1;
-        }
-
-        static StackObject* ReadBool_5(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* ReadBool_4(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
@@ -143,6 +126,23 @@ namespace ILRuntime.Runtime.Generated
 
             __ret->ObjectType = ObjectTypes.Integer;
             __ret->Value = result_of_this_method ? 1 : 0;
+            return __ret + 1;
+        }
+
+        static StackObject* ReadFloat_5(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        {
+            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
+            StackObject* ptr_of_this_method;
+            StackObject* __ret = ILIntepreter.Minus(__esp, 1);
+
+            ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
+            Google.Protobuf.CodedInputStream instance_of_this_method = (Google.Protobuf.CodedInputStream)typeof(Google.Protobuf.CodedInputStream).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack));
+            __intp.Free(ptr_of_this_method);
+
+            var result_of_this_method = instance_of_this_method.ReadFloat();
+
+            __ret->ObjectType = ObjectTypes.Float;
+            *(float*)&__ret->Value = result_of_this_method;
             return __ret + 1;
         }
 

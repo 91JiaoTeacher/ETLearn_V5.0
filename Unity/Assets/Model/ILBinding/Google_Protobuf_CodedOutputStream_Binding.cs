@@ -40,12 +40,12 @@ namespace ILRuntime.Runtime.Generated
             args = new Type[]{typeof(System.String)};
             method = type.GetMethod("ComputeStringSize", flag, null, args, null);
             app.RegisterCLRMethodRedirection(method, ComputeStringSize_5);
-            args = new Type[]{typeof(System.Single)};
-            method = type.GetMethod("WriteFloat", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, WriteFloat_6);
             args = new Type[]{typeof(System.Boolean)};
             method = type.GetMethod("WriteBool", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, WriteBool_7);
+            app.RegisterCLRMethodRedirection(method, WriteBool_6);
+            args = new Type[]{typeof(System.Single)};
+            method = type.GetMethod("WriteFloat", flag, null, args, null);
+            app.RegisterCLRMethodRedirection(method, WriteFloat_7);
             args = new Type[]{typeof(System.Int64)};
             method = type.GetMethod("WriteInt64", flag, null, args, null);
             app.RegisterCLRMethodRedirection(method, WriteInt64_8);
@@ -168,25 +168,7 @@ namespace ILRuntime.Runtime.Generated
             return __ret + 1;
         }
 
-        static StackObject* WriteFloat_6(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
-        {
-            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
-            StackObject* ptr_of_this_method;
-            StackObject* __ret = ILIntepreter.Minus(__esp, 2);
-
-            ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
-            System.Single @value = *(float*)&ptr_of_this_method->Value;
-
-            ptr_of_this_method = ILIntepreter.Minus(__esp, 2);
-            Google.Protobuf.CodedOutputStream instance_of_this_method = (Google.Protobuf.CodedOutputStream)typeof(Google.Protobuf.CodedOutputStream).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack));
-            __intp.Free(ptr_of_this_method);
-
-            instance_of_this_method.WriteFloat(@value);
-
-            return __ret;
-        }
-
-        static StackObject* WriteBool_7(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* WriteBool_6(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
@@ -200,6 +182,24 @@ namespace ILRuntime.Runtime.Generated
             __intp.Free(ptr_of_this_method);
 
             instance_of_this_method.WriteBool(@value);
+
+            return __ret;
+        }
+
+        static StackObject* WriteFloat_7(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        {
+            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
+            StackObject* ptr_of_this_method;
+            StackObject* __ret = ILIntepreter.Minus(__esp, 2);
+
+            ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
+            System.Single @value = *(float*)&ptr_of_this_method->Value;
+
+            ptr_of_this_method = ILIntepreter.Minus(__esp, 2);
+            Google.Protobuf.CodedOutputStream instance_of_this_method = (Google.Protobuf.CodedOutputStream)typeof(Google.Protobuf.CodedOutputStream).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack));
+            __intp.Free(ptr_of_this_method);
+
+            instance_of_this_method.WriteFloat(@value);
 
             return __ret;
         }

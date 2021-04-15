@@ -10,12 +10,7 @@ namespace ETHotfix
         {
             Debug.LogError("断线原因：" + message.NetMessage);
 
-
-#if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-#else
             Application.Quit();
-#endif
 
             await ETTask.CompletedTask;
         }

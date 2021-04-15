@@ -125,8 +125,14 @@ namespace ETHotfix
         /// </summary>
         public void Update()
         {
-            OtherCube_Transform.position = Vector3.Lerp(OtherDirCube_Transform.position, OtherCube_Transform.position, 60.0f * Time.deltaTime);
-            OtherCube_Transform.rotation = Quaternion.Lerp(OtherDirCube_Transform.rotation, OtherCube_Transform.rotation, 60.0f * Time.deltaTime);
+            //OtherCube_Transform.position = Vector3.Lerp(OtherDirCube_Transform.position, OtherCube_Transform.position, 60.0f * Time.deltaTime);
+            //OtherCube_Transform.rotation = Quaternion.Lerp(OtherDirCube_Transform.rotation, OtherCube_Transform.rotation, 60.0f * Time.deltaTime);
+
+            OtherCube_Transform.position = Vector3.Lerp(OtherDirCube_Transform.position, OtherCube_Transform.position, 0.5f);
+            OtherCube_Transform.rotation = Quaternion.Lerp(OtherDirCube_Transform.rotation, OtherCube_Transform.rotation, 0.5f);
+
+            //OtherCube_Transform.position = OtherDirCube_Transform.position;
+            //OtherCube_Transform.rotation = OtherDirCube_Transform.rotation;
         }
     }
 }
