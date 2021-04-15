@@ -41,5 +41,6 @@ namespace ETModel
 		 public const ushort Actor_PlayerResurrection = 1037;
 		 public const ushort G2M_GetAllMapUnitExcept = 1038;
 		 public const ushort M2G_GetAllMapUnitExcept = 1039;
+		 public const ushort M2G_RecordKillData = 1040;
 	}
 }

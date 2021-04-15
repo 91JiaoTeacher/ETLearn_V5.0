@@ -502,4 +502,15 @@ namespace ETModel
 
 	}
 
+	[Message(InnerOpcode.M2G_RecordKillData)]
+	public partial class M2G_RecordKillData: IMessage
+	{
+		public int RpcId { get; set; }
+
+		public int KillerAccount { get; set; }
+
+		public int DeathAccount { get; set; }
+
+	}
+
 }

@@ -1,6 +1,7 @@
 ﻿using ETModel;
 using System;
 using System.Collections.Generic;
+using System.Net;
 
 namespace ETHotfix
 {
@@ -49,12 +50,25 @@ namespace ETHotfix
 
                     Log.Info("玩家：" + request.KillerAccount + " 打死了玩家 " + unit.Account);
 
+                    RecordKillDataSendPackge(request.KillerAccount, unit.Account);
+
                 }
             }
-            
 
             reply();
             await ETTask.CompletedTask;
+        }
+
+        /// <summary>
+        /// 记录击杀数据
+        /// </summary>
+        public void RecordKillDataSendPackge(int KillerAccount, int DeathAccount)
+        {
+
+            //获取内网发送组件
+            IPEndPoint gateAddress = StartConfigComponent.Instance.GateConfigs[0].GetComponent<InnerConfig>().IPEndPoint;
+            Session gateSession = Game.Scene.GetComponent<NetInnerComponent>().Get(gateAddress);
+            gateSession.Send(new M2G_RecordKillData() { KillerAccount = KillerAccount, DeathAccount = DeathAccount });
         }
 
         /// <summary>

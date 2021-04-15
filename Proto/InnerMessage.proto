@@ -316,3 +316,10 @@ message M2G_GetAllMapUnitExcept //IResponse
 
     repeated int32 Accounts = 1;
 }
+
+message M2G_RecordKillData // IMessage
+{
+    int32 RpcId = 90;
+    int32 KillerAccount = 1;
+    int32 DeathAccount = 2;
+}
