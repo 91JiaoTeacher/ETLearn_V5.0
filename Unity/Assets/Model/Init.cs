@@ -24,16 +24,21 @@ namespace ETModel
 			//验证算法
 			Assets.verifyBy = VerifyBy.CRC;
 			//更新的文件下载路径
-            //Assets.updatePath = Application.dataPath + "/../updatePath/";
-            if (!Directory.Exists(Assets.updatePath))
+            if (GloabConfigHelper.controllerType == ControllerType.PC)
             {
-                Debug.Log("创建更新文件夹");
-                Directory.CreateDirectory(Assets.updatePath);
-            }
-            else
-            {
-                Debug.Log("更新文件夹已经存在");
-            }
+                Assets.updatePath = Application.dataPath + "/../updatePath/";
+                if (!Directory.Exists(Assets.updatePath))
+                {
+                    Debug.Log("创建更新文件夹");
+                    Directory.CreateDirectory(Assets.updatePath);
+                }
+                else
+                {
+                    Debug.Log("更新文件夹已经存在");
+                }
+			}
+
+            
             //资源是否立即回收
             Assets.updateUnusedAssetsImmediate = updateUnusedAssetsImmediate;
 

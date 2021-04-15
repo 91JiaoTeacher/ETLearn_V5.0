@@ -101,10 +101,10 @@
     <Compile Include="Assets\Hotfix\Module\Game\Handler\G2C_OtherPlayerDieHandler.cs" />
     <Compile Include="Assets\Hotfix\Module\Game\Handler\G2C_OtherPlayerEnterMapHandler.cs" />
     <Compile Include="Assets\Hotfix\Module\Game\Handler\G2C_OtherPlayerPositionHandler.cs" />
+    <Compile Include="Assets\Hotfix\Module\Game\Handler\G2C_PlayerBackLoginHandler.cs" />
     <Compile Include="Assets\Hotfix\Module\Game\Handler\G2C_PlayerDisCatenateHandler.cs" />
     <Compile Include="Assets\Hotfix\Module\Game\Handler\G2C_PlayerHealthUpuateHandler.cs" />
     <Compile Include="Assets\Hotfix\Module\Game\Handler\G2C_PlayerResurrectionHandler.cs" />
-    <Compile Include="Assets\Hotfix\Module\Game\Helper\GloabConfigHelper.cs" />
     <Compile Include="Assets\Hotfix\Module\Game\Helper\LoginHelper.cs" />
     <Compile Include="Assets\Hotfix\Module\Game\Helper\MapHelper.cs" />
     <Compile Include="Assets\Hotfix\Module\Game\OtherCube\Component\OtherCubeAttackComponent.cs" />
@@ -737,11 +737,11 @@
     <Reference Include="Boo.Lang">
       <HintPath>E:/UnityALL/Unity2019.4.20f1/Unity/Editor/Data/MonoBleedingEdge/lib/mono/unityscript/Boo.Lang.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>D:/GITHUB/ETLearn_V5.0/Unity/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>D:/GITHUB/ETLearn_V5.0/Unity/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>D:/GITHUB/ETLearn_V5.0/Unity/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.TestRunner">
       <HintPath>D:/GITHUB/ETLearn_V5.0/Unity/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>

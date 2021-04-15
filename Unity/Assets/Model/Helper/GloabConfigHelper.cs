@@ -1,11 +1,10 @@
 ﻿using System;
-using ETModel;
 
-namespace ETHotfix
+namespace ETModel
 {
     public static class GloabConfigHelper
     {
-        public static ControllerType controllerType = ControllerType.Mobile;
+        public static ControllerType controllerType = ControllerType.PC;
 
         /// <summary>
         /// 每秒发包次数，但是不会超过帧数

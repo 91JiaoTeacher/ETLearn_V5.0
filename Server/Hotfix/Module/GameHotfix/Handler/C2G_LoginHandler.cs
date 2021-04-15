@@ -9,9 +9,8 @@ namespace ETHotfix
     {
         protected override async ETTask Run(Session session, C2G_Login request, G2C_Login response, Action reply)
         {
-            Log.Info("玩家登录：" + request.Account + "玩家输入密码：" + request.Password);
+            Log.Info("玩家请求登录：" + request.Account + "玩家输入密码：" + request.Password);
 
-            Log.Info("玩家上线，查询数据库");
             DBProxyComponent dBProxy = Game.Scene.GetComponent<DBProxyComponent>();
 
             List<ComponentWithId> count = await dBProxy.Query<PlayerInfoDB>(PlayerInfoDB => PlayerInfoDB.account == request.Account);
@@ -26,59 +25,63 @@ namespace ETHotfix
                     {
                         Log.Info("密码正确，允许登录");
 
-                        response.Address = "密码正确, 允许登录";
-                        response.Key = 11;
+                        response.LoginFail = true;
+
+                        PlayerComponent playerComponent = Game.Scene.GetComponent<PlayerComponent>();
+
+                        //查看玩家是否已经登录创建过
+                        if (playerComponent.AccountHaveBeCreated(request.Account))
+                        {
+                            Log.Info("玩家被顶号: " + request.Account);
+
+                            //获取之前已经创建好的Player实体
+                            Player oldPlayer = playerComponent.getPlayerByAccount(request.Account);
+
+                            try
+                            {
+                                //给被顶号的人发送被顶号的信息
+                                oldPlayer.session.Send(new G2C_PlayerBackLogin()
+                                {
+                                    NetMessage = "此账号在其它地方被登录"
+                                });
+                            }
+                            catch
+                            {
+                                Log.Info("发送顶号信息失败：" + request.Account);
+                            }
+
+                            //给其它玩家广播这个玩家掉线的信息
+                            playerComponent.removeOnePlayerLink(request.Account).Coroutine();
+                        }
+
+                        //创建登录玩家的实体
+                        Player loginPlayer = PlayerFactory.Create(request.Account);
+                        //向玩家管理组件里添加玩家的信息
+                        playerComponent.addPlayerToDict(request.Account, loginPlayer);
+
+                        //对玩家的session进行记录
+                        loginPlayer.session = session;
+                        session.AddComponent<SessionPlayerComponent>().Player = loginPlayer;
                     }
                     else
                     {
                         Log.Info("密码错误");
 
-                        response.Address = "密码错误";
-                        response.Key = 1;
+                        response.LoginFail = false;
                     }
                 }
                 else
                 {
                     Log.Error("账号重复了: " + count.Count);
-                    response.Address = "账号重复错误，请联系管理员";
-                    response.Key = 2;
+                    response.LoginFail = false;
                 }
             }
             else
             {
-                //如果运行到这里说明是注册的新账号
-                PlayerInfoDB playerData = ComponentFactory.Create<PlayerInfoDB>();
-                playerData.account = request.Account;
-                playerData.pwd = request.Password;
-                await dBProxy.Save(playerData);
 
-                response.Address = "注册新账号成功";
-                response.Key = 12;
-
-                Log.Info("注册新账号成功");
+                response.LoginFail = false;
             }
 
-
-            PlayerComponent playerComponent = Game.Scene.GetComponent<PlayerComponent>();
-
-            //查看玩家是否已经登录创建过
-            Player loginPlayer;
-            if (playerComponent.AccountHaveBeCreated(request.Account))
-            {
-                //获取之前已经创建好的Player实体
-                loginPlayer = playerComponent.getPlayerByAccount(request.Account);
-            }
-            else
-            {
-                //创建登录玩家的实体
-                loginPlayer = PlayerFactory.Create(request.Account);
-                //向玩家管理组件里添加玩家的信息
-                playerComponent.addPlayerToDict(request.Account, loginPlayer);
-            }
-
-            //对玩家的session进行记录
-            loginPlayer.session = session;
-            session.AddComponent<SessionPlayerComponent>().Player = loginPlayer;
 
             reply();
             await ETTask.CompletedTask;

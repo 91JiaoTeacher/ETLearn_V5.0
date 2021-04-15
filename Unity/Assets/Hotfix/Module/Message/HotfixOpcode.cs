@@ -7,6 +7,15 @@ namespace ETHotfix
 	[Message(HotfixOpcode.G2C_Login)]
 	public partial class G2C_Login : IResponse {}
 
+	[Message(HotfixOpcode.C2G_Reg)]
+	public partial class C2G_Reg : IRequest {}
+
+	[Message(HotfixOpcode.G2C_Reg)]
+	public partial class G2C_Reg : IResponse {}
+
+	[Message(HotfixOpcode.G2C_PlayerBackLogin)]
+	public partial class G2C_PlayerBackLogin : IMessage {}
+
 	[Message(HotfixOpcode.C2G_RequestEnterMap)]
 	public partial class C2G_RequestEnterMap : IRequest {}
 
@@ -50,17 +59,20 @@ namespace ETHotfix
 	{
 		 public const ushort C2G_Login = 10001;
 		 public const ushort G2C_Login = 10002;
-		 public const ushort C2G_RequestEnterMap = 10003;
-		 public const ushort G2C_RequestEnterMap = 10004;
-		 public const ushort C2G_PlayerRoleNetwork = 10005;
-		 public const ushort C2G_GetOtherPlayer = 10006;
-		 public const ushort G2C_OtherPlayerEnterMap = 10007;
-		 public const ushort G2C_OtherPlayerPosition = 10008;
-		 public const ushort BulletInfo = 10009;
-		 public const ushort G2C_PlayerDisCatenate = 10010;
-		 public const ushort C2G_PlayerHitOtherPlayer = 10011;
-		 public const ushort G2C_PlayerHealthUpuate = 10012;
-		 public const ushort G2C_OtherPlayerDie = 10013;
-		 public const ushort G2C_PlayerResurrection = 10014;
+		 public const ushort C2G_Reg = 10003;
+		 public const ushort G2C_Reg = 10004;
+		 public const ushort G2C_PlayerBackLogin = 10005;
+		 public const ushort C2G_RequestEnterMap = 10006;
+		 public const ushort G2C_RequestEnterMap = 10007;
+		 public const ushort C2G_PlayerRoleNetwork = 10008;
+		 public const ushort C2G_GetOtherPlayer = 10009;
+		 public const ushort G2C_OtherPlayerEnterMap = 10010;
+		 public const ushort G2C_OtherPlayerPosition = 10011;
+		 public const ushort BulletInfo = 10012;
+		 public const ushort G2C_PlayerDisCatenate = 10013;
+		 public const ushort C2G_PlayerHitOtherPlayer = 10014;
+		 public const ushort G2C_PlayerHealthUpuate = 10015;
+		 public const ushort G2C_OtherPlayerDie = 10016;
+		 public const ushort G2C_PlayerResurrection = 10017;
 	}
 }
