@@ -28,6 +28,8 @@ namespace ETHotfix
                 else
                 {
                     Log.Error("查找数据不正确：" + message.KillerAccount);
+                    
+
                 }
             }
             {

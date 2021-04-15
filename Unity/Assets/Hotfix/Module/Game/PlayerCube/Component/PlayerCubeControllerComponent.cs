@@ -105,6 +105,7 @@ namespace ETHotfix
             groundCheck = cubePlayerBody_Transform.Find("GroundCheck");
             cubePlayer_Controller = cubePlayer_Transform.GetComponent<CharacterController>();
 
+
             cubePlayer_ControllerUI = ui.GetComponent<VariableJoystickComponent>();
         }
 
