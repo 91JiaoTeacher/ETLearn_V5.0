@@ -29,18 +29,19 @@ namespace ETHotfix
 
                         PlayerComponent playerComponent = Game.Scene.GetComponent<PlayerComponent>();
 
+                        Player loginPlayer;
                         //查看玩家是否已经登录创建过
                         if (playerComponent.AccountHaveBeCreated(request.Account))
                         {
                             Log.Info("玩家被顶号: " + request.Account);
 
                             //获取之前已经创建好的Player实体
-                            Player oldPlayer = playerComponent.getPlayerByAccount(request.Account);
+                            loginPlayer = playerComponent.getPlayerByAccount(request.Account);
 
                             try
                             {
                                 //给被顶号的人发送被顶号的信息
-                                oldPlayer.session.Send(new G2C_PlayerBackLogin()
+                                loginPlayer.session.Send(new G2C_PlayerBackLogin()
                                 {
                                     NetMessage = "此账号在其它地方被登录"
                                 });
@@ -51,13 +52,16 @@ namespace ETHotfix
                             }
 
                             //给其它玩家广播这个玩家掉线的信息
-                            playerComponent.removeOnePlayerLink(request.Account).Coroutine();
+                            playerComponent.PlayerBackLogin(request.Account).Coroutine();
                         }
+                        else
+                        {
+                            //创建登录玩家的实体
+                            loginPlayer = PlayerFactory.Create(request.Account);
+                            //向玩家管理组件里添加玩家的信息
+                            playerComponent.addPlayerToDict(request.Account, loginPlayer);
 
-                        //创建登录玩家的实体
-                        Player loginPlayer = PlayerFactory.Create(request.Account);
-                        //向玩家管理组件里添加玩家的信息
-                        playerComponent.addPlayerToDict(request.Account, loginPlayer);
+                        }
 
                         //对玩家的session进行记录
                         loginPlayer.session = session;

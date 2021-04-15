@@ -300,3 +300,18 @@ message Actor_PlayerResurrection // IActorMessage
     float PositionY = 3;
     float PositionZ = 4;
 }
+
+message G2M_GetAllMapUnitExcept //IRequest
+{
+    int32 RpcId = 90;
+    int64 ActorId = 93;
+    int32 Account = 1;
+}
+message M2G_GetAllMapUnitExcept //IResponse
+{
+    int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+
+    repeated int32 Accounts = 1;
+}

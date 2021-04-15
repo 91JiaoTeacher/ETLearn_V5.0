@@ -476,4 +476,28 @@ namespace ETModel
 
 	}
 
+	[Message(InnerOpcode.G2M_GetAllMapUnitExcept)]
+	public partial class G2M_GetAllMapUnitExcept: IRequest
+	{
+		public int RpcId { get; set; }
+
+		public long ActorId { get; set; }
+
+		public int Account { get; set; }
+
+	}
+
+	[Message(InnerOpcode.M2G_GetAllMapUnitExcept)]
+	public partial class M2G_GetAllMapUnitExcept: IResponse
+	{
+		public int RpcId { get; set; }
+
+		public int Error { get; set; }
+
+		public string Message { get; set; }
+
+		public List<int> Accounts = new List<int>();
+
+	}
+
 }

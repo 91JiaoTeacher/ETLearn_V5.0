@@ -40,6 +40,45 @@ namespace ETModel
         }
 
         /// <summary>
+        /// 玩家重复登录
+        /// </summary>
+        public async ETVoid PlayerBackLogin(int account)
+        {
+            if (AccountToPlayer.ContainsKey(account))
+            {
+                //获取内网发送组件
+                IPEndPoint mapAddress = StartConfigComponent.Instance.MapConfigs[0].GetComponent<InnerConfig>().IPEndPoint;
+                Session mapSession = Game.Scene.GetComponent<NetInnerComponent>().Get(mapAddress);
+
+                //给Map服发送移除unit的信息, 并收到需要广播的player的账号
+                M2G_RemoveUnitByMap m2GRemoveUnitByMap = (M2G_RemoveUnitByMap)await mapSession.Call(new G2M_RemoveUnitByMap() { Account = account });
+
+                if (m2GRemoveUnitByMap.Accounts.Count > 0)
+                {
+                    for (int i = 0; i < m2GRemoveUnitByMap.Accounts.Count; i++)
+                    {
+                        if (AccountToPlayer.TryGetValue(m2GRemoveUnitByMap.Accounts[i], out Player player))
+                        {
+                            player.session.Send(new G2C_PlayerDisCatenate()
+                            {
+                                Account = account
+                            });
+                        }
+                        else
+                        {
+                            Log.Error("所有player找不到这个需要发送其它玩家的断线信息的玩家");
+                        }
+                    }
+                }
+
+            }
+            else
+            {
+                Log.Error("这个玩家本来就不存在: " + account);
+            }
+        }
+
+        /// <summary>
         /// 断开一颗玩家的链接，包括它在Map服中的实体
         /// </summary>
         /// <param name="account"></param>

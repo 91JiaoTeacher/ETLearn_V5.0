@@ -39,5 +39,7 @@ namespace ETModel
 		 public const ushort Actor_PlayerToUnitSubHealthResponse = 1035;
 		 public const ushort Actor_OtherPlayerDie = 1036;
 		 public const ushort Actor_PlayerResurrection = 1037;
+		 public const ushort G2M_GetAllMapUnitExcept = 1038;
+		 public const ushort M2G_GetAllMapUnitExcept = 1039;
 	}
 }

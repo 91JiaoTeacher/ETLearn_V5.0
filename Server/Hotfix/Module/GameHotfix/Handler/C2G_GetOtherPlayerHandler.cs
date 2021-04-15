@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Net;
 using ETModel;
 
 namespace ETHotfix
@@ -8,25 +9,28 @@ namespace ETHotfix
     {
         protected override async ETTask Run(Session session, C2G_GetOtherPlayer message)
         {
-            PlayerComponent playerComponent = Game.Scene.GetComponent<PlayerComponent>();
+            //获取内网发送组件
+            IPEndPoint mapAddress = StartConfigComponent.Instance.MapConfigs[0].GetComponent<InnerConfig>().IPEndPoint;
+            Session mapSession = Game.Scene.GetComponent<NetInnerComponent>().Get(mapAddress);
 
-            //发送其它玩家的信息给客户端
-            List<Player> players = playerComponent.getOtherPlayerIgnoreAccount(message.Account);
-            if (players != null)
+            M2G_GetAllMapUnitExcept m2GGetAllMapUnitExcept = (M2G_GetAllMapUnitExcept)await mapSession.Call(new G2M_GetAllMapUnitExcept() { Account = message.Account });
+
+            if (m2GGetAllMapUnitExcept.Accounts.Count > 0)
             {
-                //获取角色出生位置
+                PlayerComponent playerComponent = Game.Scene.GetComponent<PlayerComponent>();
                 ActorMessageSenderComponent actorSenderComponent = Game.Scene.GetComponent<ActorMessageSenderComponent>();
 
-                for (int i = 0; i < players.Count; i++)
+                for (int i = 0; i < m2GGetAllMapUnitExcept.Accounts.Count; i++)
                 {
-                    //需要保证玩家进入地图才发送
-                    if (players[i].MapInstanceId != 0)
+                    if (playerComponent.AccountHaveBeCreated(m2GGetAllMapUnitExcept.Accounts[i]))
                     {
-                        ActorMessageSender actorMessageSender = actorSenderComponent.Get(players[i].MapInstanceId);
+                        Player player = playerComponent.getPlayerByAccount(m2GGetAllMapUnitExcept.Accounts[i]);
+
+                        ActorMessageSender actorMessageSender = actorSenderComponent.Get(player.MapInstanceId);
                         Actor_PlayerInitPositionResponse actor_PlayerInitPositionResponse = (Actor_PlayerInitPositionResponse)await actorMessageSender.Call(new Actor_PlayerInitPositionRequest());
                         session.Send(new G2C_OtherPlayerEnterMap()
                         {
-                            Account = players[i].Account,
+                            Account = player.Account,
                             PositionX = actor_PlayerInitPositionResponse.PositionX,
                             PositionY = actor_PlayerInitPositionResponse.PositionY,
                             PositionZ = actor_PlayerInitPositionResponse.PositionZ

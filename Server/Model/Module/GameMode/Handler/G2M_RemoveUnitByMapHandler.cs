@@ -13,16 +13,21 @@ namespace ETModel
             //需要从map服中一处一个Unit
             UnitComponent unitComponent = Game.Scene.GetComponent<UnitComponent>();
 
-            unitComponent.removeOneUnit(request.Account);
-
             //返回所有需要广播掉线消息的Player
             List<int> needSendPlayer = new List<int>();
-            List<Unit> units = unitComponent.getCountUnits(0);
-            if (units != null)
+
+            if (unitComponent.UnitHaveBeCreated(request.Account))
             {
-                for (int i = 0; i < units.Count; i++)
+                unitComponent.removeOneUnit(request.Account);
+
+
+                List<Unit> units = unitComponent.getCountUnits(0);
+                if (units != null)
                 {
-                    needSendPlayer.Add(units[i].Account);
+                    for (int i = 0; i < units.Count; i++)
+                    {
+                        needSendPlayer.Add(units[i].Account);
+                    }
                 }
             }
 
